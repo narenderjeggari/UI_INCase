@@ -1,0 +1,11 @@
+{
+    "wsccId": 5,
+    "program": "Additional TRA",
+    "comments": "[User1 - DATETIME]: Test Remark 1<br>[User2 - DATETIME]: Test Remark 2",
+    "initialClm": 1,
+    "additionalClm": 1,
+    "incrementFrequency": 6,
+    "incrementVal": 1,
+    "startDate": "06/24/2023",
+    "endDate": "06/24/2023"
+}

@@ -1,0 +1,17 @@
+{
+    "wswcId": 1,
+    "scenario": "Auto-Waive based on definite recall from previous employer",
+    "reasonCd": "2883",
+    "reasonVal": "Definite Recall to Work",
+    "fkLofId": "53",
+    "businessUnit": "BAU - Concord",
+    "comments": "NA",
+    "autoOverwrite": "Y",
+    "startDate": "06/24/2023",
+    "endDate": "06/24/2023",
+    "reasonsAlcId": 1,
+    "event": "Issue Adjudication",
+    "eventSpecifics": "Auto-Waive based on definite recall from previous employer. Auto-Waive based on definite recall from previous employer. Auto-Waive based on definite recall from previous employer",
+    "addlRef": "Auto-Waive based on definite recall from previous employer. Auto-Waive based on definite recall from previous employer. Auto-Waive based on definite recall from previous employer. Auto-Waive based on definite recall from previous employer",
+    "splActions": "None"
+}

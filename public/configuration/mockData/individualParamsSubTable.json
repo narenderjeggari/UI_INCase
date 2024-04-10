@@ -1,0 +1,22 @@
+[
+    {
+        "parId": 211002391,
+        "numericValue": "4",
+        "textValue": "ON",
+        "dateValue": "4/30/2023",
+        "startDate": "09/25/2023",
+        "endDate": "09/30/2023",
+        "editFlag": false,
+        "name": "sub table record  name"
+    },
+    {
+        "parId": 211002391,
+        "numericValue": "4",
+        "textValue": "ON",
+        "dateValue": "4/30/2023",
+        "startDate": "09/25/2100",
+        "endDate": "09/30/2023",
+        "editFlag": false,
+        "name": "sub table record  name"
+    }
+]

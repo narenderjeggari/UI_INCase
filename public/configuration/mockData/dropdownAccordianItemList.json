@@ -1,0 +1,68 @@
+{
+    "allowValAlvList": [
+        {
+            "alvId": 980,
+            "alvActiveInd": "Y",
+            "alvShortDecTxt": "0",
+            "alvDecipherCode": "REQ",
+            "alvDisplayOn": "All Views",
+            "alvSortOrderNbr": 0
+        },
+        {
+            "alvId": 2980,
+            "alvActiveInd": "Y",
+            "alvShortDecTxt": "End of approved training",
+            "alvDecipherCode": "REQ",
+            "alvDisplayOn": "All Views",
+            "alvSortOrderNbr": 1
+        },
+        {
+            "alvId": 4190,
+            "alvActiveInd": "N",
+            "alvShortDecTxt": "No Views",
+            "alvSortOrderNbr": 2
+        },
+        {
+            "alvId": 4191,
+            "alvActiveInd": "Y",
+            "alvShortDecTxt": "STF Only",
+            "alvSortOrderNbr": 3
+        },
+        {
+            "alvId": 4192,
+            "alvActiveInd": "Y",
+            "alvShortDecTxt": "STF and CMT",
+            "alvSortOrderNbr": 4
+        },
+        {
+            "alvId": 4193,
+            "alvActiveInd": "Y",
+            "alvShortDecTxt": "STF and EMP",
+            "alvSortOrderNbr": 5
+        },
+        {
+            "alvId": 4194,
+            "alvActiveInd": "Y",
+            "alvShortDecTxt": "CMT Only",
+            "alvSortOrderNbr": 6
+        },
+        {
+            "alvId": 4195,
+            "alvActiveInd": "Y",
+            "alvShortDecTxt": "CMT and EMP",
+            "alvSortOrderNbr": 7
+        },
+        {
+            "alvId": 4196,
+            "alvActiveInd": "Y",
+            "alvShortDecTxt": "EMP Only",
+            "alvSortOrderNbr": 8
+        }
+    ],
+    "pagination": {
+        "pageNumber": 1,
+        "pageSize": 10,
+        "needTotalCount": true,
+        "totalItemCount": 8
+    }
+}

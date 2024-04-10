@@ -1,0 +1,85 @@
+{
+    "wswcSummaryList": [
+        {
+            "wswcId": 1,
+            "scenario": "Auto-Waive based on definite recall from previous employer",
+            "reason": "Definite Recall to Work",
+            "autoOverwrite": "Y",
+            "startDate": "07/10/2032",
+            "endDate": "10/10/2023",
+            "editFlag": true,
+            "deleteFlag": true,
+            "childListCount": 4
+        },
+        {
+            "wswcId": 2,
+            "scenario": "Auto-Waive based on adjudication of claimant-provided RTW",
+            "reason": "Permissible Return to Work",
+            "autoOverwrite": "Y",
+            "startDate": "07/10/2023"
+        },
+        {
+            "wswcId": 3,
+            "scenario": "Auto-Waive based on adjudication of employer-provided RTW",
+            "reason": "Permissible Return to Work",
+            "autoOverwrite": "Y",
+            "startDate": "07/10/2023"
+        },
+        {
+            "wswcId": 4,
+            "scenario": "Auto-Waive based on claimant starting new employment",
+            "reason": "Permissible Start of New Employment",
+            "autoOverwrite": "Y",
+            "startDate": "07/10/2023",
+            "childListCount": 4
+        },
+        {
+            "wswcId": 5,
+            "scenario": "Auto-Waive based on Pathway to Work claim",
+            "reason": "Pathway to Work",
+            "autoOverwrite": "N",
+            "startDate": "07/10/2023"
+        },
+        {
+            "wswcId": 7,
+            "scenario": "Auto-Waive based on adjudication of Union Member issue",
+            "reason": "Union                                             ",
+            "autoOverwrite": "N",
+            "startDate": "07/10/2100"
+        },
+        {
+            "wswcId": 9,
+            "scenario": "Auto-Waive based on adjudication of Approved Training issue",
+            "reason": "In Approved School/training",
+            "autoOverwrite": "N",
+            "startDate": "07/10/2023"
+        },
+        {
+            "wswcId": 10,
+            "scenario": "Auto-Waive based on claimant being a Mass Layoff claimant",
+            "reason": "Mass Layoff - Staff Approved",
+            "autoOverwrite": "N",
+            "startDate": "07/10/2023"
+        },
+        {
+            "wswcId": 12,
+            "scenario": "Auto-Waive based on claimant on Mass Layoff Reference list not listing a separation from that employ",
+            "reason": "Mass Layoff - Staff Approved",
+            "autoOverwrite": "N",
+            "startDate": "07/10/2023"
+        },
+        {
+            "wswcId": 14,
+            "scenario": "Auto-Waive based on adjudication of Potential Mass Layoff issue",
+            "reason": "Mass Layoff - Staff Approved",
+            "autoOverwrite": "N",
+            "startDate": "07/10/2023"
+        }
+    ],
+    "pagination": {
+        "pageNumber": 1,
+        "pageSize": 10,
+        "needTotalCount": true,
+        "totalItemCount": 11
+    }
+}

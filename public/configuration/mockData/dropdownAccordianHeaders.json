@@ -1,0 +1,18 @@
+[
+    {
+        "alcId": 65,
+        "alcName": "CWS_REASON_CD",
+        "alcDescTxt": "Reasons for Establishing or Changing Work Search Requirements",
+        "alcDecipherLabel": "TYPE"
+    },
+    {
+        "alcId": 530,
+        "alcName": "WWS_CONTACT_METHOD_CD",
+        "alcDescTxt": "Methods of Contacts for Work Search"
+    },
+    {
+        "alcId": 531,
+        "alcName": "WWS_RESULTS_CD",
+        "alcDescTxt": "Result of Work Search Contacts"
+    }
+]

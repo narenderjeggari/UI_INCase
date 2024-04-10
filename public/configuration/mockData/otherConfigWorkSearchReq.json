@@ -1,0 +1,70 @@
+{
+    "wsccSummaryList": [
+        {
+            "wsccId": 5,
+            "program": "Additional TRA",
+            "initialClaim": 1,
+            "additionalClaim": 1,
+            "incrementFrequency": -6,
+            "incrementVal": 1,
+            "startDate": "06/24/2023",
+            "endDate": "12/31/2099",
+            "editFlag": true,
+            "childListCount": 4,
+            "deleteFlag": true
+        },
+        {
+            "wsccId": 6,
+            "program": "CTRA",
+            "initialClaim": 1,
+            "additionalClaim": 1,
+            "incrementFrequency": 6,
+            "incrementVal": 1,
+            "startDate": "06/24/2023"
+        },
+        {
+            "wsccId": 21,
+            "program": "DUA                                               ",
+            "initialClaim": 1,
+            "additionalClaim": 1,
+            "incrementFrequency": 0,
+            "incrementVal": 0,
+            "startDate": "06/24/2023",
+            "childListCount": 4
+        },
+        {
+            "wsccId": 4,
+            "program": "TRA",
+            "initialClaim": 1,
+            "additionalClaim": 1,
+            "incrementFrequency": 6,
+            "incrementVal": 1,
+            "startDate": "06/24/2023"
+        },
+        {
+            "wsccId": 3,
+            "program": "UI",
+            "initialClaim": 1,
+            "additionalClaim": 1,
+            "incrementFrequency": 4,
+            "incrementVal": 2,
+            "startDate": "01/01/2100"
+        },
+        {
+            "wsccId": 1,
+            "program": "UI",
+            "initialClaim": 1,
+            "additionalClaim": 1,
+            "incrementFrequency": 4,
+            "incrementVal": 2,
+            "startDate": "06/24/2023",
+            "endDate": "12/31/2099"
+        }
+    ],
+    "pagination": {
+        "pageNumber": 1,
+        "pageSize": 10,
+        "needTotalCount": true,
+        "totalItemCount": 6
+    }
+}

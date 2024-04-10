@@ -1,0 +1,24 @@
+[
+    {
+        "wsccId": 5,
+        "program": "Additional TRA",
+        "initialClaim": 1,
+        "additionalClaim": 1,
+        "incrementFrequency": -6,
+        "incrementVal": 1,
+        "startDate": "06/24/2100",
+        "endDate": "12/31/2099",
+        "editFlag": true,
+        "deleteFlag": true,
+        "childListCount": 4
+    },
+    {
+        "wsccId": 6,
+        "program": "CTRA",
+        "initialClaim": 1,
+        "additionalClaim": 1,
+        "incrementFrequency": 6,
+        "incrementVal": 1,
+        "startDate": "06/24/2023"
+    }
+]

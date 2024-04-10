@@ -1,0 +1,42 @@
+[
+    {
+        "alvId": 4189,
+        "alvActiveInd": "Y",
+        "alvShortDecTxt": "All Views",
+        "alvLongDescTxt": "All Views",
+        "alvDecipherCode": "Y",
+        "alvSortOrderNbr": 1
+    },
+    {
+        "alvId": 4191,
+        "alvActiveInd": "Y",
+        "alvShortDecTxt": "STF Only",
+        "alvLongDescTxt": "Staff",
+        "alvDecipherCode": "Y",
+        "alvSortOrderNbr": 2
+    },
+    {
+        "alvId": 4194,
+        "alvActiveInd": "Y",
+        "alvShortDecTxt": "CMT Only",
+        "alvLongDescTxt": "Claimant",
+        "alvDecipherCode": "Y",
+        "alvSortOrderNbr": 3
+    },
+    {
+        "alvId": 4196,
+        "alvActiveInd": "Y",
+        "alvShortDecTxt": "EMP Only",
+        "alvLongDescTxt": "Employer",
+        "alvDecipherCode": "Y",
+        "alvSortOrderNbr": 4
+    },
+    {
+        "alvId": 4190,
+        "alvActiveInd": "Y",
+        "alvShortDecTxt": "No Views",
+        "alvLongDescTxt": "Do Not Display",
+        "alvDecipherCode": "Y",
+        "alvSortOrderNbr": 8
+    }
+]

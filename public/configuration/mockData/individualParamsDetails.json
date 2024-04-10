@@ -1,0 +1,19 @@
+{
+    "parId": 211001969,
+    "parLongName": "Minimum requirements for gold medals work search activities",
+    "parCategoryCd": 4949,
+    "parCategoryCdValue": "WORK_SEARCH",
+    "numericType": true,
+    "textType": true,
+    "dateType": false,
+    "numericValue": 5555,
+    "textValue": "ddasda",
+    "parShortName": "MIN_REQ_GOLD_WS_ACT",
+    "parEffectiveDate": "10/29/2023",
+    "parExpirationDate": "05/26/2024",
+    "parRemarks": "[User1 - DATETIME]: Test Remark 1<br/>[User2 - DATETIME]: Test Remark 2<br/>[User2 - DATETIME]: Test Remark 2<br/>[User2 - DATETIME]: Test Remark 2<br/>[User2 - DATETIME]: Test Remark 2<br/>[User2 - DATETIME]: Test Remark 2<br/>[User2 - DATETIME]: Test Remark 2<br/>[User2 - DATETIME]: Test Remark 2<br/>[User2 - DATETIME]: Test Remark 2<br/>[User2 - DATETIME]: Test Remark 2<br/>[User2 - DATETIME]: Test Remark 2<br/>[User2 - DATETIME]: Test Remark 2<br/>[User2 - DATETIME]: Test Remark 2<br/>[User2 - DATETIME]: Test Remark 2<br/>[User2 - DATETIME]: Test Remark 2<br/>[User2 - DATETIME]: Test Remark 2",
+    "modTypeChangeFlag": true,
+    "modTypeEndDateFlag": true,
+    "modTypeReinstateFlag": false,
+    "openEndedExistFlag": true
+}

@@ -1,0 +1,71 @@
+{
+    "parameterParList": [
+        {
+            "parId": 211002007,
+            "name": "EFF DATE FOR NEW WS FORM",
+            "startDate": "06/17/2021"
+        },
+        {
+            "parId": 211001330,
+            "name": "FIRST FEW LETTERS OF WORK SEARCH RECORDS",
+            "value": "3",
+            "startDate": "09/20/2017"
+        },
+        {
+            "parId": 211002469,
+            "name": "FIRST FEW LETTERS OF WORK SEARCH RECORDS",
+            "value": "3",
+            "startDate": "09/20/2017",
+            "endDate": "08/10/2023"
+        },
+        {
+            "parId": 211002470,
+            "name": "FIRST FEW LETTERS OF WORK SEARCH RECORDS (Test Save)",
+            "startDate": "08/11/2023",
+            "endDate": "08/26/2023"
+        },
+        {
+            "parId": 211001332,
+            "name": "MINIMUM # OF SUSPECT WORK SEARCH RECORDS",
+            "value": "3",
+            "startDate": "09/20/2017"
+        },
+        {
+            "parId": 211001232,
+            "name": "Maximum number of employer search allowed.",
+            "value": "50",
+            "startDate": "08/10/2016"
+        },
+        {
+            "parId": 211001231,
+            "name": "Maximum number of work search allowed.",
+            "value": "9",
+            "startDate": "08/10/2016"
+        },
+        {
+            "parId": 211002387,
+            "name": "Minimum number of weekly work search requirement limit",
+            "value": "25",
+            "startDate": "06/01/2023"
+        },
+        {
+            "parId": 211001971,
+            "name": "Minimum requirements for bronze medals work search activities",
+            "value": "5",
+            "startDate": "05/26/2021"
+        },
+        {
+            "parId": 211001969,
+            "name": "Minimum requirements for gold medals work search activities",
+            "value": "1",
+            "startDate": "05/26/2021",
+            "endDate": "08/10/2100"
+        }
+    ],
+    "pagination": {
+        "pageNumber": 1,
+        "pageSize": 10,
+        "needTotalCount": true,
+        "totalItemCount": 13
+    }
+}

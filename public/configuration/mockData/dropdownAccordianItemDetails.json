@@ -1,0 +1,10 @@
+{
+    "alvId": 3096,
+    "fkAlcId": 65,
+    "alvActiveInd": "N",
+    "alvShortDecTxt": "Hospitalization",
+    "alvSortOrderNbr": 0,
+    "alvCategoryCd": "CWS_REASON_CD",
+    "alvCategoryName": "Reasons for Establishing or Changing Work Search Requirements",
+    "alvComments": "[User1 - DATETIME]: Test Remark 1<br/>[User2 - DATETIME]: Test Remark 2<br/>[User2 - DATETIME]: Test Remark 2<br/>[User2 - DATETIME]: Test Remark 2<br/>[User2 - DATETIME]: Test Remark 2<br/>[User2 - DATETIME]: Test Remark 2<br/>[User2 - DATETIME]: Test Remark 2<br/>[User2 - DATETIME]: Test Remark 2<br/>[User2 - DATETIME]: Test Remark 2<br/>[User2 - DATETIME]: Test Remark 2<br/>[User2 - DATETIME]: Test Remark 2<br/>[User2 - DATETIME]: Test Remark 2<br/>[User2 - DATETIME]: Test Remark 2<br/>[User2 - DATETIME]: Test Remark 2<br/>[User2 - DATETIME]: Test Remark 2<br/>[User2 - DATETIME]: Test Remark 2"
+}

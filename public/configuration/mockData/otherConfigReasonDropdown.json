@@ -1,0 +1,15 @@
+{
+    "allowValAlvList": [
+        {
+            "alvId": 2880,
+            "alvActiveInd": "Y",
+            "alvShortDecTxt": "Director's Decision",
+            "alvDecipherCode": "WVR & REQ",
+            "alvSortOrderNbr": 0
+        },
+        {
+            "alvId": 2883,
+            "alvShortDecTxt": "Seasonal Employment"
+        }
+    ]
+}

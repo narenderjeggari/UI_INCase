@@ -1,0 +1,19 @@
+[
+    {
+        "wswcId": 1,
+        "scenario": "Auto-Waive based on definite recall from previous employer",
+        "reason": "Definite Recall to Work",
+        "noAutoOverwrite": "Y",
+        "startDate": "07/10/2023",
+        "endDate": "10/10/2023",
+        "editFlag": true,
+        "deleteFlag": true
+    },
+    {
+        "wswcId": 2,
+        "scenario": "Auto-Waive based on adjudication of claimant-provided RTW",
+        "reason": "Permissible Return to Work",
+        "noAutoOverwrite": "Y",
+        "startDate": "07/10/2100"
+    }
+]

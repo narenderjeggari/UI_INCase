@@ -1,0 +1,9 @@
+{
+    "alvId": 4949,
+    "fkAlcId": 849,
+    "alvActiveInd": "Y",
+    "alvShortDecTxt": "WS",
+    "alvLongDescTxt": "Work Search",
+    "alvCategoryCd": "PAR_CATEGORY_CD",
+    "alvCategoryName": "Category types for Configurable items(PAR,ALC,....)"
+}
