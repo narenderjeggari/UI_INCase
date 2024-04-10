@@ -1,26 +1,50 @@
-export const CONFIG_ITEMS = [
-  {
-    id: "IndividualParameters",
-    label: "Individual Parameters",
-    children: null,
-  },
-  {
-    id: "DropdownLists",
-    label: "Dropdown Lists",
-    children: [],
-  },
-  {
-    id: "Other Configurations",
-    label: "Other Configurations",
-    children: [
-      {
-        id: "Auto-set Minimum Weekly Work Search Requirements",
-        label: "Auto-set Minimum Weekly Work Search Requirements",
-      },
-      {
-        id: "Auto-set Weekly Work Search Waivers",
-        label: "Auto-set Weekly Work Search Waivers",
-      },
-    ],
-  },
-];
+export const CONFIG_ITEMS = {
+  4949: [
+    {
+      id: "IndividualParameters",
+      label: "Individual Parameters",
+      children: null,
+    },
+    {
+      id: "DropdownLists",
+      label: "Dropdown Lists",
+      children: [],
+    },
+    {
+      id: "Other Configurations",
+      label: "Other Configurations",
+      children: [
+        {
+          id: "Auto-set Minimum Weekly Work Search Requirements",
+          label: "Auto-set Minimum Weekly Work Search Requirements",
+        },
+        {
+          id: "Auto-set Weekly Work Search Waivers",
+          label: "Auto-set Weekly Work Search Waivers",
+        }
+      ],
+    },
+  ],
+  4846: [
+    {
+      id: "IndividualParameters",
+      label: "Individual Parameters",
+      children: null,
+    },
+    {
+      id: "DropdownLists",
+      label: "Dropdown Lists",
+      children: [],
+    },
+    {
+      id: "Other Configurations",
+      label: "Other Configurations",
+      children: [
+        {
+          id: "Auto-set Investicase Minimum Weekly Work Search Requirements",
+          label: "Auto-set Investicase Minimum Weekly Work Search Requirements",
+        },
+      ],
+    },
+  ],
+};

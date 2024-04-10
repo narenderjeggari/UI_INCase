@@ -1,0 +1,15 @@
+{
+  "wswcSummaryList": [
+    {
+      "SPA_ATTRIBUTE_CD": "ATTRIBUTE",
+      "FK_SPA_ID": "ID",
+      "SPA_ATTR_WEIGHT": "ATTRIBUTE WEIGHT",
+      "SPA_AUTOMARK": "AUTOMARK",
+      "SPA_REMARKS": "REMARKS",
+      "SPA_MAIN_SRC_CD": "SOURCE CD",
+      "SPA_OTHER_SOURCES": "OTHER SOURCES",
+      "editFlag": true,
+      "deleteFlag": true
+    }
+  ]
+}

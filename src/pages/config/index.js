@@ -18,6 +18,7 @@ import { CONFIG_ITEMS } from "../../helpers/Constants";
 import IndividualParameters from "./individualParameters";
 import AutosetWeeklyWorkSearchRequirements from "./otherConfigurations/workSearchRequirements";
 import AutosetWeeklyWorkSearchWaivers from "./otherConfigurations/workSearchWaivers";
+import Investicase from "./otherConfigurations/Investicase";
 import {
   dropdownAccordianHeadersURL,
   individualParamsTitleURL,
@@ -68,12 +69,13 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 }));
 
 export default function Configurations() {
-  const alcCode = Number(window.category) || 4949;
+  // const alcCode = Number(window.category) || 4949;
+  const alcCode = Number(window.category) || 4846;
   const [selectedConfig, setSelectedConfig] = useState([]);
   // const [selectedSubConfig, setSelectedSubConfig] = useState('');
   const [loading, setLoading] = useState(false);
   const [errorMessages, setErrorMessages] = useState([]);
-  const [configItems, setConfigItems] = useState(CONFIG_ITEMS);
+  const [configItems, setConfigItems] = useState(CONFIG_ITEMS[alcCode]);
   const [configurationsTitle, setConfigurationsTitle] = useState("");
 
   const handleConfigSelect = (panel) => (event, newExpanded) => {
@@ -94,6 +96,8 @@ export default function Configurations() {
           return <AutosetWeeklyWorkSearchRequirements />;
         case "Auto-set Weekly Work Search Waivers":
           return <AutosetWeeklyWorkSearchWaivers />;
+        case "Auto-set Investicase Minimum Weekly Work Search Requirements":
+          return <Investicase />;
         default:
           return (
             <DropdownListItemData
@@ -164,7 +168,7 @@ export default function Configurations() {
           variant="h4"
           style={{ marginTop: "0.5rem", fontSize: "1.5rem" }}
         >{`${configurationsTitle} Configurations`}</Typography>
-        {CONFIG_ITEMS.map((item) => (
+        {configItems.map((item) => (
           <Accordion
             key={item.id}
             expanded={selectedConfig.includes(item.id)}

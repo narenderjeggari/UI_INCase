@@ -32,6 +32,7 @@ const otherConfigWorkSearchWaiversDetailsURL = `${baseApiUrl}${process.env.REACT
 const otherConfigWorkSearchWaiversSaveURL = `${baseApiUrl}${process.env.REACT_APP_OTHER_CONFIG_WORK_SEARCH_WAIVERS_SAVE_URL}`;
 const otherConfigWorkSearchWaiversSubTableURL = `${baseApiUrl}${process.env.REACT_APP_OTHER_CONFIG_WORK_SEARCH_WAIVERS_SUB_TABLE_URL}`;
 const otherConfigWorkSearchWaiversDeleteURL = `${baseApiUrl}${process.env.REACT_APP_OTHER_CONFIG_WORK_SEARCH_WAIVERS_DELETE_URL}`;
+const otherConfigInvesticaseURL = `${baseApiUrl}${process.env.REACT_APP_OTHER_CONFIG_INVESTICASE_URL}`;
 
 const otherConfigReasonsDropdownURL = `${baseApiUrl}${process.env.REACT_APP_OTHER_CONFIG_REASON_DROPDOWN_URL}`;
 const otherConfigBusinessUnitDropdownURL = `${baseApiUrl}${process.env.REACT_APP_OTHER_CONFIG_BUSINESS_UNIT_DROPDOWN_URL}`;
@@ -69,4 +70,5 @@ export {
   otherConfigWorkSearchWaiversSubTableURL,
   otherConfigWorkSearchReqDeleteURL,
   otherConfigWorkSearchWaiversDeleteURL,
+  otherConfigInvesticaseURL
 };
