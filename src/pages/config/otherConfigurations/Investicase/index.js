@@ -68,32 +68,36 @@ export default function Investicase() {
   const [parentDataRefresh, setParentDataRefresh] = useState(false);
 
   const columns = [
-    { id: "SPA_ATTRIBUTE_CD",
-     label: "SPA_ATTRIBUTE_CD"
+    { id: "attributeName",
+     label: "ATTRIBUTE NAME"
      },
     {
-      id: "FK_SPA_ID",
-      label: "FK_SPA_ID",
+      id: "parentAttributeName",
+      label: "PARENT ATTRIBUTE NAME",
     },
     {
-      id: "SPA_ATTR_WEIGHT",
-      label: "SPA_ATTR_WEIGHT",
+      id: "attributeWeight",
+      label: "ATTRIBUTE  WEIGHT",
     },
     {
-      id: "SPA_AUTOMARK",
-      label: "SPA_AUTOMARK",
+      id: "automarkInd",
+      label: "AUTOMARK IND",
     },
     {
-      id: "SPA_REMARKS",
-      label: "SPA_REMARKS",
+      id: "startDate",
+      label: "START DATE",
     },
     {
-      id: "SPA_MAIN_SRC_CD",
-      label: "SPA_MAIN_SRC_CD",
+      id: "endDate",
+      label: "END DATE",
     },
     {
-      id: "SPA_OTHER_SOURCES",
-      label: "SPA_OTHER_SOURCES",
+      id: "datePattern4Ind",
+      label: "DATE PATTERN 4 IND",
+    },
+    {
+      id: "minThreshold",
+      label: "MIN. THRESHOLD",
     },
   ];
 
