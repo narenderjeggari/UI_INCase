@@ -41,8 +41,8 @@ export const CONFIG_ITEMS = {
       label: "Other Configurations",
       children: [
         {
-          id: "Auto-set Investicase Minimum Weekly Work Search Requirements",
-          label: "Auto-set Investicase Minimum Weekly Work Search Requirements",
+          id: "Configure Spidering Attributes",
+          label: "Configure Spidering Attributes",
         },
       ],
     },

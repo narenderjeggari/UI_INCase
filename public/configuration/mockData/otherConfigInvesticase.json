@@ -1,14 +1,63 @@
 {
   "wswcSummaryList": [
     {
-      "attributeName": "ATTRIBUTE NAME",
-      "parentAttributeName": "PARENT ATTRIBUTE NAME",
-      "attributeWeight": "ATTRIBUTE WEIGHT",
-      "automarkInd": "AUTOMARK IND",
-      "startDate": "10/10/2023",
-      "endDate": "07/10/2032",
-      "datePattern4Ind": "DATE PATTERN 4 IND",
-      "minThreshold":"MIN. THRESHOLD",
+      "attributeName": "City And State",
+      "parentAttributeName": "23",
+      "attributeWeight": "3",
+      "automarkInd": "N",
+      "startDate": "09/20/2017",
+      "endDate": "",
+      "datePattern4Ind": "N",
+      "minThreshold":"100",
+      "editFlag": true,
+      "deleteFlag": true,
+      "childListCount": 2
+    },
+    {
+      "attributeName": "SSN",
+      "parentAttributeName": "20",
+      "attributeWeight": "5",
+      "automarkInd": "N",
+      "startDate": "09/20/2017",
+      "endDate": "",
+      "datePattern4Ind": "N",
+      "minThreshold":"100",
+      "editFlag": true,
+      "deleteFlag": true
+    },
+    {
+      "attributeName": "Date of Birth",
+      "parentAttributeName": "20",
+      "attributeWeight": "1",
+      "automarkInd": "N",
+      "startDate": "09/20/2017",
+      "endDate": "",
+      "datePattern4Ind": "N",
+      "minThreshold":"100",
+      "editFlag": true,
+      "deleteFlag": true
+    },
+    {
+      "attributeName": "Bank Routing#",
+      "parentAttributeName": "20",
+      "attributeWeight": "5",
+      "automarkInd": "N",
+      "startDate": "09/20/2017",
+      "endDate": "",
+      "datePattern4Ind": "N",
+      "minThreshold":"100",
+      "editFlag": true,
+      "deleteFlag": true
+    },
+    {
+      "attributeName": "Residential Address(Full)",
+      "parentAttributeName": "23",
+      "attributeWeight": "3",
+      "automarkInd": "N",
+      "startDate": "09/20/2017",
+      "endDate": "",
+      "datePattern4Ind": "N",
+      "minThreshold":"100",
       "editFlag": true,
       "deleteFlag": true
     }

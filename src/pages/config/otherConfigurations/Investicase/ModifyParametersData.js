@@ -1,143 +1,70 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import RadioGroup from "@mui/material/RadioGroup";
 import Stack from "@mui/material/Stack";
-import Divider from "@mui/material/Divider";
+// import Divider from "@mui/material/Divider";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Radio from "@mui/material/Radio";
+import Paper from "@mui/material/Paper";
 import {
   DialogContent,
   DialogActions,
   Button,
   Typography,
   Grid,
-  Box,
-  Select,
-  MenuItem,
-  Checkbox,
   FormHelperText,
-  Paper,
 } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import { FormControl, TextField } from "@mui/material";
-import {
-  otherConfigWorkSearchWaiversSaveURL,
-  otherConfigReasonsDropdownURL,
-  otherConfigBusinessUnitDropdownURL,
-} from "../../../../helpers/Urls";
+import useModifyParamsForm from "./useModifyParamsForm";
+import ViewParametersData from "./ViewParametersData";
+import { otherConfigWorkSearchReqSaveURL } from "../../../../helpers/Urls";
 import { getMsgsFromErrorCode } from "../../../../helpers/utils";
 import moment from "moment";
 import client from "../../../../helpers/Api";
-import ViewParametersData from "./ViewParametersData";
-import useModifyParamsForm from "./useModifyParamsForm";
 
 function ModifyParametersData({ selectedParam, closeModalPopup }) {
   const [errorMessages, setErrorMessages] = useState([]);
   const [loading, setLoading] = useState(false);
-
-  const [reasons, setReasons] = useState([]);
-  const [businessUnits, setBusinessUnits] = useState([]);
-
-  const { reasonCd, reasonsAlcId, businessUnit, autoOverwrite } =
+  const { attributeName, attributeWeight, automarkInd, attrFormatType, remarks } =
     selectedParam;
   const initialState = {
     modificationType: "",
-    configurationDate: null,
-    startDate: null,
-    endDate: null,
-    deactivateDate: null,
-    reactivateDate: null,
-
-    noAutoOverwrite: autoOverwrite !== "Y",
-    reasonCd: reasonCd || "",
-    businessUnit: "",
-    comments: "",
-  };
-
-  useEffect(() => {
-    if (reasonsAlcId) {
-      getReasonsDropdownData();
-    }
-  }, [reasonsAlcId]);
-
-  const getReasonsDropdownData = async () => {
-    try {
-      const response =
-        process.env.REACT_APP_ENV === "mockserver"
-          ? await client.get(otherConfigReasonsDropdownURL)
-          : await client.post(otherConfigReasonsDropdownURL, {
-              alcId: reasonsAlcId,
-              active: "Y",
-            });
-
-      setReasons(response.allowValAlvList);
-    } catch (errorResponse) {
-      const newErrMsgs = getMsgsFromErrorCode(
-        `POST:${process.env.REACT_APP_OTHER_CONFIG_REASON_DROPDOWN_URL}`,
-        errorResponse,
-      );
-      setErrorMessages(newErrMsgs);
-    }
-  };
-
-  useEffect(() => {
-    getBusinessUnitsDropdownData();
-  }, []);
-
-  const getBusinessUnitsDropdownData = async () => {
-    try {
-      const response =
-        process.env.REACT_APP_ENV === "mockserver"
-          ? await client.get(otherConfigBusinessUnitDropdownURL)
-          : await client.get(otherConfigBusinessUnitDropdownURL);
-
-      setBusinessUnits(response);
-      const selectedValue = response
-        .find((x) => x.businessUnitName === businessUnit)
-        ?.businessUnitCd?.toString();
-      setFieldValue("businessUnit", selectedValue);
-    } catch (errorResponse) {
-      const newErrMsgs = getMsgsFromErrorCode(
-        `GET:${process.env.REACT_APP_OTHER_CONFIG_BUSINESS_UNIT_DROPDOWN_URL}`,
-        errorResponse,
-      );
-      setErrorMessages(newErrMsgs);
-    }
+    attributeName: attributeName,
+    attributeWeight: attributeWeight || "",
+    automarkInd: automarkInd || "",
+    attrFormatType: attrFormatType || "",
+    remarks: remarks || "",
   };
 
   const onSubmit = async () => {
     setLoading(true);
     setErrorMessages([]);
     const payload = {
-      wswcId: selectedParam.wswcId,
+      wsccId: selectedParam.wsccId,
       modificationType: values.modificationType,
+      initialClaim: parseInt(values.initialClaim),
+      additionalClaim: parseInt(values.additionalClaim),
+      incrementFrequency: parseInt(values.incrementFrequency),
+      attrFormatType: parseInt(values.attrFormatType),
       modificationDate:
         values.modificationType === "CONFIGURATION"
           ? values.configurationDate?.format("MM/DD/YYYY")
-          : values.modificationType === "STARTDATE"
-            ? values.startDate?.format("MM/DD/YYYY")
-            : values.modificationType === "ENDDATE"
-              ? values.endDate?.format("MM/DD/YYYY")
-              : values.modificationType === "DEACTIVATE"
-                ? values.deactivateDate?.format("MM/DD/YYYY")
-                : values.reactivateDate?.format("MM/DD/YYYY"),
-      autoOverwrite: values.noAutoOverwrite ? "N" : "Y",
-      reasonCd: parseInt(values.reasonCd),
-      businessUnit: parseInt(values.businessUnit),
+          : values.startDate?.format("MM/DD/YYYY"),
       comments: values.comments,
     };
     try {
       const response =
         process.env.REACT_APP_ENV === "mockserver"
-          ? await client.get(otherConfigWorkSearchWaiversSaveURL)
-          : await client.post(otherConfigWorkSearchWaiversSaveURL, payload);
+          ? await client.get(otherConfigWorkSearchReqSaveURL)
+          : await client.post(otherConfigWorkSearchReqSaveURL, payload);
       setLoading(false);
       closeModalPopup(true);
     } catch (errorResponse) {
       setLoading(false);
       const newErrMsgs = getMsgsFromErrorCode(
-        `POST:${process.env.REACT_APP_OTHER_CONFIG_WORK_SEARCH_WAIVERS_SAVE_URL}`,
+        `POST:${process.env.REACT_APP_OTHER_CONFIG_WORK_SEARCH_REQ_SAVE_URL}`,
         errorResponse,
       );
       setErrorMessages(newErrMsgs);
@@ -178,349 +105,260 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
             <Paper elevation={6} className="modify-dialog-content-paper">
               <ViewParametersData selectedParam={selectedParam} />
             </Paper>
-            <Box
-              sx={{
-                backgroundColor: "#9faee6",
-                padding: 1,
-                borderRadius: 2,
-              }}
-            >
-              <Typography className="label-text">
-                You are choosing to alter a configuration. If you would like to
-                proceed, you must select Modification Type and enter your
-                Comments.
-              </Typography>
-            </Box>
             <Paper elevation={6} className="modify-dialog-content-paper">
-              <Stack direction="row" spacing={5}>
-                <Grid container>
-                  <Grid item md={2}>
-                    <Typography className="label-text">
-                      <span className="required">*</span>Modification Type:
-                    </Typography>
-                  </Grid>
-                  <Grid item md={10}>
-                    <RadioGroup
-                      aria-labelledby="demo-error-radios"
-                      name="modificationType"
-                      value={values.modificationType}
-                      onChange={(event) => {
-                        setFieldValue("configurationDate", null);
-                        setFieldValue("startDate", null);
-                        setFieldValue("endDate", null);
-                        setFieldValue("deactivateDate", null);
-                        setFieldValue("reactivateDate", null);
-                        setFieldValue("modificationType", event.target.value);
-                      }}
-                      error={
-                        touched.modificationType &&
-                        Boolean(errors.modificationType)
-                      }
-                      helperText={
-                        touched.modificationType && errors.modificationType
-                      }
-                      className="label-text"
-                    >
-                      <Grid container spacing={5}>
-                        <Grid item md={6}>
-                          <Grid container>
-                            <Grid item md={8}>
-                              <FormControlLabel
-                                value="CONFIGURATION"
-                                control={<Radio size="small" />}
-                                label="Modification Configuration as of:"
-                                className="label-text"
-                                sx={{ fontWeight: 700 }}
-                              />
-                            </Grid>
-                            <Grid item md={4}>
-                              <LocalizationProvider dateAdapter={AdapterMoment}>
-                                <FormControl sx={{ width: 150 }}>
-                                  <DatePicker
-                                    disabled={
-                                      values.modificationType !==
-                                      "CONFIGURATION"
-                                    }
-                                    name="configurationDate"
-                                    format="MM/DD/YYYY"
-                                    value={values.configurationDate}
-                                    onChange={(value) =>
-                                      setFieldValue("configurationDate", value)
-                                    }
-                                    slotProps={{ textField: { size: "small" } }}
-                                    minDate={moment().add(1, "days")}
-                                    // minDate={moment().startOf('week').startOf('day')}
-                                    // maxDate={moment().add("months", 2)}
-                                  />
-                                  {touched.configurationDate &&
-                                    errors.configurationDate && (
-                                      <FormHelperText style={{ color: "red" }}>
-                                        {errors.configurationDate}
-                                      </FormHelperText>
-                                    )}
-                                </FormControl>
-                              </LocalizationProvider>
-                            </Grid>
-                          </Grid>
-                        </Grid>
-
-                        <Grid item md={6}>
-                          <Grid container>
-                            <Grid item md={6}>
-                              <FormControlLabel
-                                value="STARTDATE"
-                                control={<Radio size="small" />}
-                                label="Change Start Date to:"
-                              />
-                            </Grid>
-                            <Grid item md={6}>
-                              <LocalizationProvider dateAdapter={AdapterMoment}>
-                                <FormControl sx={{ width: 150 }}>
-                                  <DatePicker
-                                    disabled={
-                                      values.modificationType !== "STARTDATE"
-                                    }
-                                    name="startDate"
-                                    format="MM/DD/YYYY"
-                                    value={values.startDate}
-                                    onChange={(value) =>
-                                      setFieldValue("startDate", value)
-                                    }
-                                    slotProps={{ textField: { size: "small" } }}
-                                    minDate={moment().add(1, "days")}
-                                    // minDate={moment().startOf('week').startOf('day')}
-                                    // maxDate={moment().add("months", 2)}
-                                  />
-                                  {touched.startDate && errors.startDate && (
-                                    <FormHelperText style={{ color: "red" }}>
-                                      {errors.startDate}
-                                    </FormHelperText>
-                                  )}
-                                </FormControl>
-                              </LocalizationProvider>
-                            </Grid>
-                          </Grid>
-                        </Grid>
-                      </Grid>
-
-                      <Grid container spacing={5}>
-                        <Grid item md={6}>
-                          <Grid container>
-                            <Grid item md={8}>
-                              <FormControlLabel
-                                value="DEACTIVATE"
-                                control={<Radio size="small" />}
-                                label="Deactivate after:"
-                                className="label-text"
-                                sx={{ fontWeight: 700 }}
-                              />
-                            </Grid>
-                            <Grid item md={4}>
-                              <LocalizationProvider dateAdapter={AdapterMoment}>
-                                <FormControl sx={{ width: 150 }}>
-                                  <DatePicker
-                                    disabled={
-                                      values.modificationType !== "DEACTIVATE"
-                                    }
-                                    name="deactivateDate"
-                                    format="MM/DD/YYYY"
-                                    value={values.deactivateDate}
-                                    onChange={(value) =>
-                                      setFieldValue("deactivateDate", value)
-                                    }
-                                    slotProps={{ textField: { size: "small" } }}
-                                    minDate={moment().add(1, "days")}
-                                    // minDate={moment().startOf('week').startOf('day')}
-                                    // maxDate={moment().add("months", 2)}
-                                  />
-                                  {touched.deactivateDate &&
-                                    errors.deactivateDate && (
-                                      <FormHelperText style={{ color: "red" }}>
-                                        {errors.deactivateDate}
-                                      </FormHelperText>
-                                    )}
-                                </FormControl>
-                              </LocalizationProvider>
-                            </Grid>
-                          </Grid>
-                        </Grid>
-                        <Grid item md={6}>
-                          <Grid container>
-                            <Grid item md={6}>
-                              <FormControlLabel
-                                value="ENDDATE"
-                                control={<Radio size="small" />}
-                                label="Change End Date to:"
-                              />
-                            </Grid>
-                            <Grid item md={6}>
-                              <LocalizationProvider dateAdapter={AdapterMoment}>
-                                <FormControl sx={{ width: 150 }}>
-                                  <DatePicker
-                                    disabled={
-                                      values.modificationType !== "ENDDATE"
-                                    }
-                                    name="endDate"
-                                    format="MM/DD/YYYY"
-                                    value={values.endDate}
-                                    onChange={(value) =>
-                                      setFieldValue("endDate", value)
-                                    }
-                                    slotProps={{ textField: { size: "small" } }}
-                                    minDate={moment().add(1, "days")}
-                                    // minDate={moment().startOf('week').startOf('day')}
-                                    // maxDate={moment().add("months", 2)}
-                                  />
-                                  {touched.endDate && errors.endDate && (
-                                    <FormHelperText style={{ color: "red" }}>
-                                      {errors.endDate}
-                                    </FormHelperText>
-                                  )}
-                                </FormControl>
-                              </LocalizationProvider>
-                            </Grid>
-                          </Grid>
-                        </Grid>
-                      </Grid>
-
-                      <Grid container spacing={5}>
-                        <Grid item md={6}>
-                          <Grid container>
-                            <Grid item md={8}>
-                              <FormControlLabel
-                                value="REACTIVATE"
-                                control={<Radio size="small" />}
-                                label="Reactivate on:"
-                                className="label-text"
-                                sx={{ fontWeight: 700 }}
-                              />
-                            </Grid>
-                            <Grid item md={4}>
-                              <LocalizationProvider dateAdapter={AdapterMoment}>
-                                <FormControl sx={{ width: 150 }}>
-                                  <DatePicker
-                                    disabled={
-                                      values.modificationType !== "REACTIVATE"
-                                    }
-                                    name="reactivateDate"
-                                    format="MM/DD/YYYY"
-                                    value={values.reactivateDate}
-                                    onChange={(value) =>
-                                      setFieldValue("reactivateDate", value)
-                                    }
-                                    slotProps={{ textField: { size: "small" } }}
-                                    minDate={moment().add(1, "days")}
-                                    // minDate={moment().startOf('week').startOf('day')}
-                                    // maxDate={moment().add("months", 2)}
-                                  />
-                                  {touched.reactivateDate &&
-                                    errors.reactivateDate && (
-                                      <FormHelperText style={{ color: "red" }}>
-                                        {errors.reactivateDate}
-                                      </FormHelperText>
-                                    )}
-                                </FormControl>
-                              </LocalizationProvider>
-                            </Grid>
-                          </Grid>
-                        </Grid>
-                      </Grid>
-                    </RadioGroup>
-                    {/* </FormControl> */}
-                  </Grid>
-                </Grid>
+              <Stack direction="row" alignItems="center" spacing={10}>
+                <Typography className="label-text">
+                  <span className="required">*</span>Modification Type:
+                </Typography>
+                <FormControl component="fieldset">
+                  <RadioGroup
+                    aria-labelledby="demo-error-radios"
+                    name="modificationType"
+                    value={values.modificationType}
+                    onChange={(event) => {
+                      setFieldValue("configurationDate", null);
+                      setFieldValue("startDate", null);
+                      setFieldValue("modificationType", event.target.value);
+                    }}
+                    error={
+                      touched.modificationType &&
+                      Boolean(errors.modificationType)
+                    }
+                    helperText={
+                      touched.modificationType && errors.modificationType
+                    }
+                    className="label-text"
+                  >
+                    <Stack direction="row" spacing={2}>
+                      <FormControlLabel
+                        value="CONFIGURATION"
+                        control={<Radio size="small" />}
+                        label="Modification Configuration as of:"
+                        className="label-text"
+                        sx={{ fontWeight: 700 }}
+                      />
+                      <LocalizationProvider dateAdapter={AdapterMoment}>
+                        <FormControl sx={{ width: 150 }}>
+                          <DatePicker
+                            disabled={
+                              values.modificationType !== "CONFIGURATION"
+                            }
+                            name="configurationDate"
+                            format="MM/DD/YYYY"
+                            value={values.configurationDate}
+                            onChange={(value) =>
+                              setFieldValue("configurationDate", value)
+                            }
+                            slotProps={{ textField: { size: "small" } }}
+                            minDate={moment().add(1, "days")}
+                            // minDate={moment().startOf('week').startOf('day')}
+                            // maxDate={moment().add("months", 2)}
+                          />
+                          {touched.configurationDate &&
+                            errors.configurationDate && (
+                              <FormHelperText style={{ color: "red" }}>
+                                {errors.configurationDate}
+                              </FormHelperText>
+                            )}
+                        </FormControl>
+                      </LocalizationProvider>
+                      <FormControlLabel
+                        value="STARTDATE"
+                        control={<Radio size="small" />}
+                        label="Change Start Date to:"
+                      />
+                      <LocalizationProvider dateAdapter={AdapterMoment}>
+                        <FormControl sx={{ width: 150 }}>
+                          <DatePicker
+                            disabled={values.modificationType !== "STARTDATE"}
+                            name="startDate"
+                            format="MM/DD/YYYY"
+                            value={values.startDate}
+                            onChange={(value) =>
+                              setFieldValue("startDate", value)
+                            }
+                            slotProps={{ textField: { size: "small" } }}
+                            minDate={moment().add(1, "days")}
+                            // minDate={moment().startOf('week').startOf('day')}
+                            // maxDate={moment().add("months", 2)}
+                          />
+                          {touched.startDate && errors.startDate && (
+                            <FormHelperText style={{ color: "red" }}>
+                              {errors.startDate}
+                            </FormHelperText>
+                          )}
+                        </FormControl>
+                      </LocalizationProvider>
+                    </Stack>
+                  </RadioGroup>
+                </FormControl>
               </Stack>
             </Paper>
+
             <Paper elevation={6} className="modify-dialog-content-paper">
-              <Stack spacing={1}>
-                <Grid container alignItems="center">
+              <Stack spacing={1} mt={1.5}>
+                <Grid container alignItems="start">
                   <Grid item md={6}>
                     <Grid container>
-                      <Grid className="label-text" item md={4}>
+                      <Grid className="label-text" item md={4.5}>
                         <Typography className="label-text">
-                          <span className="required">*</span>Reason:
+                          <span className="required">*</span>Attribute Name:
                         </Typography>
                       </Grid>
                       <Grid item md={4}>
-                        <Select
-                          id="reasonCd"
-                          value={values.reasonCd}
-                          name="reasonCd"
-                          onChange={handleChange}
+                        <TextField
                           size="small"
-                        >
-                          {reasons.map((reason) => (
-                            <MenuItem value={reason.alvId}>
-                              {reason.alvShortDecTxt}
-                            </MenuItem>
-                          ))}
-                        </Select>
+                          fullWidth
+                          id="attributeName"
+                          label="Attribute Name"
+                          variant="outlined"
+                          onChange={handleChange}
+                          onKeyPress={handleKeyPress}
+                          inputProps={{
+                            inputMode: "numeric",
+                            pattern: "[0-9]*",
+                            maxLength: 2,
+                            className: "numericInput",
+                          }}
+                          value={values.attributeName ?? ""}
+                          error={
+                            touched.attributeName && Boolean(errors.attributeName)
+                          }
+                          helperText={
+                            touched.attributeName && errors.attributeName
+                          }
+                          name="attributeName"
+                        />
                       </Grid>
                     </Grid>
                   </Grid>
                   <Grid item md={6}>
                     <Grid container>
-                      <Grid className="label-text" item md={12}>
-                        <FormControlLabel
-                          control={
-                            <Checkbox
-                              size="small"
-                              name="noAutoOverwrite"
-                              onChange={handleChange}
-                              checked={values.noAutoOverwrite}
-                            />
+                      <Grid className="label-text" item md={4}>
+                        <Typography className="label-text">
+                          <span className="required">*</span>Automark:
+                        </Typography>
+                      </Grid>
+                      <Grid item md={4}>
+                        <TextField
+                          size="small"
+                          fullWidth
+                          id="automarkInd"
+                          label="Automark"
+                          variant="outlined"
+                          onChange={handleChange}
+                          onKeyPress={handleKeyPress}
+                          inputProps={{
+                            inputMode: "numeric",
+                            pattern: "[0-9]*",
+                            maxLength: 2,
+                            className: "numericInput",
+                          }}
+                          value={values.automarkInd ?? ""}
+                          error={
+                            touched.automarkInd &&
+                            Boolean(errors.automarkInd)
                           }
-                          label="NO AUTO OVERWRITE"
+                          helperText={
+                            touched.automarkInd && errors.automarkInd
+                          }
+                          name="automarkInd"
                         />
                       </Grid>
                     </Grid>
                   </Grid>
                 </Grid>
-                <Grid container alignItems="center">
+                <Grid container alignItems="start">
+                  <Grid item md={6}>
+                    <Grid container>
+                      <Grid className="label-text" item md={4.5}>
+                        <Typography className="label-text">
+                          <span className="required">*</span>Attribute
+                          Weight:
+                        </Typography>
+                      </Grid>
+                      <Grid item md={4}>
+                        <TextField
+                          size="small"
+                          fullWidth
+                          id="attributeWeight"
+                          label="Attribute Weight"
+                          variant="outlined"
+                          onChange={handleChange}
+                          onKeyPress={handleKeyPress}
+                          inputProps={{
+                            inputMode: "numeric",
+                            pattern: "[0-9]*",
+                            maxLength: 2,
+                            className: "numericInput",
+                          }}
+                          value={values.attributeWeight ?? ""}
+                          error={
+                            touched.attributeWeight &&
+                            Boolean(errors.attributeWeight)
+                          }
+                          helperText={
+                            touched.attributeWeight &&
+                            errors.attributeWeight
+                          }
+                          name="attributeWeight"
+                        />
+                      </Grid>
+                    </Grid>
+                  </Grid>
                   <Grid item md={6}>
                     <Grid container>
                       <Grid className="label-text" item md={4}>
                         <Typography className="label-text">
-                          <span className="required">*</span>Business Unit:
+                          <span className="required">*</span>Attr format type:
                         </Typography>
                       </Grid>
                       <Grid item md={4}>
-                        <Select
-                          id="businessUnit"
-                          value={values.businessUnit}
-                          name="businessUnit"
-                          onChange={handleChange}
+                        <TextField
                           size="small"
-                        >
-                          {businessUnits.map((bu) => (
-                            <MenuItem value={bu.businessUnitCd}>
-                              {bu.businessUnitName}
-                            </MenuItem>
-                          ))}
-                        </Select>
+                          fullWidth
+                          id="attrFormatType"
+                          label="Attr format type"
+                          variant="outlined"
+                          onChange={handleChange}
+                          onKeyPress={handleKeyPress}
+                          inputProps={{
+                            inputMode: "numeric",
+                            pattern: "[0-9]*",
+                            maxLength: 2,
+                            className: "numericInput",
+                          }}
+                          value={values.attrFormatType ?? ""}
+                          error={
+                            touched.attrFormatType && Boolean(errors.attrFormatType)
+                          }
+                          helperText={
+                            touched.attrFormatType && errors.attrFormatType
+                          }
+                          name="attrFormatType"
+                        />
                       </Grid>
                     </Grid>
                   </Grid>
                 </Grid>
-
                 <Grid container>
-                  <Grid className="label-text" item md={2}>
+                  <Grid className="label-text" item md={2.25}>
                     <Typography className="label-text">
-                      <span className="required">*</span>Comments:
+                      <span className="required">*</span>Remarks:
                     </Typography>
                   </Grid>
-                  <Grid item md={10}>
+                  <Grid item md={9.75}>
                     <TextField
                       size="small"
                       fullWidth
-                      id="comments"
-                      label="Comments"
+                      id="remarks"
+                      label="Remarks"
                       variant="outlined"
                       onChange={handleChange}
-                      value={values.comments ?? ""}
-                      error={touched.comments && Boolean(errors.comments)}
-                      helperText={touched.comments && errors.comments}
-                      name="comments"
+                      value={values.remarks ?? ""}
+                      error={touched.remarks && Boolean(errors.remarks)}
+                      helperText={touched.remarks && errors.remarks}
+                      name="remarks"
                       multiline
                       rows={2}
                     />

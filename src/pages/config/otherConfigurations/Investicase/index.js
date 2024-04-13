@@ -22,8 +22,9 @@ import client from "../../../../helpers/Api";
 import { serverErrorMessages } from "../../../../helpers/Constants";
 import {
   otherConfigInvesticaseURL,
+  otherConfigInvesticaseDetailsURL,
   // otherConfigWorkSearchWaiversURL,
-  otherConfigWorkSearchWaiversDetailsURL,
+  // otherConfigInvesticaseDetailsURL,
   otherConfigWorkSearchWaiversDeleteURL,
 } from "../../../../helpers/Urls";
 import DialogActions from "@mui/material/DialogActions";
@@ -136,7 +137,7 @@ export default function Investicase() {
 
   const renderColumn = (id, value, row) => {
     switch (id) {
-      case "scenario":
+      case "attributeName":
         return (
           <Typography
             className={
@@ -151,7 +152,7 @@ export default function Investicase() {
             {value}
           </Typography>
         );
-      case "autoOverwrite":
+      case "parentAttributeName":
         return (
           <Typography
             style={{ color: row.editFlag === true ? "gray" : "silver" }}
@@ -159,7 +160,7 @@ export default function Investicase() {
             {value === "Y" ? "Yes" : "No"}
           </Typography>
         );
-      case "startDate":
+      case "attributeWeight":
         return (
           <Typography
             className={
@@ -271,9 +272,9 @@ export default function Investicase() {
     try {
       const response =
         process.env.REACT_APP_ENV === "mockserver"
-          ? await client.get(`${otherConfigWorkSearchWaiversDetailsURL}`)
+          ? await client.get(`${otherConfigInvesticaseDetailsURL}`)
           : await client.get(
-              `${otherConfigWorkSearchWaiversDetailsURL}${wswcId}`
+              `${otherConfigInvesticaseDetailsURL}${wswcId}`
             );
       setSelectedParam(response);
 
@@ -577,7 +578,7 @@ export default function Investicase() {
         onClose={() => setShowViewParamModal(false)}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
-        title="View Minimum Weekly Work Search Waiver Configuration"
+        title="View Spidering Attributes"
         maxWidth="md"
       >
         <DialogContent>
@@ -600,7 +601,7 @@ export default function Investicase() {
         onClose={() => setShowEditParamModal(false)}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
-        title="Modify Minimum Weekly Work Search Waiver Configuration"
+        title="Edit Spidering Attributes Configuration"
         maxWidth="lg"
       >
         <ModifyParametersData
