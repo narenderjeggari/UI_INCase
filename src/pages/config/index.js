@@ -95,7 +95,7 @@ export default function Configurations() {
           return <AutosetWeeklyWorkSearchRequirements />;
         case "Auto-set Weekly Work Search Waivers":
           return <AutosetWeeklyWorkSearchWaivers />;
-        case "Auto-set Investicase Minimum Weekly Work Search Requirements":
+        case "Configure Spidering Attributes":
           return <Investicase />;
         default:
           return (
@@ -121,8 +121,11 @@ export default function Configurations() {
         process.env.REACT_APP_ENV === "mockserver"
           ? await client.get(`${individualParamsTitleURL}`)
           : await client.get(`${individualParamsTitleURL}${alcCode}`);
-
-      setConfigurationsTitle(response.alvLongDescTxt);
+      const configTitle =
+        process.env.REACT_APP_ENV === "mockserver"
+          ? response[alcCode].alvLongDescTxt
+          : response.alvLongDescTxt;
+      setConfigurationsTitle(configTitle);
     } catch (errorResponse) {
       setLoading(false);
       const newErrMsgs = getMsgsFromErrorCode(
