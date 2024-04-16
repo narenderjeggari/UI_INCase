@@ -19,13 +19,11 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { styled } from "@mui/material/styles";
 import CustomModal from "../../../../components/customModal/CustomModal";
 import client from "../../../../helpers/Api";
-import { serverErrorMessages } from "../../../../helpers/Constants";
+// import { serverErrorMessages } from "../../../../helpers/Constants";
 import {
   otherConfigInvesticaseURL,
   otherConfigInvesticaseDetailsURL,
-  // otherConfigWorkSearchWaiversURL,
-  // otherConfigInvesticaseDetailsURL,
-  otherConfigWorkSearchWaiversDeleteURL,
+  otherConfigInvesticaseDeleteURL,
 } from "../../../../helpers/Urls";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -69,9 +67,7 @@ export default function Investicase() {
   const [parentDataRefresh, setParentDataRefresh] = useState(false);
 
   const columns = [
-    { id: "attributeName",
-     label: "ATTRIBUTE NAME"
-     },
+    { id: "attributeName", label: "ATTRIBUTE NAME" },
     {
       id: "parentAttributeName",
       label: "PARENT ATTRIBUTE NAME",
@@ -194,7 +190,7 @@ export default function Investicase() {
         process.env.REACT_APP_ENV === "mockserver"
           ? await client.get(`${otherConfigInvesticaseURL}`)
           : await client.post(`${otherConfigInvesticaseURL}`, payload);
-  
+
       setData(response.wswcSummaryList);
       setTotalCount(response.pagination.totalItemCount);
       setLoading(false);
@@ -273,9 +269,7 @@ export default function Investicase() {
       const response =
         process.env.REACT_APP_ENV === "mockserver"
           ? await client.get(`${otherConfigInvesticaseDetailsURL}`)
-          : await client.get(
-              `${otherConfigInvesticaseDetailsURL}${wswcId}`
-            );
+          : await client.get(`${otherConfigInvesticaseDetailsURL}${wswcId}`);
       setSelectedParam(response);
 
       if (showEditModal) {
@@ -306,9 +300,9 @@ export default function Investicase() {
     try {
       const response =
         process.env.REACT_APP_ENV === "mockserver"
-          ? await client.get(`${otherConfigWorkSearchWaiversDeleteURL}`)
+          ? await client.get(`${otherConfigInvesticaseDeleteURL}`)
           : await client.delete(
-              `${otherConfigWorkSearchWaiversDeleteURL}${selectedParamIdForDelete}`
+              `${otherConfigInvesticaseDeleteURL}${selectedParamIdForDelete}`
             );
       setShowDeleteParamConfirModal(false);
       refreshData();

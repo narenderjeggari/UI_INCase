@@ -36,13 +36,14 @@ function ViewParametersData({ selectedParam }) {
           </Grid>
         </Grid>
       </Grid>
+
       <Grid container>
         <Grid item md={5}>
           <Grid container>
-            <Grid className="label-text" item md={4}>
+            <Grid className="label-text" item md={3.2}>
               Attribute Weight:
             </Grid>
-            <Grid item md={4}>
+            <Grid item md={3}>
               {selectedParam.attributeWeight}
             </Grid>
           </Grid>
@@ -66,10 +67,10 @@ function ViewParametersData({ selectedParam }) {
       <Grid container>
         <Grid item md={5}>
           <Grid container>
-            <Grid className="label-text" item md={3}>
+            <Grid className="label-text" item md={2}>
               Remarks:
             </Grid>
-            <Grid item md={8.6}>
+            <Grid item md={9}>
               {selectedParam.remarks}
             </Grid>
           </Grid>

@@ -1,6 +1,7 @@
 {
   "wswcSummaryList": [
     {
+      "wswcId": 1,
       "attributeName": "City And State",
       "parentAttributeName": "23",
       "attributeWeight": "3",
@@ -14,6 +15,7 @@
       "childListCount": 2
     },
     {
+      "wswcId": 2,
       "attributeName": "SSN",
       "parentAttributeName": "20",
       "attributeWeight": "5",
@@ -26,6 +28,7 @@
       "deleteFlag": true
     },
     {
+      "wswcId": 3,
       "attributeName": "Date of Birth",
       "parentAttributeName": "20",
       "attributeWeight": "1",
@@ -38,6 +41,7 @@
       "deleteFlag": true
     },
     {
+      "wswcId": 4,
       "attributeName": "Bank Routing#",
       "parentAttributeName": "20",
       "attributeWeight": "5",
@@ -50,6 +54,7 @@
       "deleteFlag": true
     },
     {
+      "wswcId": 5,
       "attributeName": "Residential Address(Full)",
       "parentAttributeName": "23",
       "attributeWeight": "3",

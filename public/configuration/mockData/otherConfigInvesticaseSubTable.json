@@ -1,0 +1,15 @@
+[
+  {
+    "attributeName": "City And State",
+    "parentAttributeName": "23",
+    "attributeWeight": "3",
+    "automarkInd": "N",
+    "startDate": "09/20/2017",
+    "endDate": "",
+    "datePattern4Ind": "N",
+    "minThreshold": "100",
+    "editFlag": true,
+    "deleteFlag": true,
+    "childListCount": 2
+  }
+]

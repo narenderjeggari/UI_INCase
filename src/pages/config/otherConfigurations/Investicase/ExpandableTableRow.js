@@ -12,7 +12,8 @@ import TableRow from "@mui/material/TableRow";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import {
-  otherConfigWorkSearchWaiversSubTableURL,
+  otherConfigInvesticaseSubTableURL,
+  // otherConfigInvesticaseSubTableURL,
   otherConfigWorkSearchWaiversDetailsURL,
 } from "../../../../helpers/Urls";
 import client from "../../../../helpers/Api";
@@ -47,7 +48,6 @@ function ExpandableTableRow({
     {
       id: "parentAttributeName",
       label: "PARENT ATTRIBUTE NAME",
-      
     },
     {
       id: "attributeWeight",
@@ -102,16 +102,18 @@ function ExpandableTableRow({
   }, [parentDataRefresh]);
 
   const fetchSubTableData = async () => {
+    console.log('inside fetchSubTableData')
     setLoading(true);
     setErrorMessages([]);
     try {
       const response =
         process.env.REACT_APP_ENV === "mockserver"
-          ? await client.get(`${otherConfigWorkSearchWaiversSubTableURL}`)
-          : await client.post(`${otherConfigWorkSearchWaiversSubTableURL}`, {
+          ? await client.get(`${otherConfigInvesticaseSubTableURL}`)
+          : await client.post(`${otherConfigInvesticaseSubTableURL}`, {
               wswcId,
               active: currentFilter,
             });
+      console.log('response::', response);
       setSubTableData(response);
     } catch (errorResponse) {
       setLoading(false);
@@ -185,7 +187,7 @@ function ExpandableTableRow({
       </StyledTableRow>
       {isExpanded && (
         <TableRow>
-          <TableCell padding="checkbox" colSpan={9}>
+          <TableCell padding="checkbox" colSpan={10}>
             <Stack alignItems="center">
               <Box
                 sx={{
@@ -193,7 +195,7 @@ function ExpandableTableRow({
                   borderColor: "grey.300",
                   marginTop: 1,
                   marginBottom: 1,
-                  width: "90%",
+                  width: "100%",
                 }}
               >
                 <Table
