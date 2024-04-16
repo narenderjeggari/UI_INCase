@@ -13,7 +13,7 @@ function ViewParametersData({ selectedParam }) {
       <Grid container>
         <Grid item md={5}>
           <Grid container>
-            <Grid className="label-text" item md={3}>
+            <Grid className="label-text" item md={4}>
               Attribute Name:
             </Grid>
             <Grid item md={3}>
@@ -25,13 +25,25 @@ function ViewParametersData({ selectedParam }) {
         <Grid item md={7}>
           <Grid container>
             <Grid item md={4}>
-              <span className="label-text">Automark:</span>
+            <Grid container>
+            <Grid className="label-text" item md={8}>
+            Automark:
+            </Grid>
+            <Grid item md={3}>
               {selectedParam.automarkInd}
+            </Grid>
+              </Grid>
             </Grid>
 
             <Grid item md={8}>
-              <span className="label-text">Effective From:</span>{" "}
+            <Grid container>
+            <Grid className="label-text" item md={5}>
+            Effective From:
+            </Grid>
+            <Grid item md={3}>
               {selectedParam.startDate}
+            </Grid>
+              </Grid>
             </Grid>
           </Grid>
         </Grid>
@@ -40,7 +52,7 @@ function ViewParametersData({ selectedParam }) {
       <Grid container>
         <Grid item md={5}>
           <Grid container>
-            <Grid className="label-text" item md={3.2}>
+            <Grid className="label-text" item md={4}>
               Attribute Weight:
             </Grid>
             <Grid item md={3}>
@@ -51,14 +63,25 @@ function ViewParametersData({ selectedParam }) {
         <Grid item md={7}>
           <Grid container>
             <Grid item md={4}>
-              <span className="label-text" style={{ paddingRight: 3 }}>
-                Attr format type:
-              </span>
+            <Grid container>
+            <Grid className="label-text" item md={8}>
+            Attr format type:
+            </Grid>
+            <Grid item md={3}>
               {selectedParam.attrFormatType}
             </Grid>
+              </Grid>
+            </Grid>
             <Grid item md={8}>
-              <span className="label-text">Attribute SAR Min Threshold:</span>
+            <Grid container>
+            <Grid className="label-text" item md={5}>
+            Attribute SAR Min Threshold:
+            </Grid>
+            <Grid item md={3}>
               {selectedParam.minThreshold}
+            </Grid>
+              </Grid>
+
             </Grid>
           </Grid>
         </Grid>
@@ -67,19 +90,25 @@ function ViewParametersData({ selectedParam }) {
       <Grid container>
         <Grid item md={5}>
           <Grid container>
-            <Grid className="label-text" item md={2}>
+            <Grid className="label-text" item md={4}>
               Remarks:
             </Grid>
-            <Grid item md={9}>
+            <Grid item md={3}>
               {selectedParam.remarks}
             </Grid>
           </Grid>
         </Grid>
         <Grid item md={7}>
           <Grid container>
-            <Grid item md={6}>
-              <span className="label-text">Date pattern 4 Ind:</span>{" "}
+            <Grid item md={4}>
+            <Grid container>
+            <Grid className="label-text" item md={8}>
+            Date pattern 4 Ind:
+            </Grid>
+            <Grid item md={3}>
               {selectedParam.datePattern4Ind}
+            </Grid>
+              </Grid>
             </Grid>
           </Grid>
         </Grid>
