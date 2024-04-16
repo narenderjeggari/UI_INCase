@@ -73,6 +73,10 @@ function ExpandableTableRow({
       id: "minThreshold",
       label: "MIN. THRESHOLD",
     },
+    {
+      id: "actions",
+      label: "Actions",
+    },
   ];
 
   const StyledTableRow = styled(TableRow)(({ theme }) => ({
@@ -189,7 +193,7 @@ function ExpandableTableRow({
                   borderColor: "grey.300",
                   marginTop: 1,
                   marginBottom: 1,
-                  width: "80%",
+                  width: "90%",
                 }}
               >
                 <Table
