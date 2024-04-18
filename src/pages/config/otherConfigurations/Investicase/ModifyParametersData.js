@@ -202,7 +202,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                     <Grid container>
                       <Grid className="label-text" item md={4.5}>
                         <Typography className="label-text">
-                          <span className="required">*</span>Attribute Name:
+                          <span className="required">*</span>Name:
                         </Typography>
                       </Grid>
                       <Grid item md={4}>
@@ -232,7 +232,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                       </Grid>
                     </Grid>
                   </Grid>
-                  <Grid item md={6}>
+                  {/* <Grid item md={6}>
                     <Grid container>
                       <Grid className="label-text" item md={4}>
                         <Typography className="label-text">
@@ -266,14 +266,14 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                         />
                       </Grid>
                     </Grid>
-                  </Grid>
+                  </Grid> */}
                 </Grid>
                 <Grid container alignItems="start">
                   <Grid item md={6}>
                     <Grid container>
                       <Grid className="label-text" item md={4.5}>
                         <Typography className="label-text">
-                          <span className="required">*</span>Attribute
+                          <span className="required">*</span>
                           Weight:
                         </Typography>
                       </Grid>
@@ -306,7 +306,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                       </Grid>
                     </Grid>
                   </Grid>
-                  <Grid item md={6}>
+                  {/* <Grid item md={6}>
                     <Grid container>
                       <Grid className="label-text" item md={4}>
                         <Typography className="label-text">
@@ -339,7 +339,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                         />
                       </Grid>
                     </Grid>
-                  </Grid>
+                  </Grid> */}
                 </Grid>
                 <Grid container>
                   <Grid className="label-text" item md={2.25}>

@@ -67,14 +67,14 @@ export default function Investicase() {
   const [parentDataRefresh, setParentDataRefresh] = useState(false);
 
   const columns = [
-    { id: "attributeName", label: "ATTRIBUTE NAME" },
+    { id: "attributeName", label: "NAME" },
     {
       id: "parentAttributeName",
-      label: "PARENT ATTRIBUTE NAME",
+      label: "PARENT NAME",
     },
     {
       id: "attributeWeight",
-      label: "ATTRIBUTE  WEIGHT",
+      label: "WEIGHT",
     },
     {
       id: "automarkInd",

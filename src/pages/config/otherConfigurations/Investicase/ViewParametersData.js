@@ -14,7 +14,7 @@ function ViewParametersData({ selectedParam }) {
         <Grid item md={5}>
           <Grid container>
             <Grid className="label-text" item md={4}>
-              Attribute Name:
+              Name:
             </Grid>
             <Grid item md={3}>
               {selectedParam.attributeName}
@@ -53,7 +53,7 @@ function ViewParametersData({ selectedParam }) {
         <Grid item md={5}>
           <Grid container>
             <Grid className="label-text" item md={4}>
-              Attribute Weight:
+              Weight:
             </Grid>
             <Grid item md={3}>
               {selectedParam.attributeWeight}
@@ -75,7 +75,7 @@ function ViewParametersData({ selectedParam }) {
             <Grid item md={8}>
             <Grid container>
             <Grid className="label-text" item md={5}>
-            Attribute SAR Min Threshold:
+            SAR Min Threshold:
             </Grid>
             <Grid item md={3}>
               {selectedParam.minThreshold}
