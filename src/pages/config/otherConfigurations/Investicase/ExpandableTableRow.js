@@ -26,6 +26,7 @@ import CustomModal from "../../../../components/customModal/CustomModal";
 import ModifyParametersData from "./ModifyParametersData";
 import { isUpdateAccessExist } from "../../../../utils/cookies";
 import moment from "moment";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 
 function ExpandableTableRow({
   parentDataRefresh,
@@ -170,6 +171,22 @@ function ExpandableTableRow({
             {value}
           </Typography>
         );
+        case "parentAttributeName":
+          return (
+            <Typography
+              style={{ color: row.editFlag === true ? "gray" : "silver" }}
+            >
+              {/* {value === "Y" ? "Yes" : "No"} */}
+              {value && (
+                <div style={{ display: "flex" }}>
+                  <div style={{padding:"1px"}}>{value}</div>
+                  <div>
+                    <InfoOutlinedIcon fontSize="small" />
+                  </div>
+                </div>
+              )}
+            </Typography>
+          );
       default:
         return <Typography style={{ color: "gray" }}> {value}</Typography>;
     }
