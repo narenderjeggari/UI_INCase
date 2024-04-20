@@ -17,7 +17,7 @@
     {
       "wswcId": 2,
       "attributeName": "SSN",
-      "parentAttributeName": "20",
+      "parentAttributeName": "",
       "attributeWeight": "5",
       "automarkInd": "N",
       "startDate": "09/20/2017",
@@ -43,7 +43,7 @@
     {
       "wswcId": 4,
       "attributeName": "Bank Routing#",
-      "parentAttributeName": "20",
+      "parentAttributeName": "",
       "attributeWeight": "5",
       "automarkInd": "N",
       "startDate": "09/20/2017",

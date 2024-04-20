@@ -37,6 +37,7 @@ import Tooltip from "@mui/material/Tooltip";
 import { isUpdateAccessExist } from "../../../../utils/cookies";
 import ExpandableTableRow from "./ExpandableTableRow";
 import moment from "moment";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 
 export default function Investicase() {
   const [loading, setLoading] = useState(false);
@@ -153,7 +154,15 @@ export default function Investicase() {
           <Typography
             style={{ color: row.editFlag === true ? "gray" : "silver" }}
           >
-            {value === "Y" ? "Yes" : "No"}
+            {/* {value === "Y" ? "Yes" : "No"} */}
+            {value && (
+              <div style={{ display: "flex" }}>
+                <div style={{padding:"1px"}}>{value}</div>
+                <div>
+                  <InfoOutlinedIcon fontSize="small" />
+                </div>
+              </div>
+            )}
           </Typography>
         );
       case "attributeWeight":
