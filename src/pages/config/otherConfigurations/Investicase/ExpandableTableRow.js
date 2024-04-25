@@ -46,10 +46,10 @@ function ExpandableTableRow({
 
   const columns = [
     { id: "attributeName", label: "NAME" },
-    {
-      id: "parentAttributeName",
-      label: "PARENT NAME",
-    },
+    // {
+    //   id: "parentAttributeName",
+    //   label: "PARENT NAME",
+    // },
     {
       id: "attributeWeight",
       label: "WEIGHT",
@@ -66,13 +66,21 @@ function ExpandableTableRow({
       id: "endDate",
       label: "END DATE",
     },
+    // {
+    //   id: "datePattern4Ind",
+    //   label: "DATE PATTERN 4 IND",
+    // },
+    // {
+    //   id: "minThreshold",
+    //   label: "MIN. THRESHOLD",
+    // },
     {
-      id: "datePattern4Ind",
-      label: "DATE PATTERN 4 IND",
+      id: "idhSubmitScore",
+      label: "IDH SUBMIT SCORE",
     },
     {
-      id: "minThreshold",
-      label: "MIN. THRESHOLD",
+      id: "spaRuleDesc",
+      label: "RULE DESC",
     },
     {
       id: "actions",
@@ -103,7 +111,7 @@ function ExpandableTableRow({
   }, [parentDataRefresh]);
 
   const fetchSubTableData = async () => {
-    console.log('inside fetchSubTableData')
+    console.log("inside fetchSubTableData");
     setLoading(true);
     setErrorMessages([]);
     try {
@@ -114,13 +122,13 @@ function ExpandableTableRow({
               wswcId,
               active: currentFilter,
             });
-      console.log('response::', response);
+      console.log("response::", response);
       setSubTableData(response);
     } catch (errorResponse) {
       setLoading(false);
       const newErrMsgs = getMsgsFromErrorCode(
         `POST:${process.env.REACT_APP_OTHER_CONFIG_WORK_SEARCH_WAIVERS_SUB_TABLE_URL}`,
-        errorResponse,
+        errorResponse
       );
       setErrorMessages(newErrMsgs);
     }
@@ -134,7 +142,7 @@ function ExpandableTableRow({
         process.env.REACT_APP_ENV === "mockserver"
           ? await client.get(`${otherConfigWorkSearchWaiversDetailsURL}`)
           : await client.get(
-              `${otherConfigWorkSearchWaiversDetailsURL}${wswcId}`,
+              `${otherConfigWorkSearchWaiversDetailsURL}${wswcId}`
             );
       setSelectedParam(response);
 
@@ -149,7 +157,7 @@ function ExpandableTableRow({
       setLoading(false);
       const newErrMsgs = getMsgsFromErrorCode(
         `GET:${process.env.REACT_APP_INDIVIDUAL_PARAM_DETAILS_URL}`,
-        errorResponse,
+        errorResponse
       );
       setErrorMessages(newErrMsgs);
     }
@@ -164,29 +172,43 @@ function ExpandableTableRow({
               moment().diff(value) < 0
                 ? "future-date-text"
                 : row.editFlag === true
-                  ? "past-date-text-editable"
-                  : "past-date-text-non-editable"
+                ? "past-date-text-editable"
+                : "past-date-text-non-editable"
             }
           >
             {value}
           </Typography>
         );
-        case "parentAttributeName":
-          return (
-            <Typography
-              style={{ color: row.editFlag === true ? "gray" : "silver" }}
-            >
-              {/* {value === "Y" ? "Yes" : "No"} */}
-              {value && (
-                <div style={{ display: "flex" }}>
-                  <div style={{padding:"1px"}}>{value}</div>
-                  <div>
-                    <InfoOutlinedIcon fontSize="small" />
-                  </div>
+      case "parentAttributeName":
+        return (
+          <Typography
+            style={{ color: row.editFlag === true ? "gray" : "silver" }}
+          >
+            {/* {value === "Y" ? "Yes" : "No"} */}
+            {value && (
+              <div style={{ display: "flex" }}>
+                <div style={{ padding: "1px" }}>{value}</div>
+                <div>
+                  <InfoOutlinedIcon fontSize="small" />
                 </div>
-              )}
-            </Typography>
-          );
+              </div>
+            )}
+          </Typography>
+        );
+      case "idhSubmitScore":
+        return (
+          <Typography
+            className={
+              moment().diff(value) < 0
+                ? "future-date-text"
+                : row.editFlag === true
+                ? "past-date-text-editable"
+                : "past-date-text-non-editable"
+            }
+          >
+            {`${row["minThreshold"]} | ${row["datePattern4Ind"]}`}
+          </Typography>
+        );
       default:
         return <Typography style={{ color: "gray" }}> {value}</Typography>;
     }
@@ -271,7 +293,7 @@ function ExpandableTableRow({
                                             fetchParamDetails(
                                               row.wswcId,
                                               true,
-                                              fetchSubTableData,
+                                              fetchSubTableData
                                             );
                                             event.preventDefault();
                                             event.stopPropagation();
@@ -291,7 +313,7 @@ function ExpandableTableRow({
                                           onClick={(event) => {
                                             showDeleteParamDialog(
                                               event,
-                                              row.wswcId,
+                                              row.wswcId
                                             );
                                           }}
                                           sx={{ cursor: "pointer" }}

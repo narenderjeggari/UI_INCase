@@ -8,7 +8,7 @@
       "automarkInd": "N",
       "startDate": "09/20/2017",
       "endDate": "",
-      "datePattern4Ind": "N",
+      "datePattern4Ind": "Y",
       "minThreshold":"100",
       "editFlag": true,
       "deleteFlag": true,
@@ -23,7 +23,7 @@
       "startDate": "09/20/2017",
       "endDate": "",
       "datePattern4Ind": "N",
-      "minThreshold":"100",
+      "minThreshold":"99",
       "editFlag": true,
       "deleteFlag": true
     },
@@ -35,7 +35,7 @@
       "automarkInd": "N",
       "startDate": "09/20/2017",
       "endDate": "",
-      "datePattern4Ind": "N",
+      "datePattern4Ind": "Y",
       "minThreshold":"100",
       "editFlag": true,
       "deleteFlag": true
@@ -49,7 +49,7 @@
       "startDate": "09/20/2017",
       "endDate": "",
       "datePattern4Ind": "N",
-      "minThreshold":"100",
+      "minThreshold":"90",
       "editFlag": true,
       "deleteFlag": true
     },
@@ -62,7 +62,7 @@
       "startDate": "09/20/2017",
       "endDate": "",
       "datePattern4Ind": "N",
-      "minThreshold":"100",
+      "minThreshold":"99",
       "editFlag": true,
       "deleteFlag": true
     }

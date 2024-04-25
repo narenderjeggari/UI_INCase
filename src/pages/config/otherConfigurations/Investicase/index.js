@@ -69,10 +69,10 @@ export default function Investicase() {
 
   const columns = [
     { id: "attributeName", label: "NAME" },
-    {
-      id: "parentAttributeName",
-      label: "PARENT NAME",
-    },
+    // {
+    //   id: "parentAttributeName",
+    //   label: "PARENT NAME",
+    // },
     {
       id: "attributeWeight",
       label: "WEIGHT",
@@ -89,13 +89,21 @@ export default function Investicase() {
       id: "endDate",
       label: "END DATE",
     },
+    // {
+    //   id: "datePattern4Ind",
+    //   label: "DATE PATTERN 4 IND",
+    // },
+    // {
+    //   id: "minThreshold",
+    //   label: "MIN. THRESHOLD",
+    // },
     {
-      id: "datePattern4Ind",
-      label: "DATE PATTERN 4 IND",
+      id: "idhSubmitScore",
+      label: "IDH SUBMIT SCORE",
     },
     {
-      id: "minThreshold",
-      label: "MIN. THRESHOLD",
+      id: "spaRuleDesc",
+      label: "RULE DESC",
     },
   ];
 
@@ -146,25 +154,45 @@ export default function Investicase() {
               fetchParamDetails(row.wswcId, false);
             }}
           >
-            {value}
-          </Typography>
-        );
-      case "parentAttributeName":
-        return (
-          <Typography
-            style={{ color: row.editFlag === true ? "gray" : "silver" }}
-          >
-            {/* {value === "Y" ? "Yes" : "No"} */}
             {value && (
-              <div style={{ display: "flex" }}>
-                <div style={{padding:"1px"}}>{value}</div>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  width: "80%",
+                }}
+              >
+                <div style={{ display: "flex", alignSelf: "center" }}>
+                  {value}
+                </div>
                 <div>
-                  <InfoOutlinedIcon fontSize="small" />
+                  <Tooltip title={row["parentAttributeName"]}>
+                    <IconButton>
+                      <InfoOutlinedIcon fontSize="small" />
+                    </IconButton>
+                  </Tooltip>
                 </div>
               </div>
             )}
           </Typography>
         );
+      // case "parentAttributeName":
+      //   return (
+      //     <Typography
+      //       style={{ color: row.editFlag === true ? "gray" : "silver" }}
+      //     >
+      //       {/* {value === "Y" ? "Yes" : "No"} */}
+      //       {value && (
+      //         <div style={{ display: "flex" }}>
+      //           <div style={{ padding: "1px" }}>{value}</div>
+      //           <div>
+      //             <InfoOutlinedIcon fontSize="small" />
+      //           </div>
+      //         </div>
+      //       )}
+      //     </Typography>
+      //   );
+
       case "attributeWeight":
         return (
           <Typography
@@ -177,6 +205,37 @@ export default function Investicase() {
             }
           >
             {value}
+          </Typography>
+        );
+
+      case "idhSubmitScore":
+        return (
+          <Typography
+            // className={
+            //   row.editFlag === true
+            //     ? "clickable-active-text"
+            //     : "clickable-inactive-text"
+            // }
+            onClick={() => {
+              fetchParamDetails(row.wswcId, false);
+            }}
+          >
+            <div style={{ display: "flex" }}>
+              <div
+                style={{ display: "flex", width: "30%", alignSelf: "center", justifyContent:"space-between" }}
+              >
+                <div style={{width:'40%'}}>{row["minThreshold"]} </div>
+                <div>|</div>
+                <div>{row["datePattern4Ind"]}</div>
+              </div>
+              <div>
+                <Tooltip title={Number(row["minThreshold"]) > 99 && row["datePattern4Ind"] === 'Y' && "idh submit score"}>
+                  <IconButton>
+                    <InfoOutlinedIcon fontSize="small" />
+                  </IconButton>
+                </Tooltip>
+              </div>
+            </div>
           </Typography>
         );
       default:
@@ -441,7 +500,8 @@ export default function Investicase() {
                             >
                               {row.editFlag === true ? (
                                 <Tooltip title="Edit" placement="left">
-                                  <IconButton disabled={!isUpdateAccessExist()}>
+                                  {/* <IconButton disabled={!isUpdateAccessExist()}> */}
+                                  <IconButton disabled={false}>
                                     <EditNoteIcon
                                       sx={{ cursor: "pointer" }}
                                       fontSize="medium"
