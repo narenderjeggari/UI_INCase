@@ -500,8 +500,7 @@ export default function Investicase() {
                             >
                               {row.editFlag === true ? (
                                 <Tooltip title="Edit" placement="left">
-                                  {/* <IconButton disabled={!isUpdateAccessExist()}> */}
-                                  <IconButton disabled={false}>
+                                  <IconButton disabled={!isUpdateAccessExist()}>
                                     <EditNoteIcon
                                       sx={{ cursor: "pointer" }}
                                       fontSize="medium"
