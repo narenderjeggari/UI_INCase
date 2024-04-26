@@ -68,29 +68,29 @@ export default function Investicase() {
   const [parentDataRefresh, setParentDataRefresh] = useState(false);
 
   const columns = [
-    { id: "attributeName", label: "NAME" },
+    { id: "name", label: "NAME" },
     // {
-    //   id: "parentAttributeName",
+    //   id: "parentName",
     //   label: "PARENT NAME",
     // },
     {
-      id: "attributeWeight",
+      id: "spaAttrWeight",
       label: "WEIGHT",
     },
     {
-      id: "automarkInd",
+      id: "spaAutoMark",
       label: "AUTOMARK IND",
     },
     {
       id: "startDate",
       label: "START DATE",
     },
-    {
-      id: "endDate",
-      label: "END DATE",
-    },
     // {
-    //   id: "datePattern4Ind",
+    //   id: "endDate",
+    //   label: "END DATE",
+    // },
+    // {
+    //   id: "spaDp4ActiveInd",
     //   label: "DATE PATTERN 4 IND",
     // },
     // {
@@ -142,7 +142,7 @@ export default function Investicase() {
 
   const renderColumn = (id, value, row) => {
     switch (id) {
-      case "attributeName":
+      case "name":
         return (
           <Typography
             className={
@@ -151,7 +151,7 @@ export default function Investicase() {
                 : "clickable-inactive-text"
             }
             onClick={() => {
-              fetchParamDetails(row.wswcId, false);
+              fetchParamDetails(row.spaId, false);
             }}
           >
             {value && (
@@ -166,7 +166,7 @@ export default function Investicase() {
                   {value}
                 </div>
                 <div>
-                  <Tooltip title={row["parentAttributeName"]}>
+                  <Tooltip title={row["spaMainSrcCd"]}>
                     <IconButton>
                       <InfoOutlinedIcon fontSize="small" />
                     </IconButton>
@@ -193,7 +193,7 @@ export default function Investicase() {
       //     </Typography>
       //   );
 
-      case "attributeWeight":
+      case "spaAttrWeight":
         return (
           <Typography
             className={
@@ -217,19 +217,19 @@ export default function Investicase() {
             //     : "clickable-inactive-text"
             // }
             onClick={() => {
-              fetchParamDetails(row.wswcId, false);
+              fetchParamDetails(row.spaId, false);
             }}
           >
             <div style={{ display: "flex" }}>
               <div
                 style={{ display: "flex", width: "30%", alignSelf: "center", justifyContent:"space-between" }}
               >
-                <div style={{width:'40%'}}>{row["minThreshold"]} </div>
+                <div style={{width:'40%'}}>{row["spaMinThresholdValSarSubmit"]} </div>
                 <div>|</div>
-                <div>{row["datePattern4Ind"]}</div>
+                <div>{row["spaSarSubmitSpecialRuleInd"]}</div>
               </div>
               <div>
-                <Tooltip title={Number(row["minThreshold"]) > 99 && row["datePattern4Ind"] === 'Y' && "idh submit score"}>
+                <Tooltip title={Number(row["spaMinThresholdValSarSubmit"]) > 99 && row["spaSarSubmitSpecialRuleInd"] === 'Y' && "idh submit score"}>
                   <IconButton>
                     <InfoOutlinedIcon fontSize="small" />
                   </IconButton>
@@ -259,7 +259,7 @@ export default function Investicase() {
           ? await client.get(`${otherConfigInvesticaseURL}`)
           : await client.post(`${otherConfigInvesticaseURL}`, payload);
 
-      setData(response.wswcSummaryList);
+      setData(response.spideringAttributesList || []);
       setTotalCount(response.pagination.totalItemCount);
       setLoading(false);
       setCurrentFilter(active);
@@ -330,14 +330,14 @@ export default function Investicase() {
     }, 3000);
   };
 
-  const fetchParamDetails = async (wswcId, showEditModal) => {
+  const fetchParamDetails = async (spaId, showEditModal) => {
     setLoading(true);
     setErrorMessages([]);
     try {
       const response =
         process.env.REACT_APP_ENV === "mockserver"
           ? await client.get(`${otherConfigInvesticaseDetailsURL}`)
-          : await client.get(`${otherConfigInvesticaseDetailsURL}${wswcId}`);
+          : await client.get(`${otherConfigInvesticaseDetailsURL}${spaId}`);
       setSelectedParam(response);
 
       if (showEditModal) {
@@ -356,8 +356,8 @@ export default function Investicase() {
     }
   };
 
-  const showDeleteParamDialog = (event, parId) => {
-    setSelectedParamIdForDelete(parId);
+  const showDeleteParamDialog = (event, spaId) => {
+    setSelectedParamIdForDelete(spaId);
     setShowDeleteParamConfirModal(true);
     event.preventDefault();
     event.stopPropagation();
@@ -476,8 +476,8 @@ export default function Investicase() {
                           hover
                           role="checkbox"
                           tabIndex={-1}
-                          key={row.code}
-                          wswcId={row.wswcId}
+                          key={row.spaId}
+                          spaId={row.spaId}
                           fetchParamDetails={fetchParamDetails}
                           showDeleteParamDialog={showDeleteParamDialog}
                           currentFilter={currentFilter}
@@ -500,7 +500,8 @@ export default function Investicase() {
                             >
                               {row.editFlag === true ? (
                                 <Tooltip title="Edit" placement="left">
-                                  <IconButton disabled={!isUpdateAccessExist()}>
+                                  {/* <IconButton disabled={!isUpdateAccessExist()}> */}
+                                  <IconButton disabled={false}>
                                     <EditNoteIcon
                                       sx={{ cursor: "pointer" }}
                                       fontSize="medium"
@@ -508,7 +509,7 @@ export default function Investicase() {
                                         color: "primary",
                                       })}
                                       onClick={(event) => {
-                                        fetchParamDetails(row.wswcId, true);
+                                        fetchParamDetails(row.spaId, true);
                                         event.preventDefault();
                                         event.stopPropagation();
                                       }}
@@ -525,7 +526,7 @@ export default function Investicase() {
                                       onClick={(event) => {
                                         showDeleteParamDialog(
                                           event,
-                                          row.wswcId
+                                          row.spaId
                                         );
                                       }}
                                       sx={{ cursor: "pointer" }}
@@ -581,7 +582,7 @@ export default function Investicase() {
                                         color: "primary",
                                       })}
                                       onClick={(event) => {
-                                        fetchParamDetails(row.wswcId, true);
+                                        fetchParamDetails(row.spaId, true);
 
                                         event.preventDefault();
                                         event.stopPropagation();
@@ -599,7 +600,7 @@ export default function Investicase() {
                                       onClick={(event) => {
                                         showDeleteParamDialog(
                                           event,
-                                          row.wswcId
+                                          row.spaId
                                         );
                                       }}
                                       sx={{ cursor: "pointer" }}

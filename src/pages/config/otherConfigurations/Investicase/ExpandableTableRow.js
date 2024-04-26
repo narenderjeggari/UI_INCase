@@ -13,8 +13,7 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import {
   otherConfigInvesticaseSubTableURL,
-  // otherConfigInvesticaseSubTableURL,
-  otherConfigWorkSearchWaiversDetailsURL,
+  otherConfigInvesticaseDetailsURL,
 } from "../../../../helpers/Urls";
 import client from "../../../../helpers/Api";
 import { getMsgsFromErrorCode } from "../../../../helpers/utils";
@@ -30,7 +29,7 @@ import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 
 function ExpandableTableRow({
   parentDataRefresh,
-  wswcId,
+  spaId,
   children,
   currentFilter,
   showDeleteParamDialog,
@@ -45,27 +44,27 @@ function ExpandableTableRow({
   const [selectedParam, setSelectedParam] = useState();
 
   const columns = [
-    { id: "attributeName", label: "NAME" },
+    { id: "name", label: "NAME" },
     // {
     //   id: "parentAttributeName",
     //   label: "PARENT NAME",
     // },
     {
-      id: "attributeWeight",
+      id: "spaAttrWeight",
       label: "WEIGHT",
     },
     {
-      id: "automarkInd",
+      id: "spaAutoMark",
       label: "AUTOMARK IND",
     },
     {
       id: "startDate",
       label: "START DATE",
     },
-    {
-      id: "endDate",
-      label: "END DATE",
-    },
+    // {
+    //   id: "endDate",
+    //   label: "END DATE",
+    // },
     // {
     //   id: "datePattern4Ind",
     //   label: "DATE PATTERN 4 IND",
@@ -99,19 +98,18 @@ function ExpandableTableRow({
   }));
 
   useEffect(() => {
-    if (isExpanded && wswcId) {
+    if (isExpanded && spaId) {
       fetchSubTableData();
     }
-  }, [wswcId, isExpanded]);
+  }, [spaId, isExpanded]);
 
   useEffect(() => {
-    if (parentDataRefresh && isExpanded && wswcId) {
+    if (parentDataRefresh && isExpanded && spaId) {
       fetchSubTableData();
     }
   }, [parentDataRefresh]);
 
   const fetchSubTableData = async () => {
-    console.log("inside fetchSubTableData");
     setLoading(true);
     setErrorMessages([]);
     try {
@@ -119,11 +117,10 @@ function ExpandableTableRow({
         process.env.REACT_APP_ENV === "mockserver"
           ? await client.get(`${otherConfigInvesticaseSubTableURL}`)
           : await client.post(`${otherConfigInvesticaseSubTableURL}`, {
-              wswcId,
+              spaId,
               active: currentFilter,
             });
-      console.log("response::", response);
-      setSubTableData(response);
+      setSubTableData(response?.spideringAttributesList || []);
     } catch (errorResponse) {
       setLoading(false);
       const newErrMsgs = getMsgsFromErrorCode(
@@ -134,15 +131,15 @@ function ExpandableTableRow({
     }
   };
 
-  const fetchParamDetails = async (wswcId, showEditModal) => {
+  const fetchParamDetails = async (spaId, showEditModal) => {
     setLoading(true);
     setErrorMessages([]);
     try {
       const response =
         process.env.REACT_APP_ENV === "mockserver"
-          ? await client.get(`${otherConfigWorkSearchWaiversDetailsURL}`)
+          ? await client.get(`${otherConfigInvesticaseDetailsURL}`)
           : await client.get(
-              `${otherConfigWorkSearchWaiversDetailsURL}${wswcId}`
+              `${otherConfigInvesticaseDetailsURL}${spaId}`
             );
       setSelectedParam(response);
 
@@ -179,7 +176,7 @@ function ExpandableTableRow({
             {value}
           </Typography>
         );
-      case "parentAttributeName":
+      case "name":
         return (
           <Typography
             style={{ color: row.editFlag === true ? "gray" : "silver" }}
@@ -206,7 +203,7 @@ function ExpandableTableRow({
                 : "past-date-text-non-editable"
             }
           >
-            {`${row["minThreshold"]} | ${row["datePattern4Ind"]}`}
+            {`${row["spaMinThresholdValSarSubmit"]} | ${row["spaSarSubmitSpecialRuleInd"]}`}
           </Typography>
         );
       default:
@@ -291,7 +288,7 @@ function ExpandableTableRow({
                                           })}
                                           onClick={(event) => {
                                             fetchParamDetails(
-                                              row.wswcId,
+                                              row.spaId,
                                               true,
                                               fetchSubTableData
                                             );
@@ -313,7 +310,7 @@ function ExpandableTableRow({
                                           onClick={(event) => {
                                             showDeleteParamDialog(
                                               event,
-                                              row.wswcId
+                                              row.spaId
                                             );
                                           }}
                                           sx={{ cursor: "pointer" }}

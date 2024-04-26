@@ -8,6 +8,7 @@ import Grid from "@mui/material/Grid";
 // import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 function ViewParametersData({ selectedParam }) {
+  console.log("selectedParam::", selectedParam);
   return (
     <Stack spacing={0.2}>
       <Grid container>
@@ -17,7 +18,7 @@ function ViewParametersData({ selectedParam }) {
               Name:
             </Grid>
             <Grid item md={3}>
-              {selectedParam.attributeName}
+              {selectedParam.name}
             </Grid>
           </Grid>
         </Grid>
@@ -25,24 +26,24 @@ function ViewParametersData({ selectedParam }) {
         <Grid item md={7}>
           <Grid container>
             <Grid item md={4}>
-            <Grid container>
-            <Grid className="label-text" item md={8}>
-            Automark:
-            </Grid>
-            <Grid item md={3}>
-              {selectedParam.automarkInd}
-            </Grid>
+              <Grid container>
+                <Grid className="label-text" item md={8}>
+                  Automark:
+                </Grid>
+                <Grid item md={3}>
+                  {selectedParam.spaAutoMark}
+                </Grid>
               </Grid>
             </Grid>
 
             <Grid item md={8}>
-            <Grid container>
-            <Grid className="label-text" item md={5}>
-            Effective From:
-            </Grid>
-            <Grid item md={3}>
-              {selectedParam.startDate}
-            </Grid>
+              <Grid container>
+                <Grid className="label-text" item md={5}>
+                  Effective From:
+                </Grid>
+                <Grid item md={3}>
+                  {selectedParam.startDate}
+                </Grid>
               </Grid>
             </Grid>
           </Grid>
@@ -56,32 +57,31 @@ function ViewParametersData({ selectedParam }) {
               Weight:
             </Grid>
             <Grid item md={3}>
-              {selectedParam.attributeWeight}
+              {selectedParam.spaAttrWeight}
             </Grid>
           </Grid>
         </Grid>
         <Grid item md={7}>
           <Grid container>
             <Grid item md={4}>
-            <Grid container>
-            <Grid className="label-text" item md={8}>
-            Attr format type:
-            </Grid>
-            <Grid item md={3}>
-              {selectedParam.attrFormatType}
-            </Grid>
+              <Grid container>
+                <Grid className="label-text" item md={8}>
+                  Attr format type:
+                </Grid>
+                <Grid item md={3}>
+                  {selectedParam.spaFormatDesc}
+                </Grid>
               </Grid>
             </Grid>
             <Grid item md={8}>
-            <Grid container>
-            <Grid className="label-text" item md={5}>
-            SAR Min Threshold:
-            </Grid>
-            <Grid item md={3}>
-              {selectedParam.minThreshold}
-            </Grid>
+              <Grid container>
+                <Grid className="label-text" item md={5}>
+                  SAR Min Threshold:
+                </Grid>
+                <Grid item md={3}>
+                  {selectedParam.spaMinThresholdValSarSubmit}
+                </Grid>
               </Grid>
-
             </Grid>
           </Grid>
         </Grid>
@@ -101,13 +101,13 @@ function ViewParametersData({ selectedParam }) {
         <Grid item md={7}>
           <Grid container>
             <Grid item md={4}>
-            <Grid container>
-            <Grid className="label-text" item md={8}>
-            Date pattern 4 Ind:
-            </Grid>
-            <Grid item md={3}>
-              {selectedParam.datePattern4Ind}
-            </Grid>
+              <Grid container>
+                <Grid className="label-text" item md={8}>
+                  Date pattern 4 Ind:
+                </Grid>
+                <Grid item md={3}>
+                  {selectedParam.datePattern4Ind}
+                </Grid>
               </Grid>
             </Grid>
           </Grid>

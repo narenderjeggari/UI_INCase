@@ -19,7 +19,7 @@ import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import { FormControl, TextField } from "@mui/material";
 import useModifyParamsForm from "./useModifyParamsForm";
 import ViewParametersData from "./ViewParametersData";
-import { otherConfigWorkSearchReqSaveURL } from "../../../../helpers/Urls";
+import { otherConfigInvesticaseSaveURL } from "../../../../helpers/Urls";
 import { getMsgsFromErrorCode } from "../../../../helpers/utils";
 import moment from "moment";
 import client from "../../../../helpers/Api";
@@ -27,15 +27,15 @@ import client from "../../../../helpers/Api";
 function ModifyParametersData({ selectedParam, closeModalPopup }) {
   const [errorMessages, setErrorMessages] = useState([]);
   const [loading, setLoading] = useState(false);
-  const { attributeName, attributeWeight, automarkInd, attrFormatType, remarks } =
+  const { name, spaAttrWeight, spaAutoMark, spaFormatDesc, spaRemarks } =
     selectedParam;
   const initialState = {
     modificationType: "",
-    attributeName: attributeName,
-    attributeWeight: attributeWeight || "",
-    automarkInd: automarkInd || "",
-    attrFormatType: attrFormatType || "",
-    remarks: remarks || "",
+    name: name,
+    spaAttrWeight: spaAttrWeight || "",
+    spaAutoMark: spaAutoMark || "",
+    spaFormatDesc: spaFormatDesc || "",
+    spaRemarks: spaRemarks || "",
   };
 
   const onSubmit = async () => {
@@ -57,15 +57,15 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
     try {
       const response =
         process.env.REACT_APP_ENV === "mockserver"
-          ? await client.get(otherConfigWorkSearchReqSaveURL)
-          : await client.post(otherConfigWorkSearchReqSaveURL, payload);
+          ? await client.get(otherConfigInvesticaseSaveURL)
+          : await client.post(otherConfigInvesticaseSaveURL, payload);
       setLoading(false);
       closeModalPopup(true);
     } catch (errorResponse) {
       setLoading(false);
       const newErrMsgs = getMsgsFromErrorCode(
         `POST:${process.env.REACT_APP_OTHER_CONFIG_WORK_SEARCH_REQ_SAVE_URL}`,
-        errorResponse,
+        errorResponse
       );
       setErrorMessages(newErrMsgs);
     }
@@ -209,8 +209,8 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                         <TextField
                           size="small"
                           fullWidth
-                          id="attributeName"
-                          label="Attribute Name"
+                          id="name"
+                          label="Name"
                           variant="outlined"
                           onChange={handleChange}
                           onKeyPress={handleKeyPress}
@@ -220,14 +220,10 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                             maxLength: 2,
                             className: "numericInput",
                           }}
-                          value={values.attributeName ?? ""}
-                          error={
-                            touched.attributeName && Boolean(errors.attributeName)
-                          }
-                          helperText={
-                            touched.attributeName && errors.attributeName
-                          }
-                          name="attributeName"
+                          value={values.name ?? ""}
+                          error={touched.name && Boolean(errors.name)}
+                          helperText={touched.name && errors.name}
+                          name="name"
                         />
                       </Grid>
                     </Grid>
@@ -281,8 +277,8 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                         <TextField
                           size="small"
                           fullWidth
-                          id="attributeWeight"
-                          label="Attribute Weight"
+                          id="spaAttrWeight"
+                          label="Weight"
                           variant="outlined"
                           onChange={handleChange}
                           onKeyPress={handleKeyPress}
@@ -292,16 +288,15 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                             maxLength: 2,
                             className: "numericInput",
                           }}
-                          value={values.attributeWeight ?? ""}
+                          value={values.spaAttrWeight ?? ""}
                           error={
-                            touched.attributeWeight &&
-                            Boolean(errors.attributeWeight)
+                            touched.spaAttrWeight &&
+                            Boolean(errors.spaAttrWeight)
                           }
                           helperText={
-                            touched.attributeWeight &&
-                            errors.attributeWeight
+                            touched.spaAttrWeight && errors.spaAttrWeight
                           }
-                          name="attributeWeight"
+                          name="spaAttrWeight"
                         />
                       </Grid>
                     </Grid>
@@ -351,14 +346,14 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                     <TextField
                       size="small"
                       fullWidth
-                      id="remarks"
+                      id="spaRemarks"
                       label="Remarks"
                       variant="outlined"
                       onChange={handleChange}
-                      value={values.remarks ?? ""}
-                      error={touched.remarks && Boolean(errors.remarks)}
-                      helperText={touched.remarks && errors.remarks}
-                      name="remarks"
+                      value={values.spaRemarks ?? ""}
+                      error={touched.spaRemarks && Boolean(errors.spaRemarks)}
+                      helperText={touched.spaRemarks && errors.spaRemarks}
+                      name="spaRemarks"
                       multiline
                       rows={2}
                     />
