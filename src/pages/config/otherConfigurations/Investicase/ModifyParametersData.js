@@ -42,17 +42,27 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
     setLoading(true);
     setErrorMessages([]);
     const payload = {
-      wsccId: selectedParam.wsccId,
+      spaId: selectedParam.spaId,
       modificationType: values.modificationType,
-      initialClaim: parseInt(values.initialClaim),
-      additionalClaim: parseInt(values.additionalClaim),
-      incrementFrequency: parseInt(values.incrementFrequency),
-      attrFormatType: parseInt(values.attrFormatType),
-      modificationDate:
-        values.modificationType === "CONFIGURATION"
+      modificationDt:
+        values.modificationType === "CHANGE"
           ? values.configurationDate?.format("MM/DD/YYYY")
           : values.startDate?.format("MM/DD/YYYY"),
-      comments: values.comments,
+      name: "Identification Information",
+      spaAttrWeight: 4,
+      spaAutoMark: "N",
+      spaMainSrcCd: "980",
+      spaOtherSources: "CMT",
+      spaFormatCd: 4389,
+      spaDp4ActiveInd: "N",
+      spaEndOvwrMm: 999,
+      spaSarSubmitSpecialRuleInd: "N",
+      spaRemarks: "Test Comment 1- weight 4",
+      // initialClaim: parseInt(values.initialClaim),
+      // additionalClaim: parseInt(values.additionalClaim),
+      // incrementFrequency: parseInt(values.incrementFrequency),
+      // attrFormatType: parseInt(values.attrFormatType),
+      // comments: values.comments,
     };
     try {
       const response =

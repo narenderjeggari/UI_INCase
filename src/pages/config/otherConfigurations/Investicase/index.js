@@ -21,7 +21,7 @@ import CustomModal from "../../../../components/customModal/CustomModal";
 import client from "../../../../helpers/Api";
 // import { serverErrorMessages } from "../../../../helpers/Constants";
 import {
-  otherConfigInvesticaseURL,
+  otherConfigInvesticaseSearchURL,
   otherConfigInvesticaseDetailsURL,
   otherConfigInvesticaseDeleteURL,
 } from "../../../../helpers/Urls";
@@ -256,8 +256,8 @@ export default function Investicase() {
     try {
       const response =
         process.env.REACT_APP_ENV === "mockserver"
-          ? await client.get(`${otherConfigInvesticaseURL}`)
-          : await client.post(`${otherConfigInvesticaseURL}`, payload);
+          ? await client.get(`${otherConfigInvesticaseSearchURL}`)
+          : await client.post(`${otherConfigInvesticaseSearchURL}`, payload);
 
       setData(response.spideringAttributesList || []);
       setTotalCount(response.pagination.totalItemCount);
@@ -266,7 +266,7 @@ export default function Investicase() {
     } catch (errorResponse) {
       setLoading(false);
       const newErrMsgs = getMsgsFromErrorCode(
-        `POST:${process.env.REACT_APP_OTHER_CONFIG_INVESTICASE_URL}`,
+        `POST:${process.env.REACT_APP_OTHER_CONFIG_INVESTICASE_SEARCH_URL}`,
         errorResponse
       );
       setErrorMessages(newErrMsgs);

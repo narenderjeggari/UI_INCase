@@ -8,7 +8,6 @@ import Grid from "@mui/material/Grid";
 // import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 function ViewParametersData({ selectedParam }) {
-  console.log("selectedParam::", selectedParam);
   return (
     <Stack spacing={0.2}>
       <Grid container>
@@ -94,7 +93,7 @@ function ViewParametersData({ selectedParam }) {
               Remarks:
             </Grid>
             <Grid item md={3}>
-              {selectedParam.remarks}
+              {selectedParam.spaRemarks}
             </Grid>
           </Grid>
         </Grid>
@@ -106,7 +105,7 @@ function ViewParametersData({ selectedParam }) {
                   Date pattern 4 Ind:
                 </Grid>
                 <Grid item md={3}>
-                  {selectedParam.datePattern4Ind}
+                  {selectedParam.spaDp4ActiveInd}
                 </Grid>
               </Grid>
             </Grid>

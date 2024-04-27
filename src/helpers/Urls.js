@@ -33,7 +33,7 @@ const otherConfigWorkSearchWaiversSaveURL = `${baseApiUrl}${process.env.REACT_AP
 const otherConfigWorkSearchWaiversSubTableURL = `${baseApiUrl}${process.env.REACT_APP_OTHER_CONFIG_WORK_SEARCH_WAIVERS_SUB_TABLE_URL}`;
 const otherConfigWorkSearchWaiversDeleteURL = `${baseApiUrl}${process.env.REACT_APP_OTHER_CONFIG_WORK_SEARCH_WAIVERS_DELETE_URL}`;
 
-const otherConfigInvesticaseURL = `${baseApiUrl}${process.env.REACT_APP_OTHER_CONFIG_INVESTICASE_URL}`;
+const otherConfigInvesticaseSearchURL = `${baseApiUrl}${process.env.REACT_APP_OTHER_CONFIG_INVESTICASE_SEARCH_URL}`;
 const otherConfigInvesticaseDetailsURL = `${baseApiUrl}${process.env.REACT_APP_OTHER_CONFIG_INVESTICASE_DETAILS_URL}`;
 const otherConfigInvesticaseSaveURL = `${baseApiUrl}${process.env.REACT_APP_OTHER_CONFIG_INVESTICASE_SAVE_URL}`;
 const otherConfigInvesticaseSubTableURL = `${baseApiUrl}${process.env.REACT_APP_OTHER_CONFIG_INVESTICASE_SUB_TABLE_URL}`;
@@ -75,7 +75,7 @@ export {
   otherConfigWorkSearchWaiversSubTableURL,
   otherConfigWorkSearchReqDeleteURL,
   otherConfigWorkSearchWaiversDeleteURL,
-  otherConfigInvesticaseURL,
+  otherConfigInvesticaseSearchURL,
   otherConfigInvesticaseDetailsURL,
   otherConfigInvesticaseSaveURL,
   otherConfigInvesticaseSubTableURL,

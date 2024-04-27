@@ -12,9 +12,7 @@
   "spaDp4ActiveInd": "N",
   "spaEndOvwrMm": 999,
   "spaSarSubmitSpecialRuleInd": "N",
-  "spaMinThresholdValSarSubmit": 100,
   "startDate": "09/20/2017",
   "spaRemarks": "Employer's Address",
-  "editFlag": true,
-  "childListCount": 1
+  "editFlag": true
 }
