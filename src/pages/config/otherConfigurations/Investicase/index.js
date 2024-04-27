@@ -222,18 +222,28 @@ export default function Investicase() {
           >
             <div style={{ display: "flex" }}>
               <div
-                style={{ display: "flex", width: "30%", alignSelf: "center", justifyContent:"space-between" }}
+                style={{
+                  display: "flex",
+                  width: "30%",
+                  alignSelf: "center",
+                  justifyContent: "space-between",
+                }}
               >
-                <div style={{width:'40%'}}>{row["spaMinThresholdValSarSubmit"]} </div>
+                <div style={{ width: "40%" }}>
+                  {row["spaMinThresholdValSarSubmit"]}{" "}
+                </div>
                 <div>|</div>
                 <div>{row["spaSarSubmitSpecialRuleInd"]}</div>
               </div>
               <div>
-                <Tooltip title={Number(row["spaMinThresholdValSarSubmit"]) > 99 && row["spaSarSubmitSpecialRuleInd"] === 'Y' && "idh submit score"}>
-                  <IconButton>
-                    <InfoOutlinedIcon fontSize="small" />
-                  </IconButton>
-                </Tooltip>
+                {row["spaMinThresholdValSarSubmit"] > 99 &&
+                  row["spaSarSubmitSpecialRuleInd"] === "Y" && (
+                    <Tooltip title={"Rule desc"}>
+                      <IconButton>
+                        <InfoOutlinedIcon fontSize="small" />
+                      </IconButton>
+                    </Tooltip>
+                  )}
               </div>
             </div>
           </Typography>
@@ -524,10 +534,7 @@ export default function Investicase() {
                                   <IconButton disabled={!isUpdateAccessExist()}>
                                     <DeleteForeverIcon
                                       onClick={(event) => {
-                                        showDeleteParamDialog(
-                                          event,
-                                          row.spaId
-                                        );
+                                        showDeleteParamDialog(event, row.spaId);
                                       }}
                                       sx={{ cursor: "pointer" }}
                                       fontSize="medium"
@@ -598,10 +605,7 @@ export default function Investicase() {
                                   <IconButton disabled={!isUpdateAccessExist()}>
                                     <DeleteForeverIcon
                                       onClick={(event) => {
-                                        showDeleteParamDialog(
-                                          event,
-                                          row.spaId
-                                        );
+                                        showDeleteParamDialog(event, row.spaId);
                                       }}
                                       sx={{ cursor: "pointer" }}
                                       fontSize="medium"
