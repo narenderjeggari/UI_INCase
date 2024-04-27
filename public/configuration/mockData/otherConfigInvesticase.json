@@ -18,7 +18,8 @@
       "startDate": "09/20/2017",
       "spaRemarks": "Employer's Address",
       "editFlag": true,
-      "childListCount": 1
+      "childListCount": 1,
+      "reinstateFlag": true
     },
     {
       "spaId": 1,

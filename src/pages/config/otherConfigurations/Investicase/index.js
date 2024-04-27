@@ -38,6 +38,7 @@ import { isUpdateAccessExist } from "../../../../utils/cookies";
 import ExpandableTableRow from "./ExpandableTableRow";
 import moment from "moment";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import ReinstateIcon from "../../../../components/Icons/ReInstateIcon";
 
 export default function Investicase() {
   const [loading, setLoading] = useState(false);
@@ -546,6 +547,20 @@ export default function Investicase() {
                                 </Tooltip>
                               ) : (
                                 <></>
+                              )}
+                              {row.reinstateFlag === true ? (
+                                <ReinstateIcon
+                                  sx={{ cursor: "pointer" }}
+                                  fontSize="medium"
+                                  tooltipPlacement="left"
+                                  onClick={(event) => {
+                                    fetchParamDetails(row.spaId, true);
+                                    event.preventDefault();
+                                    event.stopPropagation();
+                                  }}
+                                />
+                              ) : (
+                                <Box sx={{ width: 23 }} />
                               )}
                             </Stack>
                           </TableCell>

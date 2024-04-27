@@ -11,105 +11,105 @@ function ViewParametersData({ selectedParam }) {
   return (
     <Stack spacing={0.2}>
       <Grid container>
-        <Grid item md={5}>
+        <Grid item md={4.5}>
           <Grid container>
-            <Grid className="label-text" item md={4}>
+            <Grid className="label-text" item md={2}>
               Name:
             </Grid>
-            <Grid item md={3}>
+            <Grid item md={10}>
               {selectedParam.name}
             </Grid>
           </Grid>
         </Grid>
 
-        <Grid item md={7}>
+        <Grid item md={4.5}>
           <Grid container>
-            <Grid item md={4}>
               <Grid container>
-                <Grid className="label-text" item md={8}>
+                <Grid className="label-text" item md={4}>
                   Automark:
                 </Grid>
-                <Grid item md={3}>
+                <Grid item md={8}>
                   {selectedParam.spaAutoMark}
                 </Grid>
               </Grid>
-            </Grid>
+          </Grid>
+        </Grid>
 
-            <Grid item md={8}>
-              <Grid container>
-                <Grid className="label-text" item md={5}>
-                  Effective From:
-                </Grid>
-                <Grid item md={3}>
-                  {selectedParam.startDate}
-                </Grid>
-              </Grid>
+        <Grid item md={3}>
+          <Grid container>
+            <Grid className="label-text" item md={6}>
+              Effective From:
+            </Grid>
+            <Grid item md={6}>
+              {selectedParam.startDate}
             </Grid>
           </Grid>
         </Grid>
       </Grid>
 
       <Grid container>
-        <Grid item md={5}>
+        <Grid item md={4.5}>
           <Grid container>
-            <Grid className="label-text" item md={4}>
+            <Grid className="label-text" item md={2}>
               Weight:
             </Grid>
-            <Grid item md={3}>
+            <Grid item md={6}>
               {selectedParam.spaAttrWeight}
             </Grid>
           </Grid>
         </Grid>
-        <Grid item md={7}>
+
+        <Grid item md={4.5}>
           <Grid container>
-            <Grid item md={4}>
               <Grid container>
-                <Grid className="label-text" item md={8}>
+                <Grid className="label-text" item md={4}>
                   Attr format type:
                 </Grid>
-                <Grid item md={3}>
+                <Grid item md={8}>
                   {selectedParam.spaFormatDesc}
                 </Grid>
               </Grid>
+          </Grid>
+        </Grid>
+
+        <Grid item md={3}>
+          <Grid container>
+            <Grid className="label-text" item md={6}>
+              SAR Min Threshold:
             </Grid>
-            <Grid item md={8}>
-              <Grid container>
-                <Grid className="label-text" item md={5}>
-                  SAR Min Threshold:
-                </Grid>
-                <Grid item md={3}>
-                  {selectedParam.spaMinThresholdValSarSubmit}
-                </Grid>
-              </Grid>
+            <Grid item md={6}>
+              {/* {selectedParam.spaMinThresholdValSarSubmit} */}
             </Grid>
           </Grid>
         </Grid>
       </Grid>
 
       <Grid container>
-        <Grid item md={5}>
+        <Grid item md={4.5}>
           <Grid container>
-            <Grid className="label-text" item md={4}>
+            <Grid className="label-text" item md={2}>
               Remarks:
             </Grid>
-            <Grid item md={3}>
+            <Grid item md={10}>
               {selectedParam.spaRemarks}
             </Grid>
           </Grid>
         </Grid>
-        <Grid item md={7}>
+
+        <Grid item md={4.5}>
           <Grid container>
-            <Grid item md={4}>
               <Grid container>
-                <Grid className="label-text" item md={8}>
+                <Grid className="label-text" item md={4}>
                   Date pattern 4 Ind:
                 </Grid>
-                <Grid item md={3}>
+                <Grid item md={8}>
                   {selectedParam.spaDp4ActiveInd}
                 </Grid>
               </Grid>
-            </Grid>
           </Grid>
+        </Grid>
+
+        <Grid item md={3}>
         </Grid>
       </Grid>
     </Stack>
