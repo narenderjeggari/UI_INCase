@@ -1,10 +1,10 @@
 import { useFormik } from "formik";
-import { otherConfigWorkSearchWaiversSchema } from "../../../../helpers/Validation";
+import { otherConfigInvesticaseSchema } from "../../../../helpers/Validation";
 
 const useModifyParamsForm = (onSubmit, initialValues) => {
   return useFormik({
     initialValues,
-    validationSchema: otherConfigWorkSearchWaiversSchema,
+    validationSchema: otherConfigInvesticaseSchema,
     validateOnChange: true,
     enableReinitialize: true,
     validateOnBlur: true,

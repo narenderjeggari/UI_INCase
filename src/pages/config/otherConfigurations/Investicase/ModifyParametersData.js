@@ -46,24 +46,20 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
       modificationType: values.modificationType,
       modificationDt:
         values.modificationType === "CHANGE"
-          ? values.configurationDate?.format("MM/DD/YYYY")
-          : values.startDate?.format("MM/DD/YYYY"),
-      name: "Identification Information",
-      spaAttrWeight: 4,
-      spaAutoMark: "N",
-      spaMainSrcCd: "980",
-      spaOtherSources: "CMT",
-      spaFormatCd: 4389,
-      spaDp4ActiveInd: "N",
-      spaEndOvwrMm: 999,
-      spaSarSubmitSpecialRuleInd: "N",
-      spaRemarks: "Test Comment 1- weight 4",
-      // initialClaim: parseInt(values.initialClaim),
-      // additionalClaim: parseInt(values.additionalClaim),
-      // incrementFrequency: parseInt(values.incrementFrequency),
-      // attrFormatType: parseInt(values.attrFormatType),
-      // comments: values.comments,
+          ? values.modificationDate?.format("MM/DD/YYYY")
+          : values.endDate?.format("MM/DD/YYYY"),
+      name: values?.name,
+      spaAttrWeight: values?.spaAttrWeight,
+      spaAutoMark: selectedParam?.spaAutoMark,
+      spaMainSrcCd: selectedParam?.spaMainSrcCd,
+      spaOtherSources:selectedParam?.spaOtherSources,
+      spaFormatCd:selectedParam?.spaFormatCd,
+      spaDp4ActiveInd: selectedParam?.spaDp4ActiveInd,
+      spaEndOvwrMm:selectedParam?.spaEndOvwrMm,
+      spaSarSubmitSpecialRuleInd:selectedParam?.spaSarSubmitSpecialRuleInd,
+      spaRemarks: values?.spaRemarks,
     };
+
     try {
       const response =
         process.env.REACT_APP_ENV === "mockserver"
@@ -87,19 +83,20 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
     values,
     errors,
     handleChange,
-    handleBlur,
+    // handleBlur,
     handleSubmit,
     isValid,
     dirty,
     setFieldValue,
   } = formik;
 
-  const handleKeyPress = (event) => {
-    const charCode = event.which ? event.which : event.keyCode;
-    if (charCode < 48 || charCode > 57) {
-      event.preventDefault();
-    }
-  };
+
+  // const handleKeyPress = (event) => {
+  //   const charCode = event.which ? event.which : event.keyCode;
+  //   if (charCode < 48 || charCode > 57) {
+  //     event.preventDefault();
+  //   }
+  // };
 
   return (
     <>
@@ -126,8 +123,8 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                     name="modificationType"
                     value={values.modificationType}
                     onChange={(event) => {
-                      setFieldValue("configurationDate", null);
-                      setFieldValue("startDate", null);
+                      setFieldValue("modificationDate", null);
+                      setFieldValue("endDate", null);
                       setFieldValue("modificationType", event.target.value);
                     }}
                     error={
@@ -141,7 +138,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                   >
                     <Stack direction="row" spacing={2}>
                       <FormControlLabel
-                        value="CONFIGURATION"
+                        value="CHANGE"
                         control={<Radio size="small" />}
                         label="Modification Configuration as of:"
                         className="label-text"
@@ -150,51 +147,49 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                       <LocalizationProvider dateAdapter={AdapterMoment}>
                         <FormControl sx={{ width: 150 }}>
                           <DatePicker
-                            disabled={
-                              values.modificationType !== "CONFIGURATION"
-                            }
-                            name="configurationDate"
+                            disabled={values.modificationType !== "CHANGE"}
+                            name="modificationDate"
                             format="MM/DD/YYYY"
-                            value={values.configurationDate}
-                            onChange={(value) =>
-                              setFieldValue("configurationDate", value)
-                            }
+                            value={values.modificationDate}
+                            onChange={(value) => {
+                              setFieldValue("modificationDate", value);
+                            }}
                             slotProps={{ textField: { size: "small" } }}
                             minDate={moment().add(1, "days")}
                             // minDate={moment().startOf('week').startOf('day')}
                             // maxDate={moment().add("months", 2)}
                           />
-                          {touched.configurationDate &&
-                            errors.configurationDate && (
+                          {touched.modificationDate &&
+                            errors.modificationDate && (
                               <FormHelperText style={{ color: "red" }}>
-                                {errors.configurationDate}
+                                {errors.modificationDate}
                               </FormHelperText>
                             )}
                         </FormControl>
                       </LocalizationProvider>
                       <FormControlLabel
-                        value="STARTDATE"
+                        value="ENDDATE"
                         control={<Radio size="small" />}
-                        label="Change Start Date to:"
+                        label="Change End Date to:"
                       />
                       <LocalizationProvider dateAdapter={AdapterMoment}>
                         <FormControl sx={{ width: 150 }}>
                           <DatePicker
-                            disabled={values.modificationType !== "STARTDATE"}
-                            name="startDate"
+                            disabled={values.modificationType !== "ENDDATE"}
+                            name="endDate"
                             format="MM/DD/YYYY"
-                            value={values.startDate}
+                            value={values.endDate}
                             onChange={(value) =>
-                              setFieldValue("startDate", value)
+                              setFieldValue("endDate", value)
                             }
                             slotProps={{ textField: { size: "small" } }}
                             minDate={moment().add(1, "days")}
                             // minDate={moment().startOf('week').startOf('day')}
                             // maxDate={moment().add("months", 2)}
                           />
-                          {touched.startDate && errors.startDate && (
+                          {touched.endDate && errors.endDate && (
                             <FormHelperText style={{ color: "red" }}>
-                              {errors.startDate}
+                              {errors.endDate}
                             </FormHelperText>
                           )}
                         </FormControl>
@@ -223,13 +218,13 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                           label="Name"
                           variant="outlined"
                           onChange={handleChange}
-                          onKeyPress={handleKeyPress}
-                          inputProps={{
-                            inputMode: "numeric",
-                            pattern: "[0-9]*",
-                            maxLength: 2,
-                            className: "numericInput",
-                          }}
+                          // onKeyPress={handleKeyPress}
+                          // inputProps={{
+                          //   inputMode: "numeric",
+                          //   pattern: "[0-9]*",
+                          //   maxLength: 2,
+                          //   className: "numericInput",
+                          // }}
                           value={values.name ?? ""}
                           error={touched.name && Boolean(errors.name)}
                           helperText={touched.name && errors.name}
@@ -291,7 +286,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                           label="Weight"
                           variant="outlined"
                           onChange={handleChange}
-                          onKeyPress={handleKeyPress}
+                          // onKeyPress={handleKeyPress}
                           inputProps={{
                             inputMode: "numeric",
                             pattern: "[0-9]*",

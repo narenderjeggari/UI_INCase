@@ -75,7 +75,7 @@ function ViewParametersData({ selectedParam }) {
         <Grid item md={3}>
           <Grid container>
             <Grid className="label-text" item md={6}>
-              SAR Min Threshold:
+              {/* SAR Min Threshold: */}
             </Grid>
             <Grid item md={6}>
               {/* {selectedParam.spaMinThresholdValSarSubmit} */}

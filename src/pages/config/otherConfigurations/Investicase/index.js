@@ -102,10 +102,10 @@ export default function Investicase() {
       id: "idhSubmitScore",
       label: "IDH SUBMIT SCORE",
     },
-    {
-      id: "spaRuleDesc",
-      label: "RULE DESC",
-    },
+    // {
+    //   id: "spaRuleDesc",
+    //   label: "RULE DESC",
+    // },
   ];
 
   useEffect(() => {
@@ -511,8 +511,7 @@ export default function Investicase() {
                             >
                               {row.editFlag === true ? (
                                 <Tooltip title="Edit" placement="left">
-                                  {/* <IconButton disabled={!isUpdateAccessExist()}> */}
-                                  <IconButton disabled={false}>
+                                  <IconButton disabled={!isUpdateAccessExist()}>
                                     <EditNoteIcon
                                       sx={{ cursor: "pointer" }}
                                       fontSize="medium"
