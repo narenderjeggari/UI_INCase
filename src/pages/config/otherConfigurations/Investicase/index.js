@@ -341,7 +341,11 @@ export default function Investicase() {
     }, 3000);
   };
 
-  const fetchParamDetails = async (spaId, showEditModal) => {
+  const fetchParamDetails = async (
+    spaId,
+    showEditModal,
+    reinstateFlag = false
+  ) => {
     setLoading(true);
     setErrorMessages([]);
     try {
@@ -349,7 +353,8 @@ export default function Investicase() {
         process.env.REACT_APP_ENV === "mockserver"
           ? await client.get(`${otherConfigInvesticaseDetailsURL}`)
           : await client.get(`${otherConfigInvesticaseDetailsURL}${spaId}`);
-      setSelectedParam(response);
+
+      setSelectedParam({ ...response, reinstateFlag });
 
       if (showEditModal) {
         setShowEditParamModal(true);
@@ -511,8 +516,7 @@ export default function Investicase() {
                             >
                               {row.editFlag === true ? (
                                 <Tooltip title="Edit" placement="left">
-                                  {/* <IconButton disabled={!isUpdateAccessExist()}> */}
-                                  <IconButton disabled={false}>
+                                  <IconButton disabled={!isUpdateAccessExist()}>
                                     <EditNoteIcon
                                       sx={{ cursor: "pointer" }}
                                       fontSize="medium"
@@ -554,7 +558,11 @@ export default function Investicase() {
                                   fontSize="medium"
                                   tooltipPlacement="left"
                                   onClick={(event) => {
-                                    fetchParamDetails(row.spaId, true);
+                                    fetchParamDetails(
+                                      row.spaId,
+                                      true,
+                                      row.reinstateFlag
+                                    );
                                     event.preventDefault();
                                     event.stopPropagation();
                                   }}

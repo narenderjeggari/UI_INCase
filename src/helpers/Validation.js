@@ -148,7 +148,6 @@ const otherConfigWorkSearchWaiversSchema = yup.object().shape({
   comments: yup.string().required("Comments is required"),
 });
 
-
 const otherConfigInvesticaseSchema = yup.object().shape({
   modificationType: yup.string().required("Modification is required"),
   modificationDate: yup
@@ -168,6 +167,14 @@ const otherConfigInvesticaseSchema = yup.object().shape({
       then: (schema) => schema.required("End Date is required"),
     })
     .typeError("Invalid date. Please select or enter valid date"),
+  reinstateDate: yup
+    .date()
+    .nullable()
+    .when("modificationType", {
+      is: "REINSTATE",
+      then: (schema) => schema.required("Reinstate Date is required"),
+    })
+    .typeError("Invalid date. Please select or enter valid date"),
   name: yup.string().required("name is required"),
   spaAttrWeight: yup.string().required("Weight is required"),
   spaRemarks: yup.string().required("Remarks is required"),
@@ -178,5 +185,5 @@ export {
   dropdownListSchema,
   otherConfigWorkSearchRequirementsSchema,
   otherConfigWorkSearchWaiversSchema,
-  otherConfigInvesticaseSchema
+  otherConfigInvesticaseSchema,
 };

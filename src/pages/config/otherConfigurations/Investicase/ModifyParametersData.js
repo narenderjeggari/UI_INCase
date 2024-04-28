@@ -41,25 +41,31 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
   const onSubmit = async () => {
     setLoading(true);
     setErrorMessages([]);
+    let modificationDate;
+    if (values.modificationType === "CHANGE") {
+      modificationDate = values.modificationDate?.format;
+    } else if (values.modificationType === "ENDDATE") {
+      modificationDate = values.endDate?.format("MM/DD/YYYY");
+    } else {
+      console.log('reinstateDate::', values.reinstateDate?.format("MM/DD/YYYY"))
+      modificationDate = values.reinstateDate?.format("MM/DD/YYYY");
+    }
     const payload = {
       spaId: selectedParam.spaId,
       modificationType: values.modificationType,
-      modificationDt:
-        values.modificationType === "CHANGE"
-          ? values.modificationDate?.format("MM/DD/YYYY")
-          : values.endDate?.format("MM/DD/YYYY"),
+      modificationDt: modificationDate,
       name: values?.name,
       spaAttrWeight: values?.spaAttrWeight,
       spaAutoMark: selectedParam?.spaAutoMark,
       spaMainSrcCd: selectedParam?.spaMainSrcCd,
-      spaOtherSources:selectedParam?.spaOtherSources,
-      spaFormatCd:selectedParam?.spaFormatCd,
+      spaOtherSources: selectedParam?.spaOtherSources,
+      spaFormatCd: selectedParam?.spaFormatCd,
       spaDp4ActiveInd: selectedParam?.spaDp4ActiveInd,
-      spaEndOvwrMm:selectedParam?.spaEndOvwrMm,
-      spaSarSubmitSpecialRuleInd:selectedParam?.spaSarSubmitSpecialRuleInd,
+      spaEndOvwrMm: selectedParam?.spaEndOvwrMm,
+      spaSarSubmitSpecialRuleInd: selectedParam?.spaSarSubmitSpecialRuleInd,
       spaRemarks: values?.spaRemarks,
     };
-
+    
     try {
       const response =
         process.env.REACT_APP_ENV === "mockserver"
@@ -90,7 +96,6 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
     setFieldValue,
   } = formik;
 
-
   // const handleKeyPress = (event) => {
   //   const charCode = event.which ? event.which : event.keyCode;
   //   if (charCode < 48 || charCode > 57) {
@@ -112,93 +117,157 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
             <Paper elevation={6} className="modify-dialog-content-paper">
               <ViewParametersData selectedParam={selectedParam} />
             </Paper>
-            <Paper elevation={6} className="modify-dialog-content-paper">
-              <Stack direction="row" alignItems="center" spacing={10}>
-                <Typography className="label-text">
-                  <span className="required">*</span>Modification Type:
-                </Typography>
-                <FormControl component="fieldset">
-                  <RadioGroup
-                    aria-labelledby="demo-error-radios"
-                    name="modificationType"
-                    value={values.modificationType}
-                    onChange={(event) => {
-                      setFieldValue("modificationDate", null);
-                      setFieldValue("endDate", null);
-                      setFieldValue("modificationType", event.target.value);
-                    }}
-                    error={
-                      touched.modificationType &&
-                      Boolean(errors.modificationType)
-                    }
-                    helperText={
-                      touched.modificationType && errors.modificationType
-                    }
-                    className="label-text"
-                  >
-                    <Stack direction="row" spacing={2}>
-                      <FormControlLabel
-                        value="CHANGE"
-                        control={<Radio size="small" />}
-                        label="Modification Configuration as of:"
-                        className="label-text"
-                        sx={{ fontWeight: 700 }}
-                      />
-                      <LocalizationProvider dateAdapter={AdapterMoment}>
-                        <FormControl sx={{ width: 150 }}>
-                          <DatePicker
-                            disabled={values.modificationType !== "CHANGE"}
-                            name="modificationDate"
-                            format="MM/DD/YYYY"
-                            value={values.modificationDate}
-                            onChange={(value) => {
-                              setFieldValue("modificationDate", value);
-                            }}
-                            slotProps={{ textField: { size: "small" } }}
-                            minDate={moment().add(1, "days")}
-                            // minDate={moment().startOf('week').startOf('day')}
-                            // maxDate={moment().add("months", 2)}
-                          />
-                          {touched.modificationDate &&
-                            errors.modificationDate && (
+
+            {!selectedParam?.reinstateFlag ? (
+              <Paper elevation={6} className="modify-dialog-content-paper">
+                <Stack direction="row" alignItems="center" spacing={10}>
+                  <Typography className="label-text">
+                    <span className="required">*</span>Modification Type:
+                  </Typography>
+                  <FormControl component="fieldset">
+                    <RadioGroup
+                      aria-labelledby="demo-error-radios"
+                      name="modificationType"
+                      value={values.modificationType}
+                      onChange={(event) => {
+                        setFieldValue("modificationDate", null);
+                        setFieldValue("endDate", null);
+                        setFieldValue("modificationType", event.target.value);
+                      }}
+                      error={
+                        touched.modificationType &&
+                        Boolean(errors.modificationType)
+                      }
+                      helperText={
+                        touched.modificationType && errors.modificationType
+                      }
+                      className="label-text"
+                    >
+                      <Stack direction="row" spacing={2}>
+                        <FormControlLabel
+                          value="CHANGE"
+                          control={<Radio size="small" />}
+                          label="Modification Configuration as of:"
+                          className="label-text"
+                          sx={{ fontWeight: 700 }}
+                        />
+                        <LocalizationProvider dateAdapter={AdapterMoment}>
+                          <FormControl sx={{ width: 150 }}>
+                            <DatePicker
+                              disabled={values.modificationType !== "CHANGE"}
+                              name="modificationDate"
+                              format="MM/DD/YYYY"
+                              value={values.modificationDate}
+                              onChange={(value) => {
+                                setFieldValue("modificationDate", value);
+                              }}
+                              slotProps={{ textField: { size: "small" } }}
+                              minDate={moment().add(1, "days")}
+                              // minDate={moment().startOf('week').startOf('day')}
+                              // maxDate={moment().add("months", 2)}
+                            />
+                            {touched.modificationDate &&
+                              errors.modificationDate && (
+                                <FormHelperText style={{ color: "red" }}>
+                                  {errors.modificationDate}
+                                </FormHelperText>
+                              )}
+                          </FormControl>
+                        </LocalizationProvider>
+                        <FormControlLabel
+                          value="ENDDATE"
+                          control={<Radio size="small" />}
+                          label="Change End Date to:"
+                        />
+                        <LocalizationProvider dateAdapter={AdapterMoment}>
+                          <FormControl sx={{ width: 150 }}>
+                            <DatePicker
+                              disabled={values.modificationType !== "ENDDATE"}
+                              name="endDate"
+                              format="MM/DD/YYYY"
+                              value={values.endDate}
+                              onChange={(value) =>
+                                setFieldValue("endDate", value)
+                              }
+                              slotProps={{ textField: { size: "small" } }}
+                              minDate={moment().add(1, "days")}
+                              // minDate={moment().startOf('week').startOf('day')}
+                              // maxDate={moment().add("months", 2)}
+                            />
+                            {touched.endDate && errors.endDate && (
                               <FormHelperText style={{ color: "red" }}>
-                                {errors.modificationDate}
+                                {errors.endDate}
                               </FormHelperText>
                             )}
-                        </FormControl>
-                      </LocalizationProvider>
-                      <FormControlLabel
-                        value="ENDDATE"
-                        control={<Radio size="small" />}
-                        label="Change End Date to:"
-                      />
-                      <LocalizationProvider dateAdapter={AdapterMoment}>
-                        <FormControl sx={{ width: 150 }}>
-                          <DatePicker
-                            disabled={values.modificationType !== "ENDDATE"}
-                            name="endDate"
-                            format="MM/DD/YYYY"
-                            value={values.endDate}
-                            onChange={(value) =>
-                              setFieldValue("endDate", value)
-                            }
-                            slotProps={{ textField: { size: "small" } }}
-                            minDate={moment().add(1, "days")}
-                            // minDate={moment().startOf('week').startOf('day')}
-                            // maxDate={moment().add("months", 2)}
-                          />
-                          {touched.endDate && errors.endDate && (
-                            <FormHelperText style={{ color: "red" }}>
-                              {errors.endDate}
-                            </FormHelperText>
-                          )}
-                        </FormControl>
-                      </LocalizationProvider>
-                    </Stack>
-                  </RadioGroup>
-                </FormControl>
-              </Stack>
-            </Paper>
+                          </FormControl>
+                        </LocalizationProvider>
+                      </Stack>
+                    </RadioGroup>
+                  </FormControl>
+                </Stack>
+              </Paper>
+            ) : (
+              <Paper elevation={6} className="modify-dialog-content-paper">
+                <Stack direction="row" alignItems="center" spacing={10}>
+                  <Typography className="label-text">
+                    <span className="required">*</span>Modification Type:
+                  </Typography>
+                  <FormControl component="fieldset">
+                    <RadioGroup
+                      aria-labelledby="demo-error-radios"
+                      name="modificationType"
+                      value={values.modificationType}
+                      onChange={(event) => {
+                        setFieldValue("modificationDate", null);
+                        setFieldValue("reinstateDate", null);
+                        console.log('modificationType:::',  event.target.value);
+                        setFieldValue("modificationType", event.target.value);
+                      }}
+                      error={
+                        touched.modificationType &&
+                        Boolean(errors.modificationType)
+                      }
+                      helperText={
+                        touched.modificationType && errors.modificationType
+                      }
+                      className="label-text"
+                    >
+                      <Stack direction="row" spacing={2}>
+                        <FormControlLabel
+                          value="REINSTATE"
+                          control={<Radio size="small" />}
+                          label="Change Reinstate Date to:"
+                        />
+                        <LocalizationProvider dateAdapter={AdapterMoment}>
+                          <FormControl sx={{ width: 150 }}>
+                            <DatePicker
+                              disabled={
+                                values.modificationType !== "REINSTATE"
+                              }
+                              name="reinstateDate"
+                              format="MM/DD/YYYY"
+                              value={values.resinstateDate}
+                              onChange={(value) =>
+                                setFieldValue("reinstateDate", value)
+                              }
+                              slotProps={{ textField: { size: "small" } }}
+                              minDate={moment().add(1, "days")}
+                              // minDate={moment().startOf('week').startOf('day')}
+                              // maxDate={moment().add("months", 2)}
+                            />
+                            {touched.reinstateDate && errors.reinstateDate && (
+                              <FormHelperText style={{ color: "red" }}>
+                                {errors.reinstateDate}
+                              </FormHelperText>
+                            )}
+                          </FormControl>
+                        </LocalizationProvider>
+                      </Stack>
+                    </RadioGroup>
+                  </FormControl>
+                </Stack>
+              </Paper>
+            )}
 
             <Paper elevation={6} className="modify-dialog-content-paper">
               <Stack spacing={1} mt={1.5}>
