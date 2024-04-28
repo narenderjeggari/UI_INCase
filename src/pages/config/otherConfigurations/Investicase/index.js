@@ -360,7 +360,7 @@ export default function Investicase() {
     } catch (errorResponse) {
       setLoading(false);
       const newErrMsgs = getMsgsFromErrorCode(
-        `GET:${process.env.REACT_APP_OTHER_CONFIG_WORK_SEARCH_WAIVERS_DETAILS_URL}`,
+        `GET:${process.env.REACT_APP_OTHER_CONFIG_INVESTICASE_DETAILS_URL}`,
         errorResponse
       );
       setErrorMessages(newErrMsgs);
@@ -511,7 +511,8 @@ export default function Investicase() {
                             >
                               {row.editFlag === true ? (
                                 <Tooltip title="Edit" placement="left">
-                                  <IconButton disabled={!isUpdateAccessExist()}>
+                                  {/* <IconButton disabled={!isUpdateAccessExist()}> */}
+                                  <IconButton disabled={false}>
                                     <EditNoteIcon
                                       sx={{ cursor: "pointer" }}
                                       fontSize="medium"
