@@ -19,7 +19,8 @@
       "spaRemarks": "Employer's Address",
       "editFlag": true,
       "childListCount": 1,
-      "reinstateFlag": true
+      "reinstateFlag": false,
+      "deleteFlag": true
     },
     {
       "spaId": 1,
@@ -56,10 +57,11 @@
       "spaMinThresholdValSarSubmit": 0,
       "spaSarSubmitSpecialRuleInd": "N",
       "startDate": "09/20/2017",
+      "endDate": "04/23/2024",
       "childListCount": 0,
-      "editFlag": true,
+      "editFlag": false,
       "deleteFlag": false,
-      "reinstateFlag": false
+      "reinstateFlag": true
     }
   ]
 }

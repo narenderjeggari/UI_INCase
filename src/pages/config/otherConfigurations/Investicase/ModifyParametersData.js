@@ -413,7 +413,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                 <Grid container>
                   <Grid className="label-text" item md={2.25}>
                     <Typography className="label-text">
-                      <span className="required">*</span>Remarks:
+                      <span className="required">*</span>Comments:
                     </Typography>
                   </Grid>
                   <Grid item md={9.75}>

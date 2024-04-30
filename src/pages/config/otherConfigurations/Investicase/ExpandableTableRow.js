@@ -44,7 +44,7 @@ function ExpandableTableRow({
   const [selectedParam, setSelectedParam] = useState();
 
   const columns = [
-    { id: "name", label: "NAME" },
+    // { id: "name", label: "NAME" },
     // {
     //   id: "parentAttributeName",
     //   label: "PARENT NAME",
@@ -77,10 +77,10 @@ function ExpandableTableRow({
       id: "idhSubmitScore",
       label: "IDH SUBMIT SCORE",
     },
-    {
-      id: "spaRuleDesc",
-      label: "RULE DESC",
-    },
+    // {
+    //   id: "spaRuleDesc",
+    //   label: "RULE DESC",
+    // },
     {
       id: "actions",
       label: "Actions",
@@ -120,11 +120,11 @@ function ExpandableTableRow({
               spaId,
               active: currentFilter,
             });
-      setSubTableData(response?.spideringAttributesList || []);
+      setSubTableData(response || []);
     } catch (errorResponse) {
       setLoading(false);
       const newErrMsgs = getMsgsFromErrorCode(
-        `POST:${process.env.REACT_APP_OTHER_CONFIG_WORK_SEARCH_WAIVERS_SUB_TABLE_URL}`,
+        `POST:${process.env.REACT_APP_OTHER_CONFIG_INVESTICASE_SUB_TABLE_URL}`,
         errorResponse
       );
       setErrorMessages(newErrMsgs);
@@ -203,7 +203,7 @@ function ExpandableTableRow({
                 : "past-date-text-non-editable"
             }
           >
-            {`${row["spaMinThresholdValSarSubmit"]} | ${row["spaSarSubmitSpecialRuleInd"]}`}
+            {`${row["spaMinThresholdValSarSubmit"] || ""} | ${row["spaSarSubmitSpecialRuleInd"]}`}
           </Typography>
         );
       default:
@@ -231,7 +231,7 @@ function ExpandableTableRow({
                   borderColor: "grey.300",
                   marginTop: 1,
                   marginBottom: 1,
-                  width: "100%",
+                  width: "80%",
                 }}
               >
                 <Table

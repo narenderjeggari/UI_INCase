@@ -159,7 +159,7 @@ export default function Investicase() {
               <div
                 style={{
                   display: "flex",
-                  justifyContent: "space-between",
+                  // justifyContent: "space-between",
                   width: "80%",
                 }}
               >
@@ -168,7 +168,7 @@ export default function Investicase() {
                 </div>
                 <div>
                   <Tooltip title={row["spaMainSrcCd"]}>
-                    <IconButton>
+                    <IconButton disabled={!row.editFlag}>
                       <InfoOutlinedIcon fontSize="small" />
                     </IconButton>
                   </Tooltip>
@@ -212,11 +212,11 @@ export default function Investicase() {
       case "idhSubmitScore":
         return (
           <Typography
-            // className={
-            //   row.editFlag === true
-            //     ? "clickable-active-text"
-            //     : "clickable-inactive-text"
-            // }
+            className={
+              row.editFlag === true
+                ? "clickable-active-text"
+                : "clickable-inactive-text"
+            }
             onClick={() => {
               fetchParamDetails(row.spaId, false);
             }}
@@ -392,7 +392,7 @@ export default function Investicase() {
       refreshData();
     } catch (errorResponse) {
       const newErrMsgs = getMsgsFromErrorCode(
-        `DELETE:${process.env.REACT_APP_OTHER_CONFIG_WORK_SEARCH_WAIVERS_DELETE_URL}`,
+        `DELETE:${process.env.REACT_APP_OTHER_CONFIG_INVESTICASE_DELETE_URL}`,
         errorResponse
       );
       setErrorMessages(newErrMsgs);
@@ -603,7 +603,7 @@ export default function Investicase() {
                               justifyContent="center"
                             >
                               {row.editFlag === true ? (
-                                <Tooltip title="Edit" placement="top">
+                                <Tooltip title="Edit" placement="left">
                                   <IconButton disabled={!isUpdateAccessExist()}>
                                     <EditNoteIcon
                                       sx={{ cursor: "pointer" }}
@@ -613,15 +613,29 @@ export default function Investicase() {
                                       })}
                                       onClick={(event) => {
                                         fetchParamDetails(row.spaId, true);
-
                                         event.preventDefault();
                                         event.stopPropagation();
                                       }}
                                     />
                                   </IconButton>
                                 </Tooltip>
+                              ) : row.reinstateFlag === true ? (
+                                <ReinstateIcon
+                                  sx={{ cursor: "pointer" }}
+                                  fontSize="medium"
+                                  tooltipPlacement="left"
+                                  onClick={(event) => {
+                                    fetchParamDetails(
+                                      row.spaId,
+                                      true,
+                                      row?.reinstateFlag
+                                    );
+                                    event.preventDefault();
+                                    event.stopPropagation();
+                                  }}
+                                />
                               ) : (
-                                <></>
+                                <Box sx={{ width: 23 }} />
                               )}
                               {row.deleteFlag === true ? (
                                 <Tooltip title="Delete" placement="right">

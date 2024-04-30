@@ -112,6 +112,41 @@ function ViewParametersData({ selectedParam }) {
         <Grid item md={3}>
         </Grid>
       </Grid>
+
+
+
+      <Grid container>
+        <Grid item md={4.5}>
+          <Grid container>
+            <Grid className="label-text" item md={2}>
+              Comments:
+            </Grid>
+            <Grid item md={10}>
+              {/* {selectedParam.spaRemarks} */}
+            </Grid>
+          </Grid>
+        </Grid>
+
+        <Grid item md={4.5}>
+          {/* <Grid container>
+              <Grid container>
+                <Grid className="label-text" item md={4}>
+                  Date pattern 4 Ind:
+                </Grid>
+                <Grid item md={8}>
+                  {selectedParam.spaDp4ActiveInd}
+                </Grid>
+              </Grid>
+          </Grid> */}
+        </Grid>
+
+        <Grid item md={3}>
+        </Grid>
+      </Grid>
+      
+
+
+
     </Stack>
   );
 }
