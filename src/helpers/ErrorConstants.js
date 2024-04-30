@@ -112,9 +112,11 @@ ERROR_CODES_MAPPER[
   "alvSortOrderNbr.mandatory": "ALV Sort Order is mandatory",
 };
 ERROR_CODES_MAPPER[`GET:${process.env.REACT_APP_ALV_DISPLAY_ON_LIST}`] = {};
+
 ERROR_CODES_MAPPER[
   `GET:${process.env.REACT_APP_OTHER_CONFIG_BUSINESS_UNIT_DROPDOWN_URL}`
 ] = {};
+
 ERROR_CODES_MAPPER[`POST:${process.env.REACT_APP_INDIVIDUAL_PARAM_LIST_URL}`] =
   {
     "parCategoryCd.mandatory": "Parameter Category Cd value is not valid",
@@ -306,4 +308,30 @@ ERROR_CODES_MAPPER[
   "wswcId.mandatory": "Work Search Waiver ID is mandatory",
   "wswcDelete.notAllowed":
     "Work Search Waiver is not a future entry. Work Search Waiver cannot be deleted.",
+};
+
+ERROR_CODES_MAPPER[
+  `POST:${process.env.REACT_APP_OTHER_CONFIG_INVESTICASE_SAVE_URL}`
+] = {
+  "spaId.mandatory": "Investicase ID is mandatory",
+  "modificationType.mandatory": "Modification Type is Mandatory",
+  "modificationDate.mandatory": "Modification Date is Mandatory",
+  // "comments.mandatory": "User Comments is Mandatory",
+  // "requirementEdit.inActive":
+  //   "Inactive Work Search Requirement cannot be edited",
+  "configurationDate.inValid":
+    "Configuration Date is Invalid. Configuration date has to be a future date.",
+  "startDate.inValid":
+    "Start Date is Invalid. Start date has to be a future date.",
+  "configurationDate.inValidEffDt":
+    "Configuration Date is Invalid. Configuration date cannot be on or prior to Start/Effective Date of Investicase.",
+  "startDate.inValidEffDt":
+    "Start Date is Invalid. Start date cannot be on or prior to current Start/Effective Date of Investicase.",
+  "configurationDate.inValidExp":
+    "Configuration Date is Invalid. Configuration date cannot be greater than Expiration Date of Investicase.",
+  "endDate.inValidExp":
+    "End Date is Invalid. End date cannot be greater than Expiration Date of Investicase.",
+    "reinstateDate.inValidExp":
+    "Reinstate Date is Invalid. Reinstate date cannot be greater than Expiration Date of Investicase.",
+  
 };

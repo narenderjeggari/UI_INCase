@@ -76,7 +76,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
     } catch (errorResponse) {
       setLoading(false);
       const newErrMsgs = getMsgsFromErrorCode(
-        `POST:${process.env.REACT_APP_OTHER_CONFIG_WORK_SEARCH_REQ_SAVE_URL}`,
+        `POST:${process.env.REACT_APP_OTHER_CONFIG_INVESTICASE_SAVE_URL}`,
         errorResponse
       );
       setErrorMessages(newErrMsgs);
