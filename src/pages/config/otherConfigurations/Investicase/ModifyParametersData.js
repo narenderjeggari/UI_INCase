@@ -54,7 +54,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
       spaId: selectedParam.spaId,
       modificationType: values.modificationType,
       modificationDt: modificationDate,
-      name: values?.name,
+      name: selectedParam?.name,
       spaAttrWeight: values?.spaAttrWeight,
       spaAutoMark: selectedParam?.spaAutoMark,
       spaMainSrcCd: selectedParam?.spaMainSrcCd,
@@ -273,7 +273,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
               <Stack spacing={1} mt={1.5}>
                 <Grid container alignItems="start">
                   <Grid item md={6}>
-                    <Grid container>
+                    {/* <Grid container>
                       <Grid className="label-text" item md={4.5}>
                         <Typography className="label-text">
                           <span className="required">*</span>Name:
@@ -300,7 +300,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                           name="name"
                         />
                       </Grid>
-                    </Grid>
+                    </Grid> */}
                   </Grid>
                   {/* <Grid item md={6}>
                     <Grid container>
@@ -421,7 +421,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                       size="small"
                       fullWidth
                       id="spaRemarks"
-                      label="Remarks"
+                      label="Comments"
                       variant="outlined"
                       onChange={handleChange}
                       value={values.spaRemarks ?? ""}
