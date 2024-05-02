@@ -11,9 +11,9 @@ function ViewParametersData({ selectedParam }) {
   return (
     <Stack spacing={0.2}>
       <Grid container>
-        <Grid item md={4.5}>
+        <Grid item md={6}>
           <Grid container>
-            <Grid className="label-text" item md={4}>
+            <Grid className="label-text" item md={3}>
               Name:
             </Grid>
             <Grid item md={8}>
@@ -22,22 +22,22 @@ function ViewParametersData({ selectedParam }) {
           </Grid>
         </Grid>
 
-        <Grid item md={4.5}>
+        <Grid item md={2}>
           <Grid container>
-              <Grid container>
-                <Grid className="label-text" item md={4}>
-                  Automark:
-                </Grid>
-                <Grid item md={8}>
-                  {selectedParam.spaAutoMark}
-                </Grid>
+            <Grid container>
+              <Grid className="label-text" item md={9}>
+                Automark:
               </Grid>
+              <Grid item md={2}>
+                {selectedParam.spaAutoMark}
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
 
-        <Grid item md={3}>
+        <Grid item md={4}>
           <Grid container>
-            <Grid className="label-text" item md={6}>
+            <Grid className="label-text" item md={4}>
               Effective From:
             </Grid>
             <Grid item md={6}>
@@ -59,22 +59,47 @@ function ViewParametersData({ selectedParam }) {
           </Grid>
         </Grid>
 
+
+
+
         <Grid item md={4.5}>
           <Grid container>
-              {/* <Grid container> */}
-                {/* <Grid className="label-text" item md={4}>
-                  Attr format type:
+            <Grid item md={4}>
+              <Grid container>
+                <Grid className="label-text" item md={3}>
+                  {/* Name: */}
                 </Grid>
                 <Grid item md={8}>
-                  {selectedParam.spaFormatDesc}
-                </Grid> */}
-                 <Grid className="label-text" item md={4}>
-                  Date pattern 4 Ind:
+                  {/* {selectedParam.name} */}
                 </Grid>
-                <Grid item md={8}>
-                  {selectedParam.spaDp4ActiveInd}
+              </Grid>
+            </Grid>
+
+            <Grid item md={6}>
+              <Grid container>
+                <Grid container>
+                  <Grid className="label-text" item md={8}>
+                    Date pattern 4 Ind:
+                  </Grid>
+                  <Grid item md={2}>
+                    {selectedParam.spaDp4ActiveInd}
+                  </Grid>
                 </Grid>
-              {/* </Grid> */}
+              </Grid>
+            </Grid>
+
+            <Grid item md={2}>
+              <Grid container>
+                <Grid className="label-text" item md={4}>
+                  {/* Effective From: */}
+                </Grid>
+                <Grid item md={6}>
+                  {/* {selectedParam.startDate} */}
+                </Grid>
+              </Grid>
+            </Grid>
+
+            
           </Grid>
         </Grid>
 
@@ -91,41 +116,38 @@ function ViewParametersData({ selectedParam }) {
       </Grid>
 
       <Grid container>
-        <Grid item md={4.5}>
+        <Grid item md={8}>
           <Grid container>
-            <Grid className="label-text" item md={4}>
+            <Grid className="label-text" item md={2.2}>
               Remarks:
             </Grid>
             <Grid item md={8}>
               {selectedParam.spaRemarks}
             </Grid>
-             <Grid className="label-text" item md={4}>
-                  Attr format type:
-                </Grid>
-                <Grid item md={8}>
-                  {selectedParam.spaFormatDesc}
-                </Grid>
+            <Grid className="label-text" item md={2.2}>
+              Attr format type:
+            </Grid>
+            <Grid item md={8}>
+              {selectedParam.spaFormatDesc}
+            </Grid>
           </Grid>
         </Grid>
 
-        <Grid item md={4.5}>
+        <Grid item md={2}>
           <Grid container>
-              <Grid container>
-                {/* <Grid className="label-text" item md={4}>
+            <Grid container>
+              {/* <Grid className="label-text" item md={4}>
                   Date pattern 4 Ind:
                 </Grid>
                 <Grid item md={8}>
                   {selectedParam.spaDp4ActiveInd}
                 </Grid> */}
-              </Grid>
+            </Grid>
           </Grid>
         </Grid>
 
-        <Grid item md={3}>
-        </Grid>
+        <Grid item md={2}></Grid>
       </Grid>
-
-
 
       <Grid container>
         <Grid item md={8}>
@@ -134,12 +156,11 @@ function ViewParametersData({ selectedParam }) {
               Comments:
             </Grid>
             <Grid item md={8}>
-            {selectedParam.spaComments?.split("<br/>")?.map((comment) => (
-            <Typography className="view-params-comments-list-comment">
-             {comment}
-            </Typography>
-          ))}
-              
+              {selectedParam.spaComments?.split("<br/>")?.map((comment) => (
+                <Typography className="view-params-comments-list-comment">
+                  {comment}
+                </Typography>
+              ))}
             </Grid>
           </Grid>
         </Grid>
@@ -157,8 +178,7 @@ function ViewParametersData({ selectedParam }) {
           </Grid> */}
         </Grid>
 
-        <Grid item md={2}>
-        </Grid>
+        <Grid item md={2}></Grid>
       </Grid>
     </Stack>
   );
