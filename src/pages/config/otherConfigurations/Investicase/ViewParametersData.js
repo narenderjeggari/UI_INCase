@@ -93,12 +93,12 @@ function ViewParametersData({ selectedParam }) {
       <Grid container>
         <Grid item md={4.5}>
           <Grid container>
-            {/* <Grid className="label-text" item md={2}>
+            <Grid className="label-text" item md={4}>
               Remarks:
             </Grid>
-            <Grid item md={10}>
+            <Grid item md={8}>
               {selectedParam.spaRemarks}
-            </Grid> */}
+            </Grid>
              <Grid className="label-text" item md={4}>
                   Attr format type:
                 </Grid>
@@ -128,9 +128,9 @@ function ViewParametersData({ selectedParam }) {
 
 
       <Grid container>
-        <Grid item md={4.5}>
+        <Grid item md={8}>
           <Grid container>
-            <Grid className="label-text" item md={4}>
+            <Grid className="label-text" item md={2.2}>
               Comments:
             </Grid>
             <Grid item md={8}>
@@ -144,7 +144,7 @@ function ViewParametersData({ selectedParam }) {
           </Grid>
         </Grid>
 
-        <Grid item md={4.5}>
+        <Grid item md={2}>
           {/* <Grid container>
               <Grid container>
                 <Grid className="label-text" item md={4}>
@@ -157,13 +157,9 @@ function ViewParametersData({ selectedParam }) {
           </Grid> */}
         </Grid>
 
-        <Grid item md={3}>
+        <Grid item md={2}>
         </Grid>
       </Grid>
-      
-
-
-
     </Stack>
   );
 }
