@@ -27,7 +27,7 @@ import client from "../../../../helpers/Api";
 function ModifyParametersData({ selectedParam, closeModalPopup }) {
   const [errorMessages, setErrorMessages] = useState([]);
   const [loading, setLoading] = useState(false);
-  const { name, spaAttrWeight, spaAutoMark, spaFormatDesc, spaRemarks } =
+  const { name, spaAttrWeight, spaAutoMark, spaFormatDesc, spaRemarks, spaComments } =
     selectedParam;
   const initialState = {
     modificationType: "",
@@ -36,6 +36,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
     spaAutoMark: spaAutoMark || "",
     spaFormatDesc: spaFormatDesc || "",
     spaRemarks: spaRemarks || "",
+    spaComments: spaComments || "",
   };
 
   const onSubmit = async () => {
@@ -43,29 +44,29 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
     setErrorMessages([]);
     let modificationDate;
     if (values.modificationType === "CHANGE") {
-      modificationDate = values.modificationDate?.format;
-    } else if (values.modificationType === "ENDDATE") {
+      modificationDate = values.modificationDate?.format("MM/DD/YYYY");
+    }
+    else if (values.modificationType === "ENDDATE") {
       modificationDate = values.endDate?.format("MM/DD/YYYY");
     } else {
-      console.log('reinstateDate::', values.reinstateDate?.format("MM/DD/YYYY"))
       modificationDate = values.reinstateDate?.format("MM/DD/YYYY");
     }
     const payload = {
       spaId: selectedParam.spaId,
       modificationType: values.modificationType,
       modificationDt: modificationDate,
-      name: selectedParam?.name,
       spaAttrWeight: values?.spaAttrWeight,
-      spaAutoMark: selectedParam?.spaAutoMark,
-      spaMainSrcCd: selectedParam?.spaMainSrcCd,
-      spaOtherSources: selectedParam?.spaOtherSources,
-      spaFormatCd: selectedParam?.spaFormatCd,
-      spaDp4ActiveInd: selectedParam?.spaDp4ActiveInd,
-      spaEndOvwrMm: selectedParam?.spaEndOvwrMm,
-      spaSarSubmitSpecialRuleInd: selectedParam?.spaSarSubmitSpecialRuleInd,
-      spaRemarks: values?.spaRemarks,
+      spaComments: values?.spaComments,
+      // name: selectedParam?.name,
+      // spaAutoMark: selectedParam?.spaAutoMark,
+      // spaMainSrcCd: selectedParam?.spaMainSrcCd,
+      // spaOtherSources: selectedParam?.spaOtherSources,
+      // spaFormatCd: selectedParam?.spaFormatCd,
+      // spaDp4ActiveInd: selectedParam?.spaDp4ActiveInd,
+      // spaEndOvwrMm: selectedParam?.spaEndOvwrMm,
+      // spaSarSubmitSpecialRuleInd: selectedParam?.spaSarSubmitSpecialRuleInd,
     };
-    
+
     try {
       const response =
         process.env.REACT_APP_ENV === "mockserver"
@@ -163,8 +164,8 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                               }}
                               slotProps={{ textField: { size: "small" } }}
                               minDate={moment().add(1, "days")}
-                              // minDate={moment().startOf('week').startOf('day')}
-                              // maxDate={moment().add("months", 2)}
+                            // minDate={moment().startOf('week').startOf('day')}
+                            // maxDate={moment().add("months", 2)}
                             />
                             {touched.modificationDate &&
                               errors.modificationDate && (
@@ -191,8 +192,8 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                               }
                               slotProps={{ textField: { size: "small" } }}
                               minDate={moment().add(1, "days")}
-                              // minDate={moment().startOf('week').startOf('day')}
-                              // maxDate={moment().add("months", 2)}
+                            // minDate={moment().startOf('week').startOf('day')}
+                            // maxDate={moment().add("months", 2)}
                             />
                             {touched.endDate && errors.endDate && (
                               <FormHelperText style={{ color: "red" }}>
@@ -220,7 +221,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                       onChange={(event) => {
                         setFieldValue("modificationDate", null);
                         setFieldValue("reinstateDate", null);
-                        console.log('modificationType:::',  event.target.value);
+                        console.log('modificationType:::', event.target.value);
                         setFieldValue("modificationType", event.target.value);
                       }}
                       error={
@@ -252,8 +253,8 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                               }
                               slotProps={{ textField: { size: "small" } }}
                               minDate={moment().add(1, "days")}
-                              // minDate={moment().startOf('week').startOf('day')}
-                              // maxDate={moment().add("months", 2)}
+                            // minDate={moment().startOf('week').startOf('day')}
+                            // maxDate={moment().add("months", 2)}
                             />
                             {touched.reinstateDate && errors.reinstateDate && (
                               <FormHelperText style={{ color: "red" }}>
@@ -420,14 +421,13 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                     <TextField
                       size="small"
                       fullWidth
-                      id="spaRemarks"
+                      id="spaComments"
                       label="Comments"
                       variant="outlined"
                       onChange={handleChange}
-                      value={values.spaRemarks ?? ""}
-                      error={touched.spaRemarks && Boolean(errors.spaRemarks)}
-                      helperText={touched.spaRemarks && errors.spaRemarks}
-                      name="spaRemarks"
+                      error={touched.spaComments && Boolean(errors.spaComments)}
+                      helperText={touched.spaComments && errors.spaComments}
+                      name="spaComments"
                       multiline
                       rows={2}
                     />
