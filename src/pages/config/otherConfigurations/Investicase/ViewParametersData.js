@@ -76,7 +76,7 @@ function ViewParametersData({ selectedParam }) {
               Until:
             </Grid>
             <Grid item md={6}>
-              {selectedParam.endDate}
+              {selectedParam?.endDate || ""}
             </Grid>
           </Grid>
         </Grid>
@@ -110,19 +110,17 @@ function ViewParametersData({ selectedParam }) {
         </Grid>
       </Grid>
 
-      <Grid container>
-        <Grid item md={8}>
-          <Grid container>
-            <Grid className="label-text" item md={2.2}>
-              Comments:
-            </Grid>
-            <Grid item md={8}>
-              {selectedParam.spaComments?.split("<br/>")?.map((comment) => (
-                <Typography className="view-params-comments-list-comment">
-                  {comment}
-                </Typography>
-              ))}
-            </Grid>
+      <Grid item md={4}>
+        <Grid container>
+          <Grid className="label-text" item md={1.5}>
+            Comments:
+          </Grid>
+          <Grid item md={6}>
+            {selectedParam.spaComments?.split("<br/>")?.map((comment) => (
+              <Typography className="view-params-comments-list-comment">
+                {comment}
+              </Typography>
+            ))}
           </Grid>
         </Grid>
       </Grid>
