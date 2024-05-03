@@ -83,44 +83,43 @@ function ViewParametersData({ selectedParam }) {
       </Grid>
 
       <Grid container>
-        <Grid container>
-          <Grid item md={6}>
-            <Grid container>
-              <Grid className="label-text" item md={3}>
-                Attr format type:
-              </Grid>
-              <Grid item md={9}>
-                {selectedParam.spaFormatDesc}
-              </Grid>
+        <Grid item md={6}>
+          <Grid container>
+            <Grid className="label-text" item md={3}>
+              Attr format type:
+            </Grid>
+            <Grid item md={9}>
+              {selectedParam.spaFormatDesc}
             </Grid>
           </Grid>
-
-          <Grid item md={2}>
+        </Grid>
+        <Grid item md={2}>
+          <Grid container>
             <Grid container>
-              <Grid container>
-                <Grid className="label-text" item md={9}>
-                  Weight:
-                </Grid>
-                <Grid item md={2}>
-                  {selectedParam.spaAttrWeight}
-                </Grid>
+              <Grid className="label-text" item md={9}>
+                Weight:
+              </Grid>
+              <Grid item md={2}>
+                {selectedParam.spaAttrWeight}
               </Grid>
             </Grid>
           </Grid>
         </Grid>
       </Grid>
 
-      <Grid item md={4}>
-        <Grid container>
-          <Grid className="label-text" item md={1.5}>
-            Comments:
-          </Grid>
-          <Grid item md={6}>
-            {selectedParam.spaComments?.split("<br/>")?.map((comment) => (
-              <Typography className="view-params-comments-list-comment">
-                {comment}
-              </Typography>
-            ))}
+      <Grid container>
+        <Grid item md={7.5}>
+          <Grid container>
+            <Grid className="label-text" item md={2.4}>
+              Comments:
+            </Grid>
+            <Grid item md={9.6}>
+              {selectedParam.spaComments?.split("<br/>")?.map((comment) => (
+                <Typography className="view-params-comments-list-comment">
+                  {comment}
+                </Typography>
+              ))}
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
