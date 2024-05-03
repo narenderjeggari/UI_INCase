@@ -48,9 +48,9 @@ function ViewParametersData({ selectedParam }) {
       </Grid>
 
       <Grid container>
-        <Grid item md={4.5}>
+        <Grid item md={6}>
           <Grid container>
-            <Grid className="label-text" item md={4}>
+            <Grid className="label-text" item md={3}>
               Weight:
             </Grid>
             <Grid item md={8}>
@@ -59,57 +59,29 @@ function ViewParametersData({ selectedParam }) {
           </Grid>
         </Grid>
 
+        <Grid item md={2}>
+            <Grid container>
+              <Grid className="label-text" item md={9}>
+                Date pattern 4 Ind:
+              </Grid>
+              <Grid item md={2}>
+                {selectedParam.spaDp4ActiveInd}
+              </Grid>
+            </Grid>
 
+        </Grid>
 
-
-        <Grid item md={4.5}>
+        <Grid item md={4}>
           <Grid container>
-            <Grid item md={4}>
-              <Grid container>
-                <Grid className="label-text" item md={3}>
-                  {/* Name: */}
-                </Grid>
-                <Grid item md={8}>
-                  {/* {selectedParam.name} */}
-                </Grid>
-              </Grid>
-            </Grid>
-
-            <Grid item md={6}>
-              <Grid container>
-                <Grid container>
-                  <Grid className="label-text" item md={8}>
-                    Date pattern 4 Ind:
-                  </Grid>
-                  <Grid item md={2}>
-                    {selectedParam.spaDp4ActiveInd}
-                  </Grid>
-                </Grid>
-              </Grid>
-            </Grid>
-
             <Grid item md={2}>
               <Grid container>
                 <Grid className="label-text" item md={4}>
-                  {/* Effective From: */}
+                  Until:
                 </Grid>
                 <Grid item md={6}>
-                  {/* {selectedParam.startDate} */}
+                  {/* {selectedParam.Until} */}
                 </Grid>
               </Grid>
-            </Grid>
-
-            
-          </Grid>
-        </Grid>
-
-        <Grid item md={3}>
-          <Grid container>
-            <Grid className="label-text" item md={6}>
-              {/* SAR Min Threshold: */}
-            </Grid>
-            <Grid item md={6}>
-              {/* {selectedParam.spaMinThresholdValSarSubmit} */}
             </Grid>
           </Grid>
         </Grid>
