@@ -167,11 +167,13 @@ export default function Investicase() {
                   {value}
                 </div>
                 <div>
-                  <Tooltip title={row["spaMainSrcCd"]}>
-                    <IconButton disabled={!row.editFlag}>
-                      <InfoOutlinedIcon fontSize="small" />
-                    </IconButton>
-                  </Tooltip>
+                  {row["parentName"] && ( 
+                    <Tooltip title={row["parentName"]}>
+                      <IconButton disabled={!row.editFlag}>
+                        <InfoOutlinedIcon fontSize="small" />
+                      </IconButton>
+                    </Tooltip>
+                  )}
                 </div>
               </div>
             )}
@@ -201,8 +203,8 @@ export default function Investicase() {
               moment().diff(value) < 0
                 ? "future-date-text"
                 : row.editFlag === true
-                ? "past-date-text-editable"
-                : "past-date-text-non-editable"
+                  ? "past-date-text-editable"
+                  : "past-date-text-non-editable"
             }
           >
             {value}
@@ -231,7 +233,7 @@ export default function Investicase() {
                 }}
               >
                 <div style={{ width: "40%" }}>
-                  {row["spaMinThresholdValSarSubmit"]}{" "}
+                  {row["spaMinThresholdValSarSubmit"] > 99 ? "> 99" : row["spaMinThresholdValSarSubmit"]}
                 </div>
                 <div>|</div>
                 <div>{row["spaSarSubmitSpecialRuleInd"]}</div>
@@ -386,8 +388,8 @@ export default function Investicase() {
         process.env.REACT_APP_ENV === "mockserver"
           ? await client.get(`${otherConfigInvesticaseDeleteURL}`)
           : await client.delete(
-              `${otherConfigInvesticaseDeleteURL}${selectedParamIdForDelete}`
-            );
+            `${otherConfigInvesticaseDeleteURL}${selectedParamIdForDelete}`
+          );
       setShowDeleteParamConfirModal(false);
       refreshData();
     } catch (errorResponse) {
@@ -516,7 +518,8 @@ export default function Investicase() {
                             >
                               {row.editFlag === true ? (
                                 <Tooltip title="Edit" placement="left">
-                                  <IconButton disabled={!isUpdateAccessExist()}>
+                                  {/* <IconButton disabled={!isUpdateAccessExist()}> */}
+                                  <IconButton disabled={false}>
                                     <EditNoteIcon
                                       sx={{ cursor: "pointer" }}
                                       fontSize="medium"

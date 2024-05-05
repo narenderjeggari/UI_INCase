@@ -8,11 +8,13 @@
   "spaMainSrcDesc": "EAD",
   "spaOtherSources": "CCEI",
   "spaFormatCd": 4397,
-  "spaFormatDesc": "Full Address",
+  "spaFormatDesc": "Claimant's Bank Account information with Routing code",
   "spaDp4ActiveInd": "N",
   "spaEndOvwrMm": 999,
   "spaSarSubmitSpecialRuleInd": "N",
   "startDate": "09/20/2017",
-  "spaRemarks": "Employer's Address",
+  "endDate": "10/20/018",
+  "spaRemarks": "Claimant's Mailing Address when payment is by check",
+  "spaComments": "[Srujana Jaishetty - 05/01/2024 02:26:03 PM]: Test Comment 1<br/>[Srujana Jaishetty - 05/01/2024 02:49:09 PM]: Test Comment 1",
   "editFlag": true
 }
