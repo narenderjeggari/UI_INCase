@@ -1,0 +1,23 @@
+{
+  "speId": 1,
+  "name": "First claim following an Earning Issue or a Fraud Separation/Work Search issue",
+  "description": "Claimant files the first Initial, Additional, Reopened or Continued Claim following  a just-prior: (A) Non-Fraud Earnings or (B) Fraud Earnings, Separation, or Work Search",
+  "type": "Spe Type",
+  "nmiDesc": "Test",
+  "speEventNumber": 1,
+  "speOriginCd": 5384,
+  "speOriginDesc": "Origin",
+  "speBlockHome": "N",
+  "speHomeDisallow": "N",
+  "speSpecialCertiy": "N",
+  "speInvActionCd": "123",
+  "speInvActionDesc": "Test",
+  "speAutoMarkers": "N",
+  "speScore": 0,
+  "speFreqCd": "123",
+  "speFreqDesc": "Test",
+  "speOtherActionCd": "123",
+  "speOtherActionDesc": "Test",
+  "startDate": "MM/DD/YYYY",
+  "endDate": "MM/DD/YYYY"
+}

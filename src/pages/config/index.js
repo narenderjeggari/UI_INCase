@@ -19,6 +19,7 @@ import IndividualParameters from "./individualParameters";
 import AutosetWeeklyWorkSearchRequirements from "./otherConfigurations/workSearchRequirements";
 import AutosetWeeklyWorkSearchWaivers from "./otherConfigurations/workSearchWaivers";
 import Investicase from "./otherConfigurations/Investicase";
+import InvesticaseSpideringEvents from "./otherConfigurations/InvesticaseSpideringEvents";
 import {
   dropdownAccordianHeadersURL,
   individualParamsTitleURL,
@@ -97,6 +98,8 @@ export default function Configurations() {
           return <AutosetWeeklyWorkSearchWaivers />;
         case "Configure Spidering Attributes":
           return <Investicase />;
+        case "Configure Spidering Events":
+          return <InvesticaseSpideringEvents />;
         default:
           return (
             <DropdownListItemData

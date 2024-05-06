@@ -44,6 +44,10 @@ export const CONFIG_ITEMS = {
           id: "Configure Spidering Attributes",
           label: "Configure Spidering Attributes",
         },
+        {
+          id: "Configure Spidering Events",
+          label: "Configure Spidering Events",
+        },
       ],
     },
   ],

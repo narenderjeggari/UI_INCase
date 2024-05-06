@@ -1,0 +1,18 @@
+[
+  {
+    "speId": 1,
+    "name": "First claim following an Earning Issue or a Fraud Separation/Work Search issue",
+    "type": "Spe Type",
+    "nmiDesc": "Test",
+    "speEventNumber": 1,
+    "speOriginDesc": "Origin",
+    "speBlockHome": "N",
+    "speHomeDisallow": "N",
+    "speAutoMarkers": "N",
+    "speScore": 0,
+    "startDate": "MM/DD/YYYY",
+    "endDate": "MM/DD/YYYY",
+    "editFlag": true,
+    "childListCount": 1
+  }
+]

@@ -39,6 +39,12 @@ const otherConfigInvesticaseSaveURL = `${baseApiUrl}${process.env.REACT_APP_OTHE
 const otherConfigInvesticaseSubTableURL = `${baseApiUrl}${process.env.REACT_APP_OTHER_CONFIG_INVESTICASE_SUB_TABLE_URL}`;
 const otherConfigInvesticaseDeleteURL = `${baseApiUrl}${process.env.REACT_APP_OTHER_CONFIG_INVESTICASE_DELETE_URL}`;
 
+const otherConfigInvesticaseSpideringEventsSearchURL = `${baseApiUrl}${process.env.REACT_APP_OTHER_CONFIG_INVESTICASE_SPIDERING_EVENTS_SEARCH_URL}`;
+const otherConfigInvesticaseSpideringEventsDetailsURL = `${baseApiUrl}${process.env.REACT_APP_OTHER_CONFIG_INVESTICASE_SPIDERING_EVENTS_DETAILS_URL}`;
+const otherConfigInvesticaseSpideringEventsSaveURL = `${baseApiUrl}${process.env.REACT_APP_OTHER_CONFIG_INVESTICASE_SPIDERING_EVENTS_SAVE_URL}`;
+const otherConfigInvesticaseSpideringEventsSubTableURL = `${baseApiUrl}${process.env.REACT_APP_OTHER_CONFIG_INVESTICASE_SPIDERING_EVENTS_SUB_TABLE_URL}`;
+const otherConfigInvesticaseSpideringEventsDeleteURL = `${baseApiUrl}${process.env.REACT_APP_OTHER_CONFIG_INVESTICASE_SPIDERING_EVENTS_DELETE_URL}`;
+
 const otherConfigReasonsDropdownURL = `${baseApiUrl}${process.env.REACT_APP_OTHER_CONFIG_REASON_DROPDOWN_URL}`;
 const otherConfigBusinessUnitDropdownURL = `${baseApiUrl}${process.env.REACT_APP_OTHER_CONFIG_BUSINESS_UNIT_DROPDOWN_URL}`;
 
@@ -79,5 +85,10 @@ export {
   otherConfigInvesticaseDetailsURL,
   otherConfigInvesticaseSaveURL,
   otherConfigInvesticaseSubTableURL,
-  otherConfigInvesticaseDeleteURL
+  otherConfigInvesticaseDeleteURL,
+  otherConfigInvesticaseSpideringEventsSearchURL,
+  otherConfigInvesticaseSpideringEventsDetailsURL,
+  otherConfigInvesticaseSpideringEventsSaveURL,
+  otherConfigInvesticaseSpideringEventsSubTableURL,
+  otherConfigInvesticaseSpideringEventsDeleteURL
 };
