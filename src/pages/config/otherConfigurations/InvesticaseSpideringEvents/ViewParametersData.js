@@ -7,27 +7,36 @@ import Grid from "@mui/material/Grid";
 // import AccordionDetails from "@mui/material/AccordionDetails";
 // import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-
-
 function ViewParametersData({ selectedParam }) {
   return (
     <Stack spacing={0.2}>
       <Grid container>
-        <Grid item md={8}>
+        <Grid item md={4}>
           <Grid container>
-            <Grid className="label-text" item md={2.4}>
-              NMI Issue type:
+            <Grid className="label-text" item md={5}>
+              Type:
             </Grid>
-            <Grid item md={9.6}>
-              {selectedParam.name}
+            <Grid item md={6}>
+              {selectedParam.type}
             </Grid>
           </Grid>
         </Grid>
 
         <Grid item md={4}>
           <Grid container>
-            <Grid className="label-text" item md={5}>
-              Special Certify Ind:
+            <Grid className="label-text" item md={6}>
+              Event Number:
+            </Grid>
+            <Grid item md={6}>
+              {selectedParam.speEventNumber}
+            </Grid>
+          </Grid>
+        </Grid>
+
+        <Grid item md={4}>
+          <Grid container>
+            <Grid className="label-text" item md={6}>
+              Special Certify IND:
             </Grid>
             <Grid item md={6}>
               {selectedParam.speSpecialCertiy}
@@ -37,17 +46,41 @@ function ViewParametersData({ selectedParam }) {
       </Grid>
 
       <Grid container>
-        <Grid item md={8}>
+        <Grid item md={4}>
           <Grid container>
-            <Grid className="label-text" item md={2.4}>
-              Type:
+            <Grid className="label-text" item md={5}>
+              Origin Code:
             </Grid>
-            <Grid item md={9.6}>
-              {selectedParam.type}
+            <Grid item md={6}>
+              {selectedParam.speOriginCd}
             </Grid>
           </Grid>
         </Grid>
 
+        <Grid item md={4}>
+          <Grid container>
+            <Grid className="label-text" item md={6}>
+              Block Home IND:
+            </Grid>
+            <Grid item md={6}>
+              {selectedParam.speBlockHome}
+            </Grid>
+          </Grid>
+        </Grid>
+
+        <Grid item md={4}>
+          <Grid container>
+            <Grid className="label-text" item md={6}>
+              Home DisAllows IND:
+            </Grid>
+            <Grid item md={6}>
+              {selectedParam.speHomeDisallow}
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
+
+      <Grid container>
         <Grid item md={4}>
           <Grid container>
             <Grid className="label-text" item md={5}>
@@ -58,51 +91,21 @@ function ViewParametersData({ selectedParam }) {
             </Grid>
           </Grid>
         </Grid>
-      </Grid>
-
-      <Grid container>
-        <Grid item md={8}>
-          <Grid container>
-            <Grid className="label-text" item md={2.4}>
-              Event Number:
-            </Grid>
-            <Grid item md={9.6}>
-              {selectedParam.speEventNumber}
-            </Grid>
-          </Grid>
-        </Grid>
 
         <Grid item md={4}>
           <Grid container>
-            <Grid className="label-text" item md={5}>
-              Spe Auto Markers:
+            <Grid className="label-text" item md={6}>
+              Other Action Code:
             </Grid>
             <Grid item md={6}>
-              {selectedParam.speAutoMarkers}
-            </Grid>
-          </Grid>
-        </Grid>
-      </Grid>
-
-      <Grid container>
-        <Grid item md={8}>
-          <Grid container>
-            <Grid className="label-text" item md={2.4}>
-              Short Desc:
-            </Grid>
-            <Grid item md={9.6}>
-              {/* {selectedParam.spaComments?.split("<br/>")?.map((comment) => (
-                <Typography className="view-params-comments-list-comment">
-                  {comment}
-                </Typography>
-              ))} */}
+              {selectedParam.speOtherActionCd}
             </Grid>
           </Grid>
         </Grid>
 
         <Grid item md={4}>
           <Grid container>
-            <Grid className="label-text" item md={5}>
+            <Grid className="label-text" item md={6}>
               Frequency Code:
             </Grid>
             <Grid item md={6}>
@@ -113,44 +116,31 @@ function ViewParametersData({ selectedParam }) {
       </Grid>
 
       <Grid container>
-        <Grid item md={8}>
-          <Grid container>
-            <Grid className="label-text" item md={2.4}>
-              Long Desc:
-            </Grid>
-            <Grid item md={9.6}>
-              {/* {selectedParam.speEventNumber} */}
-            </Grid>
-          </Grid>
-        </Grid>
-
         <Grid item md={4}>
           <Grid container>
             <Grid className="label-text" item md={5}>
-              Other Action Code:
+              Short Desc:
             </Grid>
             <Grid item md={6}>
-              {selectedParam.speOtherActionCd}
-            </Grid>
-          </Grid>
-        </Grid>
-      </Grid>
-
-      <Grid container>
-        <Grid item md={8}>
-          <Grid container>
-            <Grid className="label-text" item md={2.4}>
-              Origin Code:
-            </Grid>
-            <Grid item md={9.6}>
-              {selectedParam.speOriginCd}
+              {/* {selectedParam.short} */}
             </Grid>
           </Grid>
         </Grid>
 
         <Grid item md={4}>
           <Grid container>
-            <Grid className="label-text" item md={5}>
+            <Grid className="label-text" item md={6}>
+              Spe Auto Markers:
+            </Grid>
+            <Grid item md={6}>
+              {selectedParam.speAutoMarkers}
+            </Grid>
+          </Grid>
+        </Grid>
+
+        <Grid item md={4}>
+          <Grid container>
+            <Grid className="label-text" item md={6}>
               Score:
             </Grid>
             <Grid item md={6}>
@@ -161,20 +151,20 @@ function ViewParametersData({ selectedParam }) {
       </Grid>
 
       <Grid container>
-        <Grid item md={8}>
+        <Grid item md={4}>
           <Grid container>
-            <Grid className="label-text" item md={2.4}>
-              Block Home IND:
+            <Grid className="label-text" item md={5}>
+              Long Desc:
             </Grid>
-            <Grid item md={9.6}>
-              {selectedParam.speBlockHome}
+            <Grid item md={6}>
+              {/* {selectedParam.long} */}
             </Grid>
           </Grid>
         </Grid>
 
         <Grid item md={4}>
           <Grid container>
-            <Grid className="label-text" item md={5}>
+            <Grid className="label-text" item md={6}>
               Effective Date:
             </Grid>
             <Grid item md={6}>
@@ -182,23 +172,10 @@ function ViewParametersData({ selectedParam }) {
             </Grid>
           </Grid>
         </Grid>
-      </Grid>
-
-      <Grid container>
-        <Grid item md={8}>
-          <Grid container>
-            <Grid className="label-text" item md={2.4}>
-              Home DisAllows IND:
-            </Grid>
-            <Grid item md={9.6}>
-              {selectedParam.speHomeDisallow}
-            </Grid>
-          </Grid>
-        </Grid>
 
         <Grid item md={4}>
           <Grid container>
-            <Grid className="label-text" item md={5}>
+            <Grid className="label-text" item md={6}>
               Until:
             </Grid>
             <Grid item md={6}>
@@ -208,6 +185,18 @@ function ViewParametersData({ selectedParam }) {
         </Grid>
       </Grid>
 
+      <Grid container>
+        <Grid item md={4}>
+          <Grid container>
+            <Grid className="label-text" item md={5}>
+              NMI Issue Type:
+            </Grid>
+            <Grid item md={6}>
+              {selectedParam.name}
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
     </Stack>
   );
 }
