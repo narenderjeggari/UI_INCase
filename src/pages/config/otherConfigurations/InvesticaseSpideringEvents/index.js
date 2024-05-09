@@ -507,10 +507,9 @@ export default function InvesticaseSpideringEvents() {
                               direction="row"
                               justifyContent="center"
                             >
-                              {row.editFlag === true ? (
+                              {row.editFlag === true && (
                                 <Tooltip title="Edit" placement="left">
-                                  {/* <IconButton disabled={!isUpdateAccessExist()}> */}
-                                  <IconButton disabled={false}>
+                                  <IconButton disabled={!isUpdateAccessExist()}>
                                     <EditNoteIcon
                                       sx={{ cursor: "pointer" }}
                                       fontSize="medium"
@@ -525,9 +524,7 @@ export default function InvesticaseSpideringEvents() {
                                     />
                                   </IconButton>
                                 </Tooltip>
-                              ) : (
-                                <Box sx={{ width: 23 }} />
-                              )}
+                              ) }
                               {row.deleteFlag === true ? (
                                 <Tooltip title="Delete" placement="right">
                                   <IconButton disabled={!isUpdateAccessExist()}>
@@ -546,7 +543,7 @@ export default function InvesticaseSpideringEvents() {
                               ) : (
                                 <></>
                               )}
-                              {row.reinstateFlag === true ? (
+                              {row.reinstateFlag === true && (
                                 <ReinstateIcon
                                   sx={{ cursor: "pointer" }}
                                   fontSize="medium"
@@ -561,8 +558,6 @@ export default function InvesticaseSpideringEvents() {
                                     event.stopPropagation();
                                   }}
                                 />
-                              ) : (
-                                <Box sx={{ width: 23 }} />
                               )}
                             </Stack>
                           </TableCell>
