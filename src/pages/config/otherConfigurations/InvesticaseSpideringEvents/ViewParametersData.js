@@ -8,23 +8,6 @@ import Grid from "@mui/material/Grid";
 // import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 
-// NMI Issue type - name
-// type - type
-// event number - speEventNumber
-// short desc - 
-// long desc - 
-// origin cd - speOriginCd
-// block home IND - speBlockHome
-// home disallows IND - speHomeDisallow
-
-// special certify ind -speSpecialCertiy
-// inv action cd - speInvActionCd
-// spe auto markers - speAutoMarkers
-// frequency cd - speFreqCd
-// other action cd - speOtherActionCd
-// score - speScore
-// spe_eff_from_dt - startDate
-// spe_eff_to_dt - endDate
 
 function ViewParametersData({ selectedParam }) {
   return (
@@ -33,7 +16,7 @@ function ViewParametersData({ selectedParam }) {
         <Grid item md={8}>
           <Grid container>
             <Grid className="label-text" item md={2.4}>
-            NMI Issue type:
+              NMI Issue type:
             </Grid>
             <Grid item md={9.6}>
               {selectedParam.name}
@@ -44,7 +27,7 @@ function ViewParametersData({ selectedParam }) {
         <Grid item md={4}>
           <Grid container>
             <Grid className="label-text" item md={5}>
-            Special Certify Ind:
+              Special Certify Ind:
             </Grid>
             <Grid item md={6}>
               {selectedParam.speSpecialCertiy}
@@ -68,7 +51,7 @@ function ViewParametersData({ selectedParam }) {
         <Grid item md={4}>
           <Grid container>
             <Grid className="label-text" item md={5}>
-              Inv Action CD:
+              Inv Action Code:
             </Grid>
             <Grid item md={6}>
               {selectedParam.speInvActionCd}
@@ -81,7 +64,7 @@ function ViewParametersData({ selectedParam }) {
         <Grid item md={8}>
           <Grid container>
             <Grid className="label-text" item md={2.4}>
-            Event Number:
+              Event Number:
             </Grid>
             <Grid item md={9.6}>
               {selectedParam.speEventNumber}
@@ -92,7 +75,7 @@ function ViewParametersData({ selectedParam }) {
         <Grid item md={4}>
           <Grid container>
             <Grid className="label-text" item md={5}>
-            Spe Auto Markers:
+              Spe Auto Markers:
             </Grid>
             <Grid item md={6}>
               {selectedParam.speAutoMarkers}
@@ -105,7 +88,7 @@ function ViewParametersData({ selectedParam }) {
         <Grid item md={8}>
           <Grid container>
             <Grid className="label-text" item md={2.4}>
-            Short Desc:
+              Short Desc:
             </Grid>
             <Grid item md={9.6}>
               {/* {selectedParam.spaComments?.split("<br/>")?.map((comment) => (
@@ -120,7 +103,7 @@ function ViewParametersData({ selectedParam }) {
         <Grid item md={4}>
           <Grid container>
             <Grid className="label-text" item md={5}>
-            Frequency CD:
+              Frequency Code:
             </Grid>
             <Grid item md={6}>
               {selectedParam.speFreqCd}
@@ -130,10 +113,10 @@ function ViewParametersData({ selectedParam }) {
       </Grid>
 
       <Grid container>
-      <Grid item md={8}>
+        <Grid item md={8}>
           <Grid container>
             <Grid className="label-text" item md={2.4}>
-            Long Desc:
+              Long Desc:
             </Grid>
             <Grid item md={9.6}>
               {/* {selectedParam.speEventNumber} */}
@@ -144,7 +127,7 @@ function ViewParametersData({ selectedParam }) {
         <Grid item md={4}>
           <Grid container>
             <Grid className="label-text" item md={5}>
-            Other Action CD:
+              Other Action Code:
             </Grid>
             <Grid item md={6}>
               {selectedParam.speOtherActionCd}
@@ -157,7 +140,7 @@ function ViewParametersData({ selectedParam }) {
         <Grid item md={8}>
           <Grid container>
             <Grid className="label-text" item md={2.4}>
-            Origin CD:
+              Origin Code:
             </Grid>
             <Grid item md={9.6}>
               {selectedParam.speOriginCd}
@@ -168,7 +151,7 @@ function ViewParametersData({ selectedParam }) {
         <Grid item md={4}>
           <Grid container>
             <Grid className="label-text" item md={5}>
-            Score:
+              Score:
             </Grid>
             <Grid item md={6}>
               {selectedParam.speScore}
@@ -181,7 +164,7 @@ function ViewParametersData({ selectedParam }) {
         <Grid item md={8}>
           <Grid container>
             <Grid className="label-text" item md={2.4}>
-            Block Home IND:
+              Block Home IND:
             </Grid>
             <Grid item md={9.6}>
               {selectedParam.speBlockHome}
@@ -202,10 +185,10 @@ function ViewParametersData({ selectedParam }) {
       </Grid>
 
       <Grid container>
-      <Grid item md={8}>
+        <Grid item md={8}>
           <Grid container>
             <Grid className="label-text" item md={2.4}>
-            Home DisAllows IND:
+              Home DisAllows IND:
             </Grid>
             <Grid item md={9.6}>
               {selectedParam.speHomeDisallow}

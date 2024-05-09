@@ -70,10 +70,6 @@ export default function Investicase() {
 
   const columns = [
     { id: "name", label: "NAME" },
-    // {
-    //   id: "parentName",
-    //   label: "PARENT NAME",
-    // },
     {
       id: "spaAttrWeight",
       label: "WEIGHT",
@@ -86,26 +82,10 @@ export default function Investicase() {
       id: "startDate",
       label: "START DATE",
     },
-    // {
-    //   id: "endDate",
-    //   label: "END DATE",
-    // },
-    // {
-    //   id: "spaDp4ActiveInd",
-    //   label: "DATE PATTERN 4 IND",
-    // },
-    // {
-    //   id: "minThreshold",
-    //   label: "MIN. THRESHOLD",
-    // },
     {
       id: "idhSubmitScore",
       label: "IDH SUBMIT SCORE",
-    },
-    // {
-    //   id: "spaRuleDesc",
-    //   label: "RULE DESC",
-    // },
+    }
   ];
 
   useEffect(() => {
@@ -516,10 +496,9 @@ export default function Investicase() {
                               direction="row"
                               justifyContent="center"
                             >
-                              {row.editFlag === true ? (
+                              {row.editFlag === true && (
                                 <Tooltip title="Edit" placement="left">
-                                  {/* <IconButton disabled={!isUpdateAccessExist()}> */}
-                                  <IconButton disabled={false}>
+                                  <IconButton disabled={!isUpdateAccessExist()}>
                                     <EditNoteIcon
                                       sx={{ cursor: "pointer" }}
                                       fontSize="medium"
@@ -534,9 +513,7 @@ export default function Investicase() {
                                     />
                                   </IconButton>
                                 </Tooltip>
-                              ) : (
-                                <Box sx={{ width: 23 }} />
-                              )}
+                              ) }
                               {row.deleteFlag === true ? (
                                 <Tooltip title="Delete" placement="right">
                                   <IconButton disabled={!isUpdateAccessExist()}>
@@ -555,7 +532,7 @@ export default function Investicase() {
                               ) : (
                                 <></>
                               )}
-                              {row.reinstateFlag === true ? (
+                              {row.reinstateFlag === true && (
                                 <ReinstateIcon
                                   sx={{ cursor: "pointer" }}
                                   fontSize="medium"
@@ -570,9 +547,7 @@ export default function Investicase() {
                                     event.stopPropagation();
                                   }}
                                 />
-                              ) : (
-                                <Box sx={{ width: 23 }} />
-                              )}
+                              ) }
                             </Stack>
                           </TableCell>
                         </ExpandableTableRow>
