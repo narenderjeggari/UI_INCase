@@ -1,5 +1,5 @@
 import React from "react";
-import Typography from "@mui/material/Typography";
+// import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import Grid from "@mui/material/Grid";
 // import Accordion from "@mui/material/Accordion";
@@ -11,20 +11,20 @@ function ViewParametersData({ selectedParam }) {
   return (
     <Stack spacing={0.2}>
       <Grid container>
-        <Grid item md={4}>
+        <Grid item md={6}>
           <Grid container>
-            <Grid className="label-text" item md={5}>
+            <Grid className="label-text" item md={2.2}>
               Type:
             </Grid>
-            <Grid item md={6}>
+            <Grid item md={9}>
               {selectedParam.type}
             </Grid>
           </Grid>
         </Grid>
 
-        <Grid item md={4}>
+        <Grid item md={3}>
           <Grid container>
-            <Grid className="label-text" item md={6}>
+            <Grid className="label-text" item md={5}>
               Event Number:
             </Grid>
             <Grid item md={6}>
@@ -33,7 +33,7 @@ function ViewParametersData({ selectedParam }) {
           </Grid>
         </Grid>
 
-        <Grid item md={4}>
+        <Grid item md={3}>
           <Grid container>
             <Grid className="label-text" item md={6}>
               Special Certify IND:
@@ -46,20 +46,20 @@ function ViewParametersData({ selectedParam }) {
       </Grid>
 
       <Grid container>
-        <Grid item md={4}>
+        <Grid item md={6}>
           <Grid container>
-            <Grid className="label-text" item md={5}>
+            <Grid className="label-text" item md={2.2}>
               Origin Code:
             </Grid>
-            <Grid item md={6}>
+            <Grid item md={9}>
               {selectedParam.speOriginCd}
             </Grid>
           </Grid>
         </Grid>
 
-        <Grid item md={4}>
+        <Grid item md={3}>
           <Grid container>
-            <Grid className="label-text" item md={6}>
+            <Grid className="label-text" item md={5}>
               Block Home IND:
             </Grid>
             <Grid item md={6}>
@@ -68,7 +68,7 @@ function ViewParametersData({ selectedParam }) {
           </Grid>
         </Grid>
 
-        <Grid item md={4}>
+        <Grid item md={3}>
           <Grid container>
             <Grid className="label-text" item md={6}>
               Home DisAllows IND:
@@ -81,20 +81,20 @@ function ViewParametersData({ selectedParam }) {
       </Grid>
 
       <Grid container>
-        <Grid item md={4}>
+        <Grid item md={6}>
           <Grid container>
-            <Grid className="label-text" item md={5}>
+            <Grid className="label-text" item md={2.2}>
               Inv Action Code:
             </Grid>
-            <Grid item md={6}>
+            <Grid item md={9}>
               {selectedParam.speInvActionCd}
             </Grid>
           </Grid>
         </Grid>
 
-        <Grid item md={4}>
+        <Grid item md={3}>
           <Grid container>
-            <Grid className="label-text" item md={6}>
+            <Grid className="label-text" item md={5}>
               Other Action Code:
             </Grid>
             <Grid item md={6}>
@@ -103,7 +103,7 @@ function ViewParametersData({ selectedParam }) {
           </Grid>
         </Grid>
 
-        <Grid item md={4}>
+        <Grid item md={3}>
           <Grid container>
             <Grid className="label-text" item md={6}>
               Frequency Code:
@@ -116,20 +116,20 @@ function ViewParametersData({ selectedParam }) {
       </Grid>
 
       <Grid container>
-        <Grid item md={4}>
+        <Grid item md={6}>
           <Grid container>
-            <Grid className="label-text" item md={5}>
+            <Grid className="label-text" item md={2.2}>
               Short Desc:
             </Grid>
-            <Grid item md={6}>
+            <Grid item md={9}>
               {/* {selectedParam.short} */}
             </Grid>
           </Grid>
         </Grid>
 
-        <Grid item md={4}>
+        <Grid item md={3}>
           <Grid container>
-            <Grid className="label-text" item md={6}>
+            <Grid className="label-text" item md={5}>
               Spe Auto Markers:
             </Grid>
             <Grid item md={6}>
@@ -138,7 +138,7 @@ function ViewParametersData({ selectedParam }) {
           </Grid>
         </Grid>
 
-        <Grid item md={4}>
+        <Grid item md={3}>
           <Grid container>
             <Grid className="label-text" item md={6}>
               Score:
@@ -151,20 +151,20 @@ function ViewParametersData({ selectedParam }) {
       </Grid>
 
       <Grid container>
-        <Grid item md={4}>
+        <Grid item md={6}>
           <Grid container>
-            <Grid className="label-text" item md={5}>
+            <Grid className="label-text" item md={2.2}>
               Long Desc:
             </Grid>
-            <Grid item md={6}>
+            <Grid item md={9}>
               {/* {selectedParam.long} */}
             </Grid>
           </Grid>
         </Grid>
 
-        <Grid item md={4}>
+        <Grid item md={3}>
           <Grid container>
-            <Grid className="label-text" item md={6}>
+            <Grid className="label-text" item md={5}>
               Effective Date:
             </Grid>
             <Grid item md={6}>
@@ -173,7 +173,7 @@ function ViewParametersData({ selectedParam }) {
           </Grid>
         </Grid>
 
-        <Grid item md={4}>
+        <Grid item md={3}>
           <Grid container>
             <Grid className="label-text" item md={6}>
               Until:
@@ -186,12 +186,12 @@ function ViewParametersData({ selectedParam }) {
       </Grid>
 
       <Grid container>
-        <Grid item md={4}>
+        <Grid item md={6}>
           <Grid container>
-            <Grid className="label-text" item md={5}>
+            <Grid className="label-text" item md={2}>
               NMI Issue Type:
             </Grid>
-            <Grid item md={6}>
+            <Grid item md={9.8}>
               {selectedParam.name}
             </Grid>
           </Grid>

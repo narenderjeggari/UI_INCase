@@ -80,7 +80,7 @@ export default function InvesticaseSpideringEvents() {
     },
     {
       id: "speOriginDesc",
-      label: "ORIGIN CD",
+      label: "ORIGIN CODE",
     },
     {
       id: "speBlockHome",
@@ -509,7 +509,8 @@ export default function InvesticaseSpideringEvents() {
                             >
                               {row.editFlag === true && (
                                 <Tooltip title="Edit" placement="left">
-                                  <IconButton disabled={!isUpdateAccessExist()}>
+                                  {/* <IconButton disabled={!isUpdateAccessExist()}> */}
+                                  <IconButton disabled={false}>
                                     <EditNoteIcon
                                       sx={{ cursor: "pointer" }}
                                       fontSize="medium"
@@ -672,7 +673,7 @@ export default function InvesticaseSpideringEvents() {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
         title="View Spidering Events"
-        maxWidth="md"
+        maxWidth="lg"
       >
         <DialogContent>
           <Stack mt={3}>

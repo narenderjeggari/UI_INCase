@@ -54,7 +54,7 @@ function ExpandableTableRow({
     },
     {
       id: "speOriginDesc",
-      label: "ORIGIN CD",
+      label: "ORIGIN CODE",
     },
     {
       id: "speBlockHome",
