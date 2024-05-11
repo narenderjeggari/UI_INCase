@@ -24,12 +24,12 @@ import { getMsgsFromErrorCode } from "../../../../helpers/utils";
 import moment from "moment";
 import client from "../../../../helpers/Api";
 import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
-import OutlinedInput from "@mui/material/OutlinedInput";
+
+import { Field, Form } from "formik";
+import DropdownSelect from "../../../../components/dropdownSelect/dropdownSelect";
 function ModifyParametersData({ selectedParam, closeModalPopup }) {
   const [errorMessages, setErrorMessages] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [personName, setPersonName] = useState([]);
   const {
     name,
     spaAttrWeight,
@@ -46,6 +46,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
     spaFormatDesc: spaFormatDesc || "",
     spaRemarks: spaRemarks || "",
     spaComments: spaComments || "",
+    speSubType: "",
   };
 
   const onSubmit = async () => {
@@ -93,6 +94,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
   };
 
   const formik = useModifyParamsForm(onSubmit, initialState);
+  console.log("formik::::::", formik);
   const {
     touched,
     values,
@@ -124,15 +126,6 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
     "Event 9",
   ];
 
-  const handleChange1 = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setPersonName(
-      // On autofill we get a stringified value.
-      typeof value === 'string' ? value.split(',') : value,
-    );
-  };
   return (
     <>
       <Stack
@@ -257,7 +250,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                   />
                 </Stack>
                 <Grid container alignItems="start">
-                  <Grid item md={2}>
+                  <Grid item md={1.92}>
                     <Typography className="label-text">
                       <span className="required">*</span>Create issue-Type:
                     </Typography>
@@ -288,25 +281,18 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                     <Typography className="label-text">Sub-type:</Typography>
                   </Grid>
                   <Grid item md={3}>
-                    <FormControl sx={{ width: 200 }}>
-                      <Select
-                        labelId="demo-multiple-name-label"
-                        id="demo-multiple-name"
-                        value={personName}
-                        onChange={handleChange1}
-                        input={<OutlinedInput label="Name" />}
-                        // MenuProps={MenuProps}
+                    <FormControl sx={{ m: 1, minWidth: 250 }} size="small">
+                      <DropdownSelect
+                        name="subType"
+                        value={values.speSubType}
+                        setFieldValue={setFieldValue}
                       >
                         {names.map((name) => (
-                          <MenuItem
-                            key={name}
-                            value={name}
-                            // style={getStyles(name, personName, theme)}
-                          >
+                          <MenuItem key={name} value={name}>
                             {name}
                           </MenuItem>
                         ))}
-                      </Select>
+                      </DropdownSelect>
                     </FormControl>
                   </Grid>
                 </Grid>
