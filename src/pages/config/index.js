@@ -70,7 +70,8 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 }));
 
 export default function Configurations() {
-  const alcCode = Number(window.category) || 4949;
+  const alcCode = Number(window.category) || 4846;
+  // const alcCode = Number(window.category) || 4949;
   const [selectedConfig, setSelectedConfig] = useState([]);
   // const [selectedSubConfig, setSelectedSubConfig] = useState('');
   const [loading, setLoading] = useState(false);
