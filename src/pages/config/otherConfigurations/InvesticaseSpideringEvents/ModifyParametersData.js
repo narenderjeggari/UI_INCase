@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import RadioGroup from "@mui/material/RadioGroup";
 import Stack from "@mui/material/Stack";
 // import Divider from "@mui/material/Divider";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import Radio from "@mui/material/Radio";
 import Paper from "@mui/material/Paper";
 import {
   DialogContent,
@@ -16,6 +14,7 @@ import {
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
+
 import { FormControl, TextField } from "@mui/material";
 import useModifyParamsForm from "./useModifyParamsForm";
 import ViewParametersData from "./ViewParametersData";
@@ -24,8 +23,7 @@ import { getMsgsFromErrorCode } from "../../../../helpers/utils";
 import moment from "moment";
 import client from "../../../../helpers/Api";
 import MenuItem from "@mui/material/MenuItem";
-
-import { Field, Form } from "formik";
+import Checkbox from "@mui/material/Checkbox";
 import DropdownSelect from "../../../../components/dropdownSelect/dropdownSelect";
 function ModifyParametersData({ selectedParam, closeModalPopup }) {
   const [errorMessages, setErrorMessages] = useState([]);
@@ -46,7 +44,13 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
     spaFormatDesc: spaFormatDesc || "",
     spaRemarks: spaRemarks || "",
     spaComments: spaComments || "",
+    speScore: "",
     speSubType: "",
+    speCreateIssueType: "",
+    speInvesticaseActions:"",
+    speOtherActions:"",
+    speFreqData:"",
+    speGenerateReport:""
   };
 
   const onSubmit = async () => {
@@ -94,7 +98,6 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
   };
 
   const formik = useModifyParamsForm(onSubmit, initialState);
-  console.log("formik::::::", formik);
   const {
     touched,
     values,
@@ -106,13 +109,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
     dirty,
     setFieldValue,
   } = formik;
-
-  // const handleKeyPress = (event) => {
-  //   const charCode = event.which ? event.which : event.keyCode;
-  //   if (charCode < 48 || charCode > 57) {
-  //     event.preventDefault();
-  //   }
-  // };
+  console.log("values:::", values);
 
   const names = [
     "Event 1",
@@ -141,71 +138,138 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
               <ViewParametersData selectedParam={selectedParam} />
             </Paper>
 
-            {!selectedParam?.reinstateFlag ? (
-              ""
-            ) : (
-              <Paper elevation={6} className="modify-dialog-content-paper">
-                <Stack direction="row" alignItems="center" spacing={10}>
-                  <Typography className="label-text">
-                    <span className="required">*</span>Modification Type:
-                  </Typography>
-                  <FormControl component="fieldset">
-                    <RadioGroup
-                      aria-labelledby="demo-error-radios"
-                      name="modificationType"
-                      value={values.modificationType}
-                      onChange={(event) => {
-                        setFieldValue("modificationDate", null);
-                        setFieldValue("reinstateDate", null);
-                        console.log("modificationType:::", event.target.value);
-                        setFieldValue("modificationType", event.target.value);
-                      }}
-                      error={
-                        touched.modificationType &&
-                        Boolean(errors.modificationType)
-                      }
-                      helperText={
-                        touched.modificationType && errors.modificationType
-                      }
-                      className="label-text"
-                    >
-                      <Stack direction="row" spacing={2}>
-                        <FormControlLabel
-                          value="REINSTATE"
-                          control={<Radio size="small" />}
-                          label="Change Reinstate Date to:"
-                        />
+            <Paper elevation={6} className="modify-dialog-content-paper">
+              <Stack spacing={0.6} mt={1.5}>
+                <Grid container>
+                  <Grid
+                    item
+                    md={2}
+                    sx={{
+                      display: "flex",
+                      alignSelf: "center",
+                      paddingLeft: "6px",
+                    }}
+                  >
+                    <Typography className="label-text">Event #: 9</Typography>
+                  </Grid>
+
+                  <Grid item md={3}>
+                    <Grid container>
+                      <Grid
+                        item
+                        md={4}
+                        sx={{ display: "flex", alignSelf: "center" }}
+                      >
+                        <Typography className="label-text">
+                          <span className="required">*</span>Effective From:
+                        </Typography>
+                      </Grid>
+                      <Grid item md={7}>
                         <LocalizationProvider dateAdapter={AdapterMoment}>
                           <FormControl sx={{ width: 150 }}>
                             <DatePicker
-                              disabled={values.modificationType !== "REINSTATE"}
-                              name="reinstateDate"
+                              name="speEffectiveFrom"
                               format="MM/DD/YYYY"
-                              value={values.resinstateDate}
-                              onChange={(value) =>
-                                setFieldValue("reinstateDate", value)
-                              }
+                              value={values.speEffectiveFrom}
+                              onChange={(value) => {
+                                setFieldValue("speEffectiveFrom", value);
+                              }}
                               slotProps={{ textField: { size: "small" } }}
                               minDate={moment().add(1, "days")}
-                              // minDate={moment().startOf('week').startOf('day')}
-                              // maxDate={moment().add("months", 2)}
                             />
-                            {touched.reinstateDate && errors.reinstateDate && (
+                            {touched.speEffectiveFrom &&
+                              errors.speEffectiveFrom && (
+                                <FormHelperText style={{ color: "red" }}>
+                                  {errors.speEffectiveFrom}
+                                </FormHelperText>
+                              )}
+                          </FormControl>
+                        </LocalizationProvider>
+                      </Grid>
+                    </Grid>
+                  </Grid>
+
+                  <Grid item md={3}>
+                    <Grid container>
+                      <Grid
+                        item
+                        md={2}
+                        sx={{ display: "flex", alignSelf: "center" }}
+                      >
+                        <Typography className="label-text">Until:</Typography>
+                      </Grid>
+                      <Grid item md={6}>
+                        <LocalizationProvider dateAdapter={AdapterMoment}>
+                          <FormControl sx={{ width: 150 }}>
+                            <DatePicker
+                              name="speUntil"
+                              format="MM/DD/YYYY"
+                              value={values.speUntil}
+                              onChange={(value) => {
+                                setFieldValue("speUntil", value);
+                              }}
+                              slotProps={{ textField: { size: "small" } }}
+                              minDate={moment().add(1, "days")}
+                            />
+                            {touched.speUntil && errors.speUntil && (
                               <FormHelperText style={{ color: "red" }}>
-                                {errors.reinstateDate}
+                                {errors.speUntil}
                               </FormHelperText>
                             )}
                           </FormControl>
                         </LocalizationProvider>
-                      </Stack>
-                    </RadioGroup>
-                  </FormControl>
-                </Stack>
-              </Paper>
-            )}
+                      </Grid>
+                    </Grid>
+                  </Grid>
 
-            <Paper elevation={6} className="modify-dialog-content-paper">
-              <Stack spacing={0.6} mt={1.5}>
+                  <Grid item md={1}>
+                    <Grid container>
+                      <Grid
+                        item
+                        md={6}
+                        sx={{ display: "flex", alignSelf: "center" }}
+                      >
+                        <Typography className="label-text">
+                          <span className="required">*</span>Score:
+                        </Typography>
+                      </Grid>
+                      <Grid item md={6}>
+                        <TextField
+                          size="small"
+                          fullWidth
+                          id="speScore"
+                          variant="outlined"
+                          onChange={handleChange}
+                          value={values.speScore ?? ""}
+                          error={touched.speScore && Boolean(errors.speScore)}
+                          helperText={touched.speScore && errors.speScore}
+                          name="speScore"
+                        />
+                      </Grid>
+                    </Grid>
+                  </Grid>
+
+                  <Grid item md={3}>
+                    <Grid
+                      container
+                      sx={{
+                        display: "flex",
+                        height: "35px",
+                        justifyContent: "center",
+                        alignContent: "center",
+                      }}
+                    >
+                      <Grid item md={4}>
+                        <Typography className="label-text">
+                          Originates from:
+                        </Typography>
+                      </Grid>
+                      <Grid item md={6}>
+                        Claim Certification
+                      </Grid>
+                    </Grid>
+                  </Grid>
+                </Grid>
                 <Stack direction="row" alignItems="start">
                   <Typography className="label-text" style={{ width: "19%" }}>
                     <span className="required">*</span>Description:
@@ -249,51 +313,231 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                     rows={2}
                   />
                 </Stack>
-                <Grid container alignItems="start">
-                  <Grid item md={1.92}>
-                    <Typography className="label-text">
-                      <span className="required">*</span>Create issue-Type:
-                    </Typography>
+                <Grid container>
+                  <Grid item md={6}>
+                    <Grid container>
+                      <Grid
+                        item
+                        md={3.6}
+                        sx={{ display: "flex", alignSelf: "center" }}
+                      >
+                        <Typography className="label-text">
+                          Create issue-Type:
+                        </Typography>
+                      </Grid>
+                      <Grid item md={6}>
+                        <DropdownSelect
+                          name="speCreateIssueType"
+                          value={values.speCreateIssueType}
+                          setFieldValue={setFieldValue}
+                        >
+                          {names.map((name) => (
+                            <MenuItem key={name} value={name}>
+                              {name}
+                            </MenuItem>
+                          ))}
+                        </DropdownSelect>
+                      </Grid>
+                    </Grid>
                   </Grid>
-                  <Grid item md={4}>
-                    <TextField
-                      size="small"
-                      fullWidth
-                      id="createIssueType"
-                      label="CreateIssueType"
-                      variant="outlined"
-                      onChange={handleChange}
-                      // onKeyPress={handleKeyPress}
-                      value={values.createIssueType ?? ""}
-                      error={
-                        touched.createIssueType &&
-                        Boolean(errors.createIssueType)
+                  <Grid item md={6}>
+                    <Grid
+                      container
+                      sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        backgroundColor: "",
+                      }}
+                    >
+                      <Grid
+                        item
+                        md={3}
+                        sx={{ display: "flex", alignSelf: "center" }}
+                      >
+                        <Typography className="label-text">
+                          Sub-type:
+                        </Typography>
+                      </Grid>
+                      <Grid item md={6}>
+                        <DropdownSelect
+                          name="speSubType"
+                          value={values.speSubType}
+                          setFieldValue={setFieldValue}
+                        >
+                          {names.map((name) => (
+                            <MenuItem key={name} value={name}>
+                              {name}
+                            </MenuItem>
+                          ))}
+                        </DropdownSelect>
+                      </Grid>
+                    </Grid>
+                  </Grid>
+                </Grid>
+
+                <Grid container>
+                  <Grid item md={6}>
+                    <Grid container>
+                      <Grid
+                        item
+                        md={3.6}
+                        sx={{ display: "flex", alignSelf: "center" }}
+                      >
+                        <Typography className="label-text">
+                          Generate Report:
+                        </Typography>
+                      </Grid>
+                      <Grid item md={6}>
+                        <DropdownSelect
+                          name="speGenerateReport"
+                          value={values.speGenerateReport}
+                          setFieldValue={setFieldValue}
+                        >
+                          {names.map((name) => (
+                            <MenuItem key={name} value={name}>
+                              {name}
+                            </MenuItem>
+                          ))}
+                        </DropdownSelect>
+                      </Grid>
+                    </Grid>
+                  </Grid>
+                  <Grid item md={6}>
+                    <FormControlLabel
+                      control={<Checkbox />}
+                      label={
+                        <Typography className="label-text">
+                          Auto increment markers
+                        </Typography>
                       }
-                      helperText={
-                        touched.createIssueType && errors.createIssueType
-                      }
-                      name="createIssueType"
-                      inputProps={{ maxLength: 50 }}
+                      sx={{ marginLeft: "60px", className: "label-text" }}
                     />
                   </Grid>
-                  <Grid item md={1}></Grid>
-                  <Grid item md={2}>
-                    <Typography className="label-text">Sub-type:</Typography>
-                  </Grid>
-                  <Grid item md={3}>
-                    <FormControl sx={{ m: 1, minWidth: 250 }} size="small">
-                      <DropdownSelect
-                        name="subType"
-                        value={values.speSubType}
-                        setFieldValue={setFieldValue}
+                </Grid>
+
+                <Grid container>
+                  <Grid item md={6}>
+                    <Grid container>
+                      <Grid
+                        item
+                        md={3.6}
+                        sx={{ display: "flex", alignSelf: "center" }}
                       >
-                        {names.map((name) => (
-                          <MenuItem key={name} value={name}>
-                            {name}
-                          </MenuItem>
-                        ))}
-                      </DropdownSelect>
-                    </FormControl>
+                        <Typography className="label-text">
+                          <span className="required">*</span>InvestiCase
+                          Actions:
+                        </Typography>
+                      </Grid>
+                      <Grid item md={6}>
+                        <DropdownSelect
+                          name="speInvesticaseActions"
+                          value={values.speInvesticaseActions}
+                          setFieldValue={setFieldValue}
+                        >
+                          {names.map((name) => (
+                            <MenuItem key={name} value={name}>
+                              {name}
+                            </MenuItem>
+                          ))}
+                        </DropdownSelect>
+                      </Grid>
+                    </Grid>
+                  </Grid>
+
+                  <Grid item md={6}>
+                    <FormControlLabel
+                      control={<Checkbox />}
+                      label={
+                        <Typography className="label-text">
+                          Block Home page when this event occurs
+                        </Typography>
+                      }
+                      sx={{ marginLeft: "60px", className: "label-text" }}
+                    />
+                  </Grid>
+                </Grid>
+
+                <Grid container>
+                  <Grid item md={6}>
+                    <Grid container>
+                      <Grid
+                        item
+                        md={3.6}
+                        sx={{ display: "flex", alignSelf: "center" }}
+                      >
+                        <Typography className="label-text">
+                          Other Actions:
+                        </Typography>
+                      </Grid>
+                      <Grid item md={6}>
+                        <DropdownSelect
+                          name="speOtherActions"
+                          value={values.speOtherActions}
+                          setFieldValue={setFieldValue}
+                        >
+                          {names.map((name) => (
+                            <MenuItem key={name} value={name}>
+                              {name}
+                            </MenuItem>
+                          ))}
+                        </DropdownSelect>
+                      </Grid>
+                    </Grid>
+                  </Grid>
+
+                  <Grid item md={6}>
+                    <FormControlLabel
+                      control={<Checkbox />}
+                      label={
+                        <Typography className="label-text">
+                          Apply special rules to disallow certain actions on the
+                          Home page
+                        </Typography>
+                      }
+                      sx={{ marginLeft: "60px", className: "label-text" }}
+                    />
+                  </Grid>
+                </Grid>
+
+                <Grid container>
+                  <Grid item md={6}>
+                    <Grid container>
+                      <Grid
+                        item
+                        md={3.6}
+                        sx={{ display: "flex", alignSelf: "center" }}
+                      >
+                        <Typography className="label-text">
+                          Freq. of Data Pattern:
+                        </Typography>
+                      </Grid>
+                      <Grid item md={6}>
+                        <DropdownSelect
+                          name="speFreqData"
+                          value={values.speFreqData}
+                          setFieldValue={setFieldValue}
+                        >
+                          {names.map((name) => (
+                            <MenuItem key={name} value={name}>
+                              {name}
+                            </MenuItem>
+                          ))}
+                        </DropdownSelect>
+                      </Grid>
+                    </Grid>
+                  </Grid>
+
+                  <Grid item md={6}>
+                    <FormControlLabel
+                      control={<Checkbox />}
+                      label={
+                        <Typography className="label-text">
+                          Apply special rules on certification when this event
+                          occurs
+                        </Typography>
+                      }
+                      sx={{ marginLeft: "60px", className: "label-text" }}
+                    />
                   </Grid>
                 </Grid>
               </Stack>

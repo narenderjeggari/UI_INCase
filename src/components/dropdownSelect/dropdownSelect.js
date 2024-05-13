@@ -1,12 +1,9 @@
 import Select from "@mui/material/Select";
-// import OutlinedInput from "@mui/material/OutlinedInput";
-// import MenuItem from "@mui/material/MenuItem";
+import { FormControl } from "@mui/material";
 
 function DropdownSelect({ children, name, value, setFieldValue }) {
-  //   const { name, value } = field;
-  //   const { setFieldValue } = form;
   return (
-    <>
+    <FormControl sx={{ m: 1, minWidth: 350 }} size="small">
       <Select
         name={name}
         value={value}
@@ -16,7 +13,7 @@ function DropdownSelect({ children, name, value, setFieldValue }) {
       >
         {children}
       </Select>
-    </>
+    </FormControl>
   );
 }
 export default DropdownSelect;
