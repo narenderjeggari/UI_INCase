@@ -14,7 +14,8 @@ import {
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
-
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
 import { FormControl, TextField } from "@mui/material";
 import useModifyParamsForm from "./useModifyParamsForm";
 import ViewParametersData from "./ViewParametersData";
@@ -47,10 +48,10 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
     speScore: "",
     speSubType: "",
     speCreateIssueType: "",
-    speInvesticaseActions:"",
-    speOtherActions:"",
-    speFreqData:"",
-    speGenerateReport:""
+    speInvesticaseActions: "",
+    speOtherActions: "",
+    speFreqData: "",
+    speGenerateReport: "",
   };
 
   const onSubmit = async () => {
@@ -109,7 +110,6 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
     dirty,
     setFieldValue,
   } = formik;
-  console.log("values:::", values);
 
   const names = [
     "Event 1",
@@ -143,97 +143,119 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                 <Grid container>
                   <Grid
                     item
-                    md={2}
+                    md={3}
                     sx={{
                       display: "flex",
+                      justifyContent: "flex-end",
                       alignSelf: "center",
-                      paddingLeft: "6px",
                     }}
                   >
-                    <Typography className="label-text">Event #: 9</Typography>
+                    <Typography className="label-text">
+                      <span className="required">*</span>Modification Type:
+                    </Typography>
                   </Grid>
-
-                  <Grid item md={3}>
-                    <Grid container>
-                      <Grid
-                        item
-                        md={4}
-                        sx={{ display: "flex", alignSelf: "center" }}
+                  <Grid item md={8}>
+                    <FormControl component="fieldset">
+                      <RadioGroup
+                        aria-labelledby="demo-error-radios"
+                        name="modificationType"
+                        value={values.modificationType}
+                        onChange={(event) => {
+                          setFieldValue("modificationDate", null);
+                          setFieldValue("endDate", null);
+                          setFieldValue("modificationType", event.target.value);
+                        }}
+                        error={
+                          touched.modificationType &&
+                          Boolean(errors.modificationType)
+                        }
+                        helperText={
+                          touched.modificationType && errors.modificationType
+                        }
+                        className="label-text"
                       >
-                        <Typography className="label-text">
-                          <span className="required">*</span>Effective From:
-                        </Typography>
-                      </Grid>
-                      <Grid item md={7}>
-                        <LocalizationProvider dateAdapter={AdapterMoment}>
-                          <FormControl sx={{ width: 150 }}>
-                            <DatePicker
-                              name="speEffectiveFrom"
-                              format="MM/DD/YYYY"
-                              value={values.speEffectiveFrom}
-                              onChange={(value) => {
-                                setFieldValue("speEffectiveFrom", value);
-                              }}
-                              slotProps={{ textField: { size: "small" } }}
-                              minDate={moment().add(1, "days")}
-                            />
-                            {touched.speEffectiveFrom &&
-                              errors.speEffectiveFrom && (
+                        <Stack direction="row" spacing={2}>
+                          <FormControlLabel
+                            value="CHANGE"
+                            control={<Radio size="small" />}
+                            label="Modification Configuration as of:"
+                            className="label-text"
+                            sx={{ fontWeight: 700 }}
+                          />
+                          <LocalizationProvider dateAdapter={AdapterMoment}>
+                            <FormControl sx={{ width: 150 }}>
+                              <DatePicker
+                                disabled={values.modificationType !== "CHANGE"}
+                                name="modificationDate"
+                                format="MM/DD/YYYY"
+                                value={values.modificationDate}
+                                onChange={(value) => {
+                                  setFieldValue("modificationDate", value);
+                                }}
+                                slotProps={{ textField: { size: "small" } }}
+                                minDate={moment().add(1, "days")}
+                                // minDate={moment().startOf('week').startOf('day')}
+                                // maxDate={moment().add("months", 2)}
+                              />
+                              {touched.modificationDate &&
+                                errors.modificationDate && (
+                                  <FormHelperText style={{ color: "red" }}>
+                                    {errors.modificationDate}
+                                  </FormHelperText>
+                                )}
+                            </FormControl>
+                          </LocalizationProvider>
+                          <FormControlLabel
+                            value="ENDDATE"
+                            control={<Radio size="small" />}
+                            label="Change End Date to:"
+                          />
+                          <LocalizationProvider dateAdapter={AdapterMoment}>
+                            <FormControl sx={{ width: 150 }}>
+                              <DatePicker
+                                disabled={values.modificationType !== "ENDDATE"}
+                                name="endDate"
+                                format="MM/DD/YYYY"
+                                value={values.endDate}
+                                onChange={(value) =>
+                                  setFieldValue("endDate", value)
+                                }
+                                slotProps={{ textField: { size: "small" } }}
+                                minDate={moment().add(1, "days")}
+                                // minDate={moment().startOf('week').startOf('day')}
+                                // maxDate={moment().add("months", 2)}
+                              />
+                              {touched.endDate && errors.endDate && (
                                 <FormHelperText style={{ color: "red" }}>
-                                  {errors.speEffectiveFrom}
+                                  {errors.endDate}
                                 </FormHelperText>
                               )}
-                          </FormControl>
-                        </LocalizationProvider>
-                      </Grid>
-                    </Grid>
+                            </FormControl>
+                          </LocalizationProvider>
+                        </Stack>
+                      </RadioGroup>
+                    </FormControl>
                   </Grid>
+                </Grid>
 
-                  <Grid item md={3}>
+                <Grid container sx={{width:"98%"}}>
+                  <Grid item md={5.6}>
                     <Grid container>
                       <Grid
                         item
-                        md={2}
-                        sx={{ display: "flex", alignSelf: "center" }}
-                      >
-                        <Typography className="label-text">Until:</Typography>
-                      </Grid>
-                      <Grid item md={6}>
-                        <LocalizationProvider dateAdapter={AdapterMoment}>
-                          <FormControl sx={{ width: 150 }}>
-                            <DatePicker
-                              name="speUntil"
-                              format="MM/DD/YYYY"
-                              value={values.speUntil}
-                              onChange={(value) => {
-                                setFieldValue("speUntil", value);
-                              }}
-                              slotProps={{ textField: { size: "small" } }}
-                              minDate={moment().add(1, "days")}
-                            />
-                            {touched.speUntil && errors.speUntil && (
-                              <FormHelperText style={{ color: "red" }}>
-                                {errors.speUntil}
-                              </FormHelperText>
-                            )}
-                          </FormControl>
-                        </LocalizationProvider>
-                      </Grid>
-                    </Grid>
-                  </Grid>
-
-                  <Grid item md={1}>
-                    <Grid container>
-                      <Grid
-                        item
-                        md={6}
-                        sx={{ display: "flex", alignSelf: "center" }}
+                        md={5}
+                        sx={{
+                          display: "flex",
+                          justifyContent: "flex-end",
+                          alignSelf: "center",
+                          marginLeft:"5px"
+                        }}
                       >
                         <Typography className="label-text">
                           <span className="required">*</span>Score:
                         </Typography>
                       </Grid>
-                      <Grid item md={6}>
+                      <Grid item md={1.5} sx={{paddingLeft:"10px"}}>
                         <TextField
                           size="small"
                           fullWidth
@@ -249,17 +271,17 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                     </Grid>
                   </Grid>
 
-                  <Grid item md={3}>
+                  <Grid item md={6}>
                     <Grid
                       container
                       sx={{
                         display: "flex",
                         height: "35px",
-                        justifyContent: "center",
+                        justifyContent: "flex-start",
                         alignContent: "center",
                       }}
                     >
-                      <Grid item md={4}>
+                      <Grid item md={2}>
                         <Typography className="label-text">
                           Originates from:
                         </Typography>
@@ -270,6 +292,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                     </Grid>
                   </Grid>
                 </Grid>
+                
                 <Stack direction="row" alignItems="start">
                   <Typography className="label-text" style={{ width: "19%" }}>
                     <span className="required">*</span>Description:
