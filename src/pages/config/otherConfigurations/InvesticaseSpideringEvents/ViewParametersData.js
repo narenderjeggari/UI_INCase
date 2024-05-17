@@ -8,7 +8,6 @@ import Grid from "@mui/material/Grid";
 // import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 function ViewParametersData({ selectedParam }) {
-  console.log("selectedParam:::", selectedParam);
   return (
     <Stack spacing={0.2}>
       <Grid container>
