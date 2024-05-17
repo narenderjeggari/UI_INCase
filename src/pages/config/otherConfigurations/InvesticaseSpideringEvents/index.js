@@ -24,6 +24,7 @@ import {
   otherConfigInvesticaseSpideringEventsSearchURL,
   otherConfigInvesticaseSpideringEventsDetailsURL,
   otherConfigInvesticaseSpideringEventsDeleteURL,
+  otherConfigInvesticaseSpideringEventsReportListURL
 } from "../../../../helpers/Urls";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -255,10 +256,6 @@ export default function InvesticaseSpideringEvents() {
               payload
             );
 
-      console.log(
-        "spideringAttributesList::",
-        response.spideringAttributesList
-      );
       setData(response.spideringAttributesList || []);
       setTotalCount(response.pagination.totalItemCount);
       setLoading(false);
@@ -346,8 +343,16 @@ export default function InvesticaseSpideringEvents() {
           : await client.get(
               `${otherConfigInvesticaseSpideringEventsDetailsURL}${speId}`
             );
+      const reportListresponse =
+        process.env.REACT_APP_ENV === "mockserver"
+          ? await client.get(
+              `${otherConfigInvesticaseSpideringEventsReportListURL}`
+            )
+          : await client.get(
+              `${otherConfigInvesticaseSpideringEventsReportListURL}`
+            );
 
-      setSelectedParam({ ...response, reinstateFlag });
+      setSelectedParam({ ...response, reinstateFlag, reportList:reportListresponse||[] });
 
       if (showEditModal) {
         setShowEditParamModal(true);

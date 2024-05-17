@@ -1,10 +1,10 @@
 import { useFormik } from "formik";
-import { otherConfigInvesticaseSchema } from "../../../../helpers/Validation";
+import { otherConfiInvesticaseSpideringEventsSchema } from "../../../../helpers/Validation";
 
 const useModifyParamsForm = (onSubmit, initialValues) => {
   return useFormik({
     initialValues,
-    validationSchema: otherConfigInvesticaseSchema,
+    validationSchema: otherConfiInvesticaseSpideringEventsSchema,
     validateOnChange: true,
     enableReinitialize: true,
     validateOnBlur: true,

@@ -1,0 +1,8 @@
+[
+  { "rptId": 277, "rptName": "Year to Date Charge Summary" },
+  { "rptId": 551, "rptName": "Wyoming IB6 Bill Sent Details" },
+  { "rptId": 50000061, "rptName": "WorkShare Weeks Filed Count Summary" },
+  { "rptId": 50000100, "rptName": "WorkShare Plan Summary" },
+  { "rptId": 50000060, "rptName": "WorkShare Plan Summary" },
+  { "rptId": 50000192, "rptName": "WorkShare Payment Activity Summary" }
+]

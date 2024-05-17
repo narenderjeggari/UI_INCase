@@ -180,10 +180,36 @@ const otherConfigInvesticaseSchema = yup.object().shape({
   spaRemarks: yup.string().required("Remarks is required"),
 });
 
+const otherConfiInvesticaseSpideringEventsSchema = yup.object().shape({
+  modificationType: yup.string().required("Modification is required"),
+  modificationDate: yup
+    .date()
+    .nullable()
+    .when("modificationType", {
+      is: "CHANGE",
+      then: (schema) => schema.required("Modification Date is required"),
+    })
+    .typeError("Invalid date. Please select or enter valid date"),
+
+  endDate: yup
+    .date()
+    .nullable()
+    .when("modificationType", {
+      is: "ENDDATE",
+      then: (schema) => schema.required("End Date is required"),
+    })
+    .typeError("Invalid date. Please select or enter valid date"),
+  score: yup.string().required("description is required"),
+  description: yup.string().required("description is required"),
+  detail: yup.string().required("details is required"),
+  investicaseActions: yup.string().required("InvestiCase Actions is required"),
+});
+
 export {
   individualParametersSchema,
   dropdownListSchema,
   otherConfigWorkSearchRequirementsSchema,
   otherConfigWorkSearchWaiversSchema,
   otherConfigInvesticaseSchema,
+  otherConfiInvesticaseSpideringEventsSchema,
 };

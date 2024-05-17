@@ -19,7 +19,7 @@ import RadioGroup from "@mui/material/RadioGroup";
 import { FormControl, TextField } from "@mui/material";
 import useModifyParamsForm from "./useModifyParamsForm";
 import ViewParametersData from "./ViewParametersData";
-import { otherConfigInvesticaseSaveURL } from "../../../../helpers/Urls";
+import { otherConfigInvesticaseSpideringEventsSaveURL } from "../../../../helpers/Urls";
 import { getMsgsFromErrorCode } from "../../../../helpers/utils";
 import moment from "moment";
 import client from "../../../../helpers/Api";
@@ -29,30 +29,21 @@ import DropdownSelect from "../../../../components/dropdownSelect/dropdownSelect
 function ModifyParametersData({ selectedParam, closeModalPopup }) {
   const [errorMessages, setErrorMessages] = useState([]);
   const [loading, setLoading] = useState(false);
-  const {
-    name,
-    spaAttrWeight,
-    spaAutoMark,
-    spaFormatDesc,
-    spaRemarks,
-    spaComments,
-  } = selectedParam;
+
   const initialState = {
     modificationType: "",
-    name: name,
-    spaAttrWeight: spaAttrWeight || "",
-    spaAutoMark: spaAutoMark || "",
-    spaFormatDesc: spaFormatDesc || "",
-    spaRemarks: spaRemarks || "",
-    spaComments: spaComments || "",
-    speScore: "",
-    speSubType: "",
-    speCreateIssueType: "",
-    speInvesticaseActions: "",
-    speOtherActions: "",
-    speFreqData: "",
-    speGenerateReport: "",
+    description: selectedParam.description || "",
+    score: selectedParam.speScore.toString() || "",
+    detail: selectedParam.detail || "",
+    subType: selectedParam.nmiSubTypeDesc || "",
+    createIssueType: selectedParam.speType || "",
+    investicaseActions: selectedParam.speInvActionDesc || "",
+    otherActions: selectedParam.speOtherActionDesc || "",
+    freqData: selectedParam.speFreqDesc || "",
+    generateReport: selectedParam.speGenerateReport || "",
+    comments: selectedParam.speComments || "",
   };
+
 
   const onSubmit = async () => {
     setLoading(true);
@@ -65,27 +56,33 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
     } else {
       modificationDate = values.reinstateDate?.format("MM/DD/YYYY");
     }
+
     const payload = {
       speId: selectedParam.speId,
       modificationType: values.modificationType,
       modificationDt: modificationDate,
-      spaAttrWeight: values?.spaAttrWeight,
-      comments: values?.spaComments,
-      // name: selectedParam?.name,
-      // spaAutoMark: selectedParam?.spaAutoMark,
-      // spaMainSrcCd: selectedParam?.spaMainSrcCd,
-      // spaOtherSources: selectedParam?.spaOtherSources,
-      // spaFormatCd: selectedParam?.spaFormatCd,
-      // spaDp4ActiveInd: selectedParam?.spaDp4ActiveInd,
-      // spaEndOvwrMm: selectedParam?.spaEndOvwrMm,
-      // spaSarSubmitSpecialRuleInd: selectedParam?.spaSarSubmitSpecialRuleInd,
+      description: values.description,
+      detail: values.detail,
+      speInvActionCdAlc: values.investicaseActions,
+      speScore: Number(values.score),
+      speComments: values?.comments,
+      speType: selectedParam.type,
+      speNumber: selectedParam.speNumber,
+      speOriginCd: selectedParam.speOriginCd,
+      speBlockHome: selectedParam.speBlockHome,
+      speHomeDisallows: selectedParam.speHomeDisallows,
+      speSpecialCertify: selectedParam.speSpecialCertify,
+      speAutoMarkers: selectedParam.speAutoMarkers,
     };
 
     try {
       const response =
         process.env.REACT_APP_ENV === "mockserver"
-          ? await client.get(otherConfigInvesticaseSaveURL)
-          : await client.post(otherConfigInvesticaseSaveURL, payload);
+          ? await client.get(otherConfigInvesticaseSpideringEventsSaveURL)
+          : await client.post(
+              otherConfigInvesticaseSpideringEventsSaveURL,
+              payload
+            );
       setLoading(false);
       closeModalPopup(true);
     } catch (errorResponse) {
@@ -121,6 +118,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
     "Event 7",
     "Event 8",
     "Event 9",
+    "Test"
   ];
 
   return (
@@ -242,13 +240,13 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                   <TextField
                     sx={{ width: "30%" }}
                     size="small"
-                    id="speScore"
+                    id="score"
                     variant="outlined"
                     onChange={handleChange}
-                    value={values.speScore ?? ""}
-                    error={touched.speScore && Boolean(errors.speScore)}
-                    helperText={touched.speScore && errors.speScore}
-                    name="speScore"
+                    value={values.score ?? ""}
+                    error={touched.score && Boolean(errors.score)}
+                    helperText={touched.score && errors.score}
+                    name="score"
                   />
                 </Stack>
               </Stack>
@@ -293,14 +291,14 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                   <TextField
                     size="medium"
                     fullWidth
-                    id="details"
+                    id="detail"
                     label="Details"
                     variant="outlined"
                     onChange={handleChange}
-                    value={values.details ?? ""}
-                    error={touched.details && Boolean(errors.details)}
-                    helperText={touched.details && errors.details}
-                    name="details"
+                    value={values.detail ?? ""}
+                    error={touched.detail && Boolean(errors.detail)}
+                    helperText={touched.detail && errors.detail}
+                    name="detail"
                     multiline
                     rows={2}
                   />
@@ -381,13 +379,16 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                       </Grid>
                       <Grid item md={6}>
                         <DropdownSelect
-                          name="speGenerateReport"
-                          value={values.speGenerateReport}
+                          name="generateReport"
+                          value={values.generateReport}
                           setFieldValue={setFieldValue}
                         >
-                          {names.map((name) => (
-                            <MenuItem key={name} value={name}>
-                              {name}
+                          {selectedParam?.reportList.map((report) => (
+                            <MenuItem
+                              key={report?.rptId}
+                              value={report?.rptName}
+                            >
+                              {report?.rptName}
                             </MenuItem>
                           ))}
                         </DropdownSelect>
@@ -422,9 +423,12 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                       </Grid>
                       <Grid item md={6}>
                         <DropdownSelect
-                          name="speInvesticaseActions"
-                          value={values.speInvesticaseActions}
+                          name="investicaseActions"
+                          value={values.investicaseActions}
                           setFieldValue={setFieldValue}
+                          touched={touched}
+                          errors={errors}
+                          handleChange={handleChange}
                         >
                           {names.map((name) => (
                             <MenuItem key={name} value={name}>
@@ -463,8 +467,8 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                       </Grid>
                       <Grid item md={6}>
                         <DropdownSelect
-                          name="speOtherActions"
-                          value={values.speOtherActions}
+                          name="otherActions"
+                          value={values.otherActions}
                           setFieldValue={setFieldValue}
                         >
                           {names.map((name) => (
@@ -505,8 +509,8 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                       </Grid>
                       <Grid item md={6}>
                         <DropdownSelect
-                          name="speFreqData"
-                          value={values.speFreqData}
+                          name="freqData"
+                          value={values.freqData}
                           setFieldValue={setFieldValue}
                         >
                           {names.map((name) => (
@@ -547,8 +551,8 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                       </Grid>
                       <Grid item md={6}>
                         <DropdownSelect
-                          name="speSubType"
-                          value={values.speSubType}
+                          name="subType"
+                          value={values.subType}
                           setFieldValue={setFieldValue}
                         >
                           {names.map((name) => (
@@ -562,7 +566,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                   </Grid>
                 </Grid>
 
-                 <Stack
+                <Stack
                   direction="row"
                   alignItems="start"
                   style={{ marginTop: "0.7rem" }}

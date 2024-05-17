@@ -1,19 +1,27 @@
 import Select from "@mui/material/Select";
 import { FormControl } from "@mui/material";
 
-function DropdownSelect({ children, name, value, setFieldValue }) {
+function DropdownSelect({
+  children,
+  name,
+  value,
+  // setFieldValue,
+  touched,
+  errors,
+  handleChange,
+}) {
   return (
-    <FormControl sx={{ m: 1, minWidth: 350 }} size="small">
       <Select
+        sx={{ m: 1, minWidth: 350 }}
+        size="small"
         name={name}
         value={value}
-        onChange={(e) => {
-          setFieldValue(name, e.target.value);
-        }}
+        onChange={handleChange}
+        error={touched?.name && Boolean(errors?.name)}
+        helperText={touched?.name && errors?.name}
       >
         {children}
       </Select>
-    </FormControl>
   );
 }
 export default DropdownSelect;
