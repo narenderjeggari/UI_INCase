@@ -3,8 +3,8 @@
   "name": "First claim following an Earning Issue or a Fraud Separation/Work Search issue",
   "description": "Claimant files the first Initial, Additional, Reopened or Continued Claim following  a just-prior: (A) Non-Fraud Earnings or (B) Fraud Earnings, Separation, or Work Search",
   "type": "Spe Type",
-  "nmiDesc": "Test",
-  "speEventNumber": 1,
+  "nmiSubTypeDesc": "Test",
+  "speNumber": 1,
   "speOriginCd": 5384,
   "speOriginDesc": "Origin",
   "speBlockHome": "N",
@@ -19,5 +19,6 @@
   "speOtherActionCd": "123",
   "speOtherActionDesc": "Test",
   "startDate": "MM/DD/YYYY",
-  "endDate": "MM/DD/YYYY"
+  "endDate": "MM/DD/YYYY",
+  "detail":"Claimant with prior Fraud Work Search now files a Continued Claim with: (A) At least minimum # of suspect work search records for the week as B) No new Employers over the past few weeks; or (C) The first few letters of the employer name for at least minimum # of suspect work search records (other than ) for the week being identical"
 }

@@ -8,16 +8,17 @@ import Grid from "@mui/material/Grid";
 // import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 function ViewParametersData({ selectedParam }) {
+  console.log("selectedParam:::", selectedParam);
   return (
     <Stack spacing={0.2}>
       <Grid container>
         <Grid item md={6}>
           <Grid container>
-            <Grid className="label-text" item md={2.2}>
-              Type:
+            <Grid className="label-text" item md={2}>
+              Event Number:
             </Grid>
             <Grid item md={9}>
-              {selectedParam.type}
+              {selectedParam.speNumber}
             </Grid>
           </Grid>
         </Grid>
@@ -25,10 +26,10 @@ function ViewParametersData({ selectedParam }) {
         <Grid item md={3}>
           <Grid container>
             <Grid className="label-text" item md={5}>
-              Event Number:
+              Type:
             </Grid>
             <Grid item md={6}>
-              {selectedParam.speEventNumber}
+              {selectedParam.nmiSubTypeDesc}
             </Grid>
           </Grid>
         </Grid>
@@ -48,8 +49,8 @@ function ViewParametersData({ selectedParam }) {
       <Grid container>
         <Grid item md={6}>
           <Grid container>
-            <Grid className="label-text" item md={2.2}>
-              Origin Code:
+            <Grid className="label-text" item md={2}>
+              Origin Desc:
             </Grid>
             <Grid item md={9}>
               {selectedParam.speOriginCd}
@@ -83,11 +84,11 @@ function ViewParametersData({ selectedParam }) {
       <Grid container>
         <Grid item md={6}>
           <Grid container>
-            <Grid className="label-text" item md={2.2}>
-              Inv Action Code:
+            <Grid className="label-text" item md={2}>
+              InvAction Desc:
             </Grid>
             <Grid item md={9}>
-              {selectedParam.speInvActionCd}
+              {selectedParam.speInvActionDesc}
             </Grid>
           </Grid>
         </Grid>
@@ -153,11 +154,11 @@ function ViewParametersData({ selectedParam }) {
       <Grid container>
         <Grid item md={6}>
           <Grid container>
-            <Grid className="label-text" item md={2.2}>
-              Long Desc:
+            <Grid className="label-text" item md={2}>
+              NMI Issue Type:
             </Grid>
-            <Grid item md={9}>
-              {/* {selectedParam.long} */}
+            <Grid item md={9.8}>
+              {selectedParam.name}
             </Grid>
           </Grid>
         </Grid>
@@ -186,15 +187,11 @@ function ViewParametersData({ selectedParam }) {
       </Grid>
 
       <Grid container>
-        <Grid item md={6}>
-          <Grid container>
-            <Grid className="label-text" item md={2}>
-              NMI Issue Type:
-            </Grid>
-            <Grid item md={9.8}>
-              {selectedParam.name}
-            </Grid>
-          </Grid>
+        <Grid className="label-text" item md={1}>
+          Long Desc:
+        </Grid>
+        <Grid item md={9}>
+          {selectedParam.detail}
         </Grid>
       </Grid>
     </Stack>
