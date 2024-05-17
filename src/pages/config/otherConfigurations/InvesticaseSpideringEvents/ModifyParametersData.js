@@ -70,7 +70,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
       modificationType: values.modificationType,
       modificationDt: modificationDate,
       spaAttrWeight: values?.spaAttrWeight,
-      spaComments: values?.spaComments,
+      comments: values?.spaComments,
       // name: selectedParam?.name,
       // spaAutoMark: selectedParam?.spaAutoMark,
       // spaMainSrcCd: selectedParam?.spaMainSrcCd,
@@ -232,9 +232,9 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                     className="label"
                     style={{
                       width: "30%",
-                      display:"flex",
-                      alignSelf:"center",
-                      fontWeight:"initial"
+                      display: "flex",
+                      alignSelf: "center",
+                      fontWeight: "initial",
                     }}
                   >
                     <span className="required">*</span>Score:
@@ -307,14 +307,14 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                 </Stack>
                 <Grid container>
                   <Grid item md={6}>
-                    <Grid container>
+                    {/* <Grid container>
                       <Grid
                         item
                         md={3.6}
                         sx={{ display: "flex", alignSelf: "center" }}
                       >
                         <Typography className="label-text">
-                          Create issue-Type:
+                          Sub-type:
                         </Typography>
                       </Grid>
                       <Grid item md={6}>
@@ -330,7 +330,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                           ))}
                         </DropdownSelect>
                       </Grid>
-                    </Grid>
+                    </Grid> */}
                   </Grid>
                   <Grid item md={6}>
                     <Grid
@@ -341,7 +341,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                         backgroundColor: "",
                       }}
                     >
-                      <Grid
+                      {/* <Grid
                         item
                         md={3}
                         sx={{ display: "flex", alignSelf: "center" }}
@@ -349,8 +349,8 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                         <Typography className="label-text">
                           Sub-type:
                         </Typography>
-                      </Grid>
-                      <Grid item md={6}>
+                      </Grid> */}
+                      {/* <Grid item md={6}>
                         <DropdownSelect
                           name="speSubType"
                           value={values.speSubType}
@@ -362,7 +362,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                             </MenuItem>
                           ))}
                         </DropdownSelect>
-                      </Grid>
+                      </Grid> */}
                     </Grid>
                   </Grid>
                 </Grid>
@@ -372,7 +372,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                     <Grid container>
                       <Grid
                         item
-                        md={3.6}
+                        md={3.66}
                         sx={{ display: "flex", alignSelf: "center" }}
                       >
                         <Typography className="label-text">
@@ -412,7 +412,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                     <Grid container>
                       <Grid
                         item
-                        md={3.6}
+                        md={3.66}
                         sx={{ display: "flex", alignSelf: "center" }}
                       >
                         <Typography className="label-text">
@@ -454,7 +454,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                     <Grid container>
                       <Grid
                         item
-                        md={3.6}
+                        md={3.66}
                         sx={{ display: "flex", alignSelf: "center" }}
                       >
                         <Typography className="label-text">
@@ -496,7 +496,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                     <Grid container>
                       <Grid
                         item
-                        md={3.6}
+                        md={3.66}
                         sx={{ display: "flex", alignSelf: "center" }}
                       >
                         <Typography className="label-text">
@@ -532,6 +532,59 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                     />
                   </Grid>
                 </Grid>
+
+                <Grid container>
+                  <Grid item md={6}>
+                    <Grid container>
+                      <Grid
+                        item
+                        md={3.66}
+                        sx={{ display: "flex", alignSelf: "center" }}
+                      >
+                        <Typography className="label-text">
+                          Sub-Type:
+                        </Typography>
+                      </Grid>
+                      <Grid item md={6}>
+                        <DropdownSelect
+                          name="speSubType"
+                          value={values.speSubType}
+                          setFieldValue={setFieldValue}
+                        >
+                          {names.map((name) => (
+                            <MenuItem key={name} value={name}>
+                              {name}
+                            </MenuItem>
+                          ))}
+                        </DropdownSelect>
+                      </Grid>
+                    </Grid>
+                  </Grid>
+                </Grid>
+
+                 <Stack
+                  direction="row"
+                  alignItems="start"
+                  style={{ marginTop: "0.7rem" }}
+                >
+                  <Typography className="label-text" style={{ width: "19%" }}>
+                    Comments:
+                  </Typography>
+                  <TextField
+                    size="medium"
+                    fullWidth
+                    id="comments"
+                    label="Comments"
+                    variant="outlined"
+                    onChange={handleChange}
+                    value={values.comments ?? ""}
+                    error={touched.comments && Boolean(errors.comments)}
+                    helperText={touched.comments && errors.comments}
+                    name="comments"
+                    multiline
+                    rows={2}
+                  />
+                </Stack>
               </Stack>
             </Paper>
           </Stack>
