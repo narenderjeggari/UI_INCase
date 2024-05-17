@@ -40,7 +40,7 @@ function ViewParametersData({ selectedParam }) {
               Special Certify IND:
             </Grid>
             <Grid item md={6}>
-              {selectedParam.speSpecialCertiy}
+              {selectedParam.speSpecialCertify}
             </Grid>
           </Grid>
         </Grid>
