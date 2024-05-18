@@ -483,6 +483,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                           name="generateReport"
                           value={values.generateReport}
                           setFieldValue={setFieldValue}
+                          handleChange={handleChange}
                         >
                           {selectedParam?.reportList.map((report) => (
                             <MenuItem

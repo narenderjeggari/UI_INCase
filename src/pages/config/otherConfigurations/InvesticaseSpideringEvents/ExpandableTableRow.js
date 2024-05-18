@@ -58,6 +58,10 @@ function ExpandableTableRow({
       label: "Short Description",
     },
     {
+      id: "speScore",
+      label: "Score",
+    },
+    {
       id: "startDate",
       label: "Start Date",
     },
