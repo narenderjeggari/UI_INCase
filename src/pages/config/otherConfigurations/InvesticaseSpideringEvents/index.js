@@ -24,7 +24,7 @@ import {
   otherConfigInvesticaseSpideringEventsSearchURL,
   otherConfigInvesticaseSpideringEventsDetailsURL,
   otherConfigInvesticaseSpideringEventsDeleteURL,
-  otherConfigInvesticaseSpideringEventsReportListURL
+  otherConfigInvesticaseSpideringEventsReportListURL,
 } from "../../../../helpers/Urls";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -58,6 +58,10 @@ export default function InvesticaseSpideringEvents() {
   const [showInActiveEntries, setShowInActiveEntries] = useState(false);
   const [active, setActive] = useState("Y");
   const [currentFilter, setCurrentFilter] = useState("Y");
+  const eventType = {
+    E: "Event",
+    D: "Default",
+  };
 
   const [pagination, setPagination] = useState({
     pageNumber: 1,
@@ -70,35 +74,26 @@ export default function InvesticaseSpideringEvents() {
   const [parentDataRefresh, setParentDataRefresh] = useState(false);
 
   const columns = [
-    // { id: "name", label: "NMI ISSUE TYPE" },
     {
       id: "speNumber",
-      label: "EVENT NUMBER",
+      label: "#",
     },
     {
-      id: "type",
-      label: "TYPE",
+      id: "speType",
+      label: "Type",
     },
     {
-      id: "speOriginDesc",
-      label: "ORIGIN CODE",
+      id: "description",
+      label: "Short Description",
     },
     {
-      id: "speBlockHome",
-      label: "BLOCK HOME IND",
+      id: "startDate",
+      label: "Start Date",
     },
     {
-      id: "speHomeDisallow",
-      label: "HOME DISALLOWS IND",
-    },
-    {
-      id: "speAutoMarkers",
-      label: "AUTO MARKERS IND",
-    },
-    {
-      id: "speScore",
-      label: "SCORE",
-    },
+      id: "endDate",
+      label: "End Date",
+    }
   ];
 
   useEffect(() => {
@@ -152,7 +147,6 @@ export default function InvesticaseSpideringEvents() {
               <div
                 style={{
                   display: "flex",
-                  // justifyContent: "space-between",
                   width: "80%",
                 }}
               >
@@ -173,70 +167,12 @@ export default function InvesticaseSpideringEvents() {
           </Typography>
         );
 
-      case "spaAttrWeight":
-        return (
-          <Typography
-            className={
-              moment().diff(value) < 0
-                ? "future-date-text"
-                : row.editFlag === true
-                ? "past-date-text-editable"
-                : "past-date-text-non-editable"
-            }
-          >
-            {value}
-          </Typography>
-        );
-
-      case "idhSubmitScore":
-        return (
-          <Typography
-            className={
-              row.editFlag === true
-                ? "clickable-active-text"
-                : "clickable-inactive-text"
-            }
-            onClick={() => {
-              fetchParamDetails(row.speId, false);
-            }}
-          >
-            <div style={{ display: "flex" }}>
-              <div
-                style={{
-                  display: "flex",
-                  width: "30%",
-                  alignSelf: "center",
-                  justifyContent: "space-between",
-                }}
-              >
-                <div style={{ width: "40%" }}>
-                  {row["spaMinThresholdValSarSubmit"] > 99
-                    ? "> 99"
-                    : row["spaMinThresholdValSarSubmit"]}
-                </div>
-                <div>|</div>
-                <div>{row["spaSarSubmitSpecialRuleInd"]}</div>
-              </div>
-              <div>
-                {row["spaMinThresholdValSarSubmit"] > 99 &&
-                  row["spaSarSubmitSpecialRuleInd"] === "Y" && (
-                    <Tooltip title={"Rule desc"}>
-                      <IconButton>
-                        <InfoOutlinedIcon fontSize="small" />
-                      </IconButton>
-                    </Tooltip>
-                  )}
-              </div>
-            </div>
-          </Typography>
-        );
       default:
         return (
           <Typography
             style={{ color: row.editFlag === true ? "gray" : "silver" }}
           >
-            {" "}
-            {value}
+            {id === "speType" ? eventType[value] : value}
           </Typography>
         );
     }

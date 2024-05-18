@@ -1,22 +1,45 @@
 {
   "spideringAttributesList": [
     {
-      "speId": 1,
-      "name": "First claim following an Earning Issue or a Fraud Separation/Work Search issue",
-      "type": "Spe Type",
-      "nmiDesc": "Test",
-      "speNumber": 1,
-      "speOriginDesc": "Origin",
+      "speId": 4,
+      "description": "Suspicious Work Search with no prior Work Search issue",
+      "detail": "Claimant with no prior Fraud Work Search now files a Continued Claim with: (A) At least minimum # of suspect work search records for the week as 'Unknown'; (B) No new Employers over the past few weeks; or (C) The first few letters of the employer name for at least minimum # of suspect work search records (other than 'Unknown') for the week being identical",
+      "nmiDesc": "Work Search Alert",
+      "nmiSubTypeDesc": "Actively Seeking Work",
+      "speType": "E",
+      "speNumber": 4,
+      "speOriginDesc": "Continued Claims filing",
       "speBlockHome": "N",
-      "speHomeDisallow": "N",
+      "speHomeDisallows": "N",
+      "speSpecialCertify": "N",
       "speAutoMarkers": "N",
       "speScore": 0,
-      "startDate": "MM/DD/YYYY",
-      "endDate": "MM/DD/YYYY",
+      "startDate": "09/20/2017",
+      "childListCount": 1,
       "editFlag": true,
       "deleteFlag": false,
-      "reinstateFlag": false,
-      "childListCount": 1
+      "reinstateFlag": false
+    },
+    {
+      "speId": 16,
+      "description": "Multiple claimants have separated from a new employer",
+      "detail": "Detect potential fictitious employer schemes by identifying if there have been too many claimant who have separated from a new employer",
+      "nmiDesc": "ML New Employer",
+      "nmiSubTypeDesc": "IC/AC issues",
+      "speType": "D",
+      "speNumber": 17,
+      "speOriginDesc": "Batch",
+      "speBlockHome": "Y",
+      "speHomeDisallows": "N",
+      "speSpecialCertify": "N",
+      "speAutoMarkers": "N",
+      "speFrequency": "Weekly",
+      "speScore": 0,
+      "startDate": "09/20/2017",
+      "childListCount": 0,
+      "editFlag": true,
+      "deleteFlag": false,
+      "reinstateFlag": false
     }
   ]
 }

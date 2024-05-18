@@ -43,39 +43,28 @@ function ExpandableTableRow({
   const [showEditParamModal, setShowEditParamModal] = useState(false);
   const [selectedParam, setSelectedParam] = useState();
 
+  const eventType = {
+    E: "Event",
+    D: "Default",
+  };
+
   const columns = [
     {
-      id: "type",
-      label: "TYPE",
+      id: "speType",
+      label: "Type",
     },
     {
-      id: "speEventNumber",
-      label: "EVENT NUMBER",
+      id: "description",
+      label: "Short Description",
     },
     {
-      id: "speOriginDesc",
-      label: "ORIGIN CODE",
+      id: "startDate",
+      label: "Start Date",
     },
     {
-      id: "speBlockHome",
-      label: "BLOCK HOME IND",
+      id: "endDate",
+      label: "End Date",
     },
-    {
-      id: "speHomeDisallow",
-      label: "HOME DISALLOWS IND",
-    },
-    {
-      id: "speAutoMarkers",
-      label: "AUTO MARKERS IND",
-    },
-    {
-      id: "speScore",
-      label: "SCORE",
-    },
-    {
-      id: "actions",
-      label: "Actions",
-    }
   ];
 
   const StyledTableRow = styled(TableRow)(({ theme }) => ({
@@ -106,11 +95,16 @@ function ExpandableTableRow({
     try {
       const response =
         process.env.REACT_APP_ENV === "mockserver"
-          ? await client.get(`${otherConfigInvesticaseSpideringEventsSubTableURL}`)
-          : await client.post(`${otherConfigInvesticaseSpideringEventsSubTableURL}`, {
-              speId,
-              active: currentFilter,
-            });
+          ? await client.get(
+              `${otherConfigInvesticaseSpideringEventsSubTableURL}`
+            )
+          : await client.post(
+              `${otherConfigInvesticaseSpideringEventsSubTableURL}`,
+              {
+                speId,
+                active: currentFilter,
+              }
+            );
       setSubTableData(response || []);
     } catch (errorResponse) {
       setLoading(false);
@@ -128,7 +122,9 @@ function ExpandableTableRow({
     try {
       const response =
         process.env.REACT_APP_ENV === "mockserver"
-          ? await client.get(`${otherConfigInvesticaseSpideringEventsDetailsURL}`)
+          ? await client.get(
+              `${otherConfigInvesticaseSpideringEventsDetailsURL}`
+            )
           : await client.get(
               `${otherConfigInvesticaseSpideringEventsDetailsURL}${speId}`
             );
@@ -153,7 +149,9 @@ function ExpandableTableRow({
 
   const renderColumn = (id, value, row) => {
     switch (id) {
-      case "startDate":
+      case "speNumber":
+        return;
+
         return (
           <Typography
             className={
@@ -164,41 +162,17 @@ function ExpandableTableRow({
                 : "past-date-text-non-editable"
             }
           >
-            {value}
-          </Typography>
-        );
-      case "name":
-        return (
-          <Typography
-            style={{ color: row.editFlag === true ? "gray" : "silver" }}
-          >
-            {/* {value === "Y" ? "Yes" : "No"} */}
-            {value && (
-              <div style={{ display: "flex" }}>
-                <div style={{ padding: "1px" }}>{value}</div>
-                <div>
-                  <InfoOutlinedIcon fontSize="small" />
-                </div>
-              </div>
-            )}
-          </Typography>
-        );
-      case "idhSubmitScore":
-        return (
-          <Typography
-            className={
-              moment().diff(value) < 0
-                ? "future-date-text"
-                : row.editFlag === true
-                ? "past-date-text-editable"
-                : "past-date-text-non-editable"
-            }
-          >
-            {`${row["spaMinThresholdValSarSubmit"] || ""} | ${row["spaSarSubmitSpecialRuleInd"]}`}
+            {`${row["spaMinThresholdValSarSubmit"] || ""} | ${
+              row["spaSarSubmitSpecialRuleInd"]
+            }`}
           </Typography>
         );
       default:
-        return <Typography style={{ color: "gray" }}> {value}</Typography>;
+        return (
+          <Typography style={{ color: "gray" }}>
+            {id === "speType" ? eventType[value] : value}
+          </Typography>
+        );
     }
   };
 
