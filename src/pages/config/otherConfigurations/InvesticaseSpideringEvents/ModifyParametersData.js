@@ -21,55 +21,90 @@ import useModifyParamsForm from "./useModifyParamsForm";
 import ViewParametersData from "./ViewParametersData";
 import {
   otherConfigInvesticaseSpideringEventsSaveURL,
-  otherConfigInvesticaseSpideringALVIdOtherActionsURL,
+  // otherConfigInvesticaseSpideringALVIdOtherActionsURL,
+  otherConfigInvesticaseSpideringNmiIdURL,
 } from "../../../../helpers/Urls";
 import { getMsgsFromErrorCode } from "../../../../helpers/utils";
 import moment from "moment";
 import client from "../../../../helpers/Api";
 import MenuItem from "@mui/material/MenuItem";
-import Checkbox from "@mui/material/Checkbox";
+// import Checkbox from "@mui/material/Checkbox";
 import DropdownSelect from "../../../../components/dropdownSelect/dropdownSelect";
+import Select from "@mui/material/Select";
 function ModifyParametersData({ selectedParam, closeModalPopup }) {
   const [errorMessages, setErrorMessages] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [otherActions, setOtherActions] = useState([]);
+  // const [otherActions, setOtherActions] = useState([]);
+  const [issueTypes, setIssueTypes] = useState([]);
+  const [createIssueTypeId, setCreateIssueTypeId] = useState([]);
+
+  const [subTypes, setSubTypes] = useState([]);
 
   const initialState = {
     modificationType: "",
     description: selectedParam.description || "",
     score: selectedParam.speScore.toString() || "",
     detail: selectedParam.detail || "",
-    // subType: selectedParam.nmiSubTypeDesc || "",
-    createIssueType: selectedParam.speType || "",
-    investicaseActions: selectedParam.speInvActionDesc || "",
-    otherActions: selectedParam.speOtherActionDesc || "",
-    freqData: selectedParam.speFreqDesc || "",
+    subType: "",
+    createIssueType: "",
     generateReport: selectedParam.speGenerateReport || "",
     comments: selectedParam.speComments || "",
+    // investicaseActions: selectedParam.speInvActionDesc || "",
+    // otherActions: selectedParam.speOtherActionDesc || "",
+    // freqData: selectedParam.speFreqDesc || "",
   };
 
-  // useEffect(() => {
-  //   if (selectedParam?.speInvActionCdAlc) {
-  //     getInvActionsDropdownData();
-  //   }
-  // }, [selectedParam?.speInvActionCdAlc]);
-
   useEffect(() => {
-    if (selectedParam?.speOtherActionAlc) {
-      getOtherActionsDropdownData();
+    if (selectedParam?.nmiId) {
+      getNmiIdDropdownData();
     }
-  }, [selectedParam?.speOtherActionAlc]);
+  }, [selectedParam?.nmiId]);
 
-  const getOtherActionsDropdownData = async () => {
-    
+  // const getOtherActionsDropdownData = async () => {
+  //   try {
+  //     const response =
+  //       process.env.REACT_APP_ENV === "mockserver"
+  //         ? await client.get(
+  //             otherConfigInvesticaseSpideringALVIdOtherActionsURL
+  //           )
+  //         : await client.get(
+  //             `${otherConfigInvesticaseSpideringALVIdOtherActionsURL}${selectedParam?.speOtherActionAlc}`
+  //           );
+  //     setOtherActions([response]);
+  //   } catch (errorResponse) {
+  //     const newErrMsgs = getMsgsFromErrorCode(
+  //       `POST:${process.env.REACT_APP_OTHER_CONFIG_REASON_DROPDOWN_URL}`,
+  //       errorResponse
+  //     );
+  //     setErrorMessages(newErrMsgs);
+  //   }
+  // };
+
+  const getNmiIdDropdownData = async () => {
     try {
       const response =
         process.env.REACT_APP_ENV === "mockserver"
-          ? await client.get(otherConfigInvesticaseSpideringALVIdOtherActionsURL)
+          ? await client.get(otherConfigInvesticaseSpideringNmiIdURL)
+          : await client.get(`${otherConfigInvesticaseSpideringNmiIdURL}0`);
+      setIssueTypes(response || []);
+    } catch (errorResponse) {
+      const newErrMsgs = getMsgsFromErrorCode(
+        `POST:${process.env.REACT_APP_OTHER_CONFIG_REASON_DROPDOWN_URL}`,
+        errorResponse
+      );
+      setErrorMessages(newErrMsgs);
+    }
+  };
+
+  const getSubTypesDropdownData = async () => {
+    try {
+      const response =
+        process.env.REACT_APP_ENV === "mockserver"
+          ? await client.get(otherConfigInvesticaseSpideringNmiIdURL)
           : await client.get(
-              `${otherConfigInvesticaseSpideringALVIdOtherActionsURL}${selectedParam?.speOtherActionAlc}`
+              `${otherConfigInvesticaseSpideringNmiIdURL}${values?.createIssueType}`
             );
-      setOtherActions([response]);
+      setSubTypes(response || []);
     } catch (errorResponse) {
       const newErrMsgs = getMsgsFromErrorCode(
         `POST:${process.env.REACT_APP_OTHER_CONFIG_REASON_DROPDOWN_URL}`,
@@ -80,6 +115,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
   };
 
   const onSubmit = async () => {
+    console.log("values::", values);
     setLoading(true);
     setErrorMessages([]);
     let modificationDate;
@@ -97,10 +133,10 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
       modificationDt: modificationDate,
       description: values.description,
       detail: values.detail,
-      speInvActionCdAlc: values.investicaseActions,
       speScore: Number(values.score),
       speComments: values?.comments,
-      speType: selectedParam.type,
+      speInvActionCdAlc: selectedParam.speInvActionCdAlc,
+      speType: selectedParam.speType,
       speNumber: selectedParam.speNumber,
       speOriginCd: selectedParam.speOriginCd,
       speBlockHome: selectedParam.speBlockHome,
@@ -142,18 +178,11 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
     setFieldValue,
   } = formik;
 
-  const names = [
-    "Event 1",
-    "Event 2",
-    "Event 3",
-    "Event 4",
-    "Event 5",
-    "Event 6",
-    "Event 7",
-    "Event 8",
-    "Event 9",
-    "Test",
-  ];
+  useEffect(() => {
+    if (createIssueTypeId) {
+      getSubTypesDropdownData();
+    }
+  }, [createIssueTypeId]);
 
   return (
     <>
@@ -362,7 +391,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                 </Stack>
                 <Grid container>
                   <Grid item md={6}>
-                     <Grid container>
+                    <Grid container>
                       <Grid
                         item
                         md={3.6}
@@ -373,17 +402,28 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                         </Typography>
                       </Grid>
                       <Grid item md={6}>
-                        <DropdownSelect
-                          name="speCreateIssueType"
-                          value={values.speCreateIssueType}
-                          setFieldValue={setFieldValue}
+                        <Select
+                          sx={{ m: 1, minWidth: 350 }}
+                          size="small"
+                          name={"createIssueType"}
+                          value={values?.createIssueType}
+                          onChange={(e) => {
+                            // handleChange(name);
+                            setFieldValue("createIssueType", e.target.value);
+                            setCreateIssueTypeId(e.target.value);
+                          }}
+                          error={touched?.name && Boolean(errors?.name)}
+                          helperText={touched?.name && errors?.name}
                         >
-                          {names.map((name) => (
-                            <MenuItem key={name} value={name}>
-                              {name}
+                          {issueTypes?.map((issueType) => (
+                            <MenuItem
+                              key={issueType?.nmiId}
+                              value={issueType?.nmiId}
+                            >
+                              {issueType?.nmiDesc}
                             </MenuItem>
                           ))}
-                        </DropdownSelect>
+                        </Select>
                       </Grid>
                     </Grid>
                   </Grid>
@@ -404,20 +444,24 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                         <Typography className="label-text">
                           Sub-type:
                         </Typography>
-                      </Grid> 
+                      </Grid>
                       <Grid item md={6}>
                         <DropdownSelect
-                          name="speSubType"
-                          value={values.speSubType}
+                          name="subType"
+                          value={values.subType}
                           setFieldValue={setFieldValue}
+                          handleChange={handleChange}
                         >
-                          {names.map((name) => (
-                            <MenuItem key={name} value={name}>
-                              {name}
+                          {subTypes.map((subType) => (
+                            <MenuItem
+                              key={subType?.nmiId}
+                              value={subType?.nmiId}
+                            >
+                              {subType?.nmiDesc}
                             </MenuItem>
                           ))}
                         </DropdownSelect>
-                      </Grid> 
+                      </Grid>
                     </Grid>
                   </Grid>
                 </Grid>
@@ -625,8 +669,6 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                     </Grid>
                   </Grid>
                 </Grid> */}
-
-              
               </Stack>
             </Paper>
           </Stack>

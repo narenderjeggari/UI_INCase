@@ -5,7 +5,7 @@ function DropdownSelect({
   children,
   name,
   value,
-  // setFieldValue,
+  setFieldValue,
   touched,
   errors,
   handleChange,
@@ -16,7 +16,10 @@ function DropdownSelect({
         size="small"
         name={name}
         value={value}
-        onChange={handleChange}
+        onChange={(e) => {
+          handleChange(name);
+          setFieldValue(name, e.target.value)
+        }}
         error={touched?.name && Boolean(errors?.name)}
         helperText={touched?.name && errors?.name}
       >

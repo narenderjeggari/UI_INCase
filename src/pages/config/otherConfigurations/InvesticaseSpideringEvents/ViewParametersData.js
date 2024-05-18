@@ -28,7 +28,7 @@ function ViewParametersData({ selectedParam }) {
               Type:
             </Grid>
             <Grid item md={6}>
-              {selectedParam.nmiSubTypeDesc}
+              {selectedParam.speType === "E" ? "Event" : "Default"}
             </Grid>
           </Grid>
         </Grid>
@@ -74,7 +74,7 @@ function ViewParametersData({ selectedParam }) {
               Home DisAllows IND:
             </Grid>
             <Grid item md={6}>
-              {selectedParam.speHomeDisallow}
+              {selectedParam.speHomeDisallows}
             </Grid>
           </Grid>
         </Grid>
@@ -98,7 +98,7 @@ function ViewParametersData({ selectedParam }) {
               Other Action Code:
             </Grid>
             <Grid item md={6}>
-              {selectedParam.speOtherActionCd}
+              {selectedParam.speOtherActionAlc}
             </Grid>
           </Grid>
         </Grid>
@@ -118,11 +118,11 @@ function ViewParametersData({ selectedParam }) {
       <Grid container>
         <Grid item md={6}>
           <Grid container>
-            <Grid className="label-text" item md={2.2}>
+            <Grid className="label-text" item md={2}>
               Short Desc:
             </Grid>
             <Grid item md={9}>
-              {/* {selectedParam.short} */}
+              {selectedParam.description}
             </Grid>
           </Grid>
         </Grid>
@@ -157,7 +157,7 @@ function ViewParametersData({ selectedParam }) {
               NMI Issue Type:
             </Grid>
             <Grid item md={9.8}>
-              {selectedParam.name}
+              {selectedParam.nmiDesc}
             </Grid>
           </Grid>
         </Grid>

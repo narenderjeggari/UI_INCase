@@ -202,7 +202,7 @@ const otherConfiInvesticaseSpideringEventsSchema = yup.object().shape({
   score: yup.string().required("description is required"),
   description: yup.string().required("description is required"),
   detail: yup.string().required("details is required"),
-  investicaseActions: yup.string().required("InvestiCase Actions is required"),
+  // investicaseActions: yup.string().required("InvestiCase Actions is required"),
 });
 
 export {
