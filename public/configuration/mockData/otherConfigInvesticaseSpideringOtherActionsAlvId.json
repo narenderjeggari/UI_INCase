@@ -1,0 +1,9 @@
+{
+    "alvId":5384,
+    "fkAlcId":732,
+    "alvActiveInd":"Y",
+    "alvShortDecTxt":"Claims Intake(Also, staff request to file claim)",
+    "alvLongDescTxt":"Initial Additional, Reopen or Continued claims filing",
+    "alvCategoryCd":"SPE_ORIGIN_CD",
+    "alvcategoryName":"Origin for Spidering Event or Data Pattern"
+}

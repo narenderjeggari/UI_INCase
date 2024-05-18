@@ -48,6 +48,7 @@ const otherConfigInvesticaseSpideringEventsReportListURL = `${baseApiUrl}${proce
 
 const otherConfigReasonsDropdownURL = `${baseApiUrl}${process.env.REACT_APP_OTHER_CONFIG_REASON_DROPDOWN_URL}`;
 const otherConfigBusinessUnitDropdownURL = `${baseApiUrl}${process.env.REACT_APP_OTHER_CONFIG_BUSINESS_UNIT_DROPDOWN_URL}`;
+const otherConfigInvesticaseSpideringALVIdOtherActionsURL = `${baseApiUrl}${process.env.REACT_APP_OTHER_CONFIG_INVESTICASE_SPIDERING_ALVID_URL}`;
 
 const alvDisplayOnListURL = `${baseApiUrl}${process.env.REACT_APP_ALV_DISPLAY_ON_LIST}`;
 
@@ -92,5 +93,6 @@ export {
   otherConfigInvesticaseSpideringEventsSaveURL,
   otherConfigInvesticaseSpideringEventsSubTableURL,
   otherConfigInvesticaseSpideringEventsDeleteURL,
-  otherConfigInvesticaseSpideringEventsReportListURL
+  otherConfigInvesticaseSpideringEventsReportListURL,
+  otherConfigInvesticaseSpideringALVIdOtherActionsURL
 };

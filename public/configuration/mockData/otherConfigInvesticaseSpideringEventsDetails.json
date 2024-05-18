@@ -20,5 +20,9 @@
   "speOtherActionDesc": "Test",
   "startDate": "03/01/2024",
   "endDate": "05/01/2025",
-  "detail":"Claimant with prior Fraud Work Search now files a Continued Claim with: (A) At least minimum # of suspect work search records for the week as B) No new Employers over the past few weeks; or (C) The first few letters of the employer name for at least minimum # of suspect work search records (other than ) for the week being identical"
+  "detail":"Claimant with prior Fraud Work Search now files a Continued Claim with: (A) At least minimum # of suspect work search records for the week as B) No new Employers over the past few weeks; or (C) The first few letters of the employer name for at least minimum # of suspect work search records (other than ) for the week being identical",
+  "speInvActionCdAlc":733,
+  "speOtherActionAlc": 5348,
+  "speOriginCodeAlc":732,
+  "speFreqCdAlc": 205
 }

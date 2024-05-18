@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Stack from "@mui/material/Stack";
 // import Divider from "@mui/material/Divider";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -19,7 +19,10 @@ import RadioGroup from "@mui/material/RadioGroup";
 import { FormControl, TextField } from "@mui/material";
 import useModifyParamsForm from "./useModifyParamsForm";
 import ViewParametersData from "./ViewParametersData";
-import { otherConfigInvesticaseSpideringEventsSaveURL } from "../../../../helpers/Urls";
+import {
+  otherConfigInvesticaseSpideringEventsSaveURL,
+  otherConfigInvesticaseSpideringALVIdOtherActionsURL,
+} from "../../../../helpers/Urls";
 import { getMsgsFromErrorCode } from "../../../../helpers/utils";
 import moment from "moment";
 import client from "../../../../helpers/Api";
@@ -29,13 +32,14 @@ import DropdownSelect from "../../../../components/dropdownSelect/dropdownSelect
 function ModifyParametersData({ selectedParam, closeModalPopup }) {
   const [errorMessages, setErrorMessages] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [otherActions, setOtherActions] = useState([]);
 
   const initialState = {
     modificationType: "",
     description: selectedParam.description || "",
     score: selectedParam.speScore.toString() || "",
     detail: selectedParam.detail || "",
-    subType: selectedParam.nmiSubTypeDesc || "",
+    // subType: selectedParam.nmiSubTypeDesc || "",
     createIssueType: selectedParam.speType || "",
     investicaseActions: selectedParam.speInvActionDesc || "",
     otherActions: selectedParam.speOtherActionDesc || "",
@@ -44,6 +48,36 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
     comments: selectedParam.speComments || "",
   };
 
+  // useEffect(() => {
+  //   if (selectedParam?.speInvActionCdAlc) {
+  //     getInvActionsDropdownData();
+  //   }
+  // }, [selectedParam?.speInvActionCdAlc]);
+
+  useEffect(() => {
+    if (selectedParam?.speOtherActionAlc) {
+      getOtherActionsDropdownData();
+    }
+  }, [selectedParam?.speOtherActionAlc]);
+
+  const getOtherActionsDropdownData = async () => {
+    
+    try {
+      const response =
+        process.env.REACT_APP_ENV === "mockserver"
+          ? await client.get(otherConfigInvesticaseSpideringALVIdOtherActionsURL)
+          : await client.get(
+              `${otherConfigInvesticaseSpideringALVIdOtherActionsURL}${selectedParam?.speOtherActionAlc}`
+            );
+      setOtherActions([response]);
+    } catch (errorResponse) {
+      const newErrMsgs = getMsgsFromErrorCode(
+        `POST:${process.env.REACT_APP_OTHER_CONFIG_REASON_DROPDOWN_URL}`,
+        errorResponse
+      );
+      setErrorMessages(newErrMsgs);
+    }
+  };
 
   const onSubmit = async () => {
     setLoading(true);
@@ -118,7 +152,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
     "Event 7",
     "Event 8",
     "Event 9",
-    "Test"
+    "Test",
   ];
 
   return (
@@ -471,9 +505,12 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                           value={values.otherActions}
                           setFieldValue={setFieldValue}
                         >
-                          {names.map((name) => (
-                            <MenuItem key={name} value={name}>
-                              {name}
+                          {otherActions.map((otherAction) => (
+                            <MenuItem
+                              key={otherAction?.alvId}
+                              value={otherAction?.alvId}
+                            >
+                              {otherAction?.alvShortDecTxt}
                             </MenuItem>
                           ))}
                         </DropdownSelect>
@@ -537,7 +574,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                   </Grid>
                 </Grid>
 
-                <Grid container>
+                {/* <Grid container>
                   <Grid item md={6}>
                     <Grid container>
                       <Grid
@@ -564,7 +601,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                       </Grid>
                     </Grid>
                   </Grid>
-                </Grid>
+                </Grid> */}
 
                 <Stack
                   direction="row"

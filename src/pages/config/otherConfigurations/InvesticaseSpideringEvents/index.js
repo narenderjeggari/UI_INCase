@@ -70,14 +70,14 @@ export default function InvesticaseSpideringEvents() {
   const [parentDataRefresh, setParentDataRefresh] = useState(false);
 
   const columns = [
-    { id: "name", label: "NMI ISSUE TYPE" },
+    // { id: "name", label: "NMI ISSUE TYPE" },
+    {
+      id: "speNumber",
+      label: "EVENT NUMBER",
+    },
     {
       id: "type",
       label: "TYPE",
-    },
-    {
-      id: "speEventNumber",
-      label: "EVENT NUMBER",
     },
     {
       id: "speOriginDesc",
@@ -136,7 +136,7 @@ export default function InvesticaseSpideringEvents() {
 
   const renderColumn = (id, value, row) => {
     switch (id) {
-      case "name":
+      case "speNumber":
         return (
           <Typography
             className={
