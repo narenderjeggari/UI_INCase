@@ -337,16 +337,39 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                     rows={2}
                   />
                 </Stack>
+                <Stack
+                  direction="row"
+                  alignItems="start"
+                  style={{ marginTop: "0.7rem" }}
+                >
+                  <Typography className="label-text" style={{ width: "19%" }}>
+                    Comments:
+                  </Typography>
+                  <TextField
+                    size="medium"
+                    fullWidth
+                    id="comments"
+                    label="Comments"
+                    variant="outlined"
+                    onChange={handleChange}
+                    value={values.comments ?? ""}
+                    error={touched.comments && Boolean(errors.comments)}
+                    helperText={touched.comments && errors.comments}
+                    name="comments"
+                    multiline
+                    rows={2}
+                  />
+                </Stack>
                 <Grid container>
                   <Grid item md={6}>
-                    {/* <Grid container>
+                     <Grid container>
                       <Grid
                         item
                         md={3.6}
                         sx={{ display: "flex", alignSelf: "center" }}
                       >
                         <Typography className="label-text">
-                          Sub-type:
+                          Create issue-Type:
                         </Typography>
                       </Grid>
                       <Grid item md={6}>
@@ -362,7 +385,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                           ))}
                         </DropdownSelect>
                       </Grid>
-                    </Grid> */}
+                    </Grid>
                   </Grid>
                   <Grid item md={6}>
                     <Grid
@@ -373,7 +396,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                         backgroundColor: "",
                       }}
                     >
-                      {/* <Grid
+                      <Grid
                         item
                         md={3}
                         sx={{ display: "flex", alignSelf: "center" }}
@@ -381,8 +404,8 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                         <Typography className="label-text">
                           Sub-type:
                         </Typography>
-                      </Grid> */}
-                      {/* <Grid item md={6}>
+                      </Grid> 
+                      <Grid item md={6}>
                         <DropdownSelect
                           name="speSubType"
                           value={values.speSubType}
@@ -394,7 +417,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                             </MenuItem>
                           ))}
                         </DropdownSelect>
-                      </Grid> */}
+                      </Grid> 
                     </Grid>
                   </Grid>
                 </Grid>
@@ -429,7 +452,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                       </Grid>
                     </Grid>
                   </Grid>
-                  <Grid item md={6}>
+                  {/* <Grid item md={6}>
                     <FormControlLabel
                       control={<Checkbox />}
                       label={
@@ -439,10 +462,10 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                       }
                       sx={{ marginLeft: "60px", className: "label-text" }}
                     />
-                  </Grid>
+                  </Grid> */}
                 </Grid>
 
-                <Grid container>
+                {/* <Grid container>
                   <Grid item md={6}>
                     <Grid container>
                       <Grid
@@ -485,9 +508,9 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                       sx={{ marginLeft: "60px", className: "label-text" }}
                     />
                   </Grid>
-                </Grid>
+                </Grid> */}
 
-                <Grid container>
+                {/* <Grid container>
                   <Grid item md={6}>
                     <Grid container>
                       <Grid
@@ -530,9 +553,9 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                       sx={{ marginLeft: "60px", className: "label-text" }}
                     />
                   </Grid>
-                </Grid>
+                </Grid> */}
 
-                <Grid container>
+                {/* <Grid container>
                   <Grid item md={6}>
                     <Grid container>
                       <Grid
@@ -572,7 +595,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                       sx={{ marginLeft: "60px", className: "label-text" }}
                     />
                   </Grid>
-                </Grid>
+                </Grid> */}
 
                 {/* <Grid container>
                   <Grid item md={6}>
@@ -603,29 +626,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                   </Grid>
                 </Grid> */}
 
-                <Stack
-                  direction="row"
-                  alignItems="start"
-                  style={{ marginTop: "0.7rem" }}
-                >
-                  <Typography className="label-text" style={{ width: "19%" }}>
-                    Comments:
-                  </Typography>
-                  <TextField
-                    size="medium"
-                    fullWidth
-                    id="comments"
-                    label="Comments"
-                    variant="outlined"
-                    onChange={handleChange}
-                    value={values.comments ?? ""}
-                    error={touched.comments && Boolean(errors.comments)}
-                    helperText={touched.comments && errors.comments}
-                    name="comments"
-                    multiline
-                    rows={2}
-                  />
-                </Stack>
+              
               </Stack>
             </Paper>
           </Stack>
