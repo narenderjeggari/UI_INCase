@@ -143,6 +143,9 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
       speHomeDisallows: selectedParam.speHomeDisallows,
       speSpecialCertify: selectedParam.speSpecialCertify,
       speAutoMarkers: selectedParam.speAutoMarkers,
+      rptId:values.generateReport,
+      nmisubtypeid:values.subType,
+
     };
 
     try {
