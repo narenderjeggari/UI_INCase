@@ -140,7 +140,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
       speNumber: selectedParam.speNumber,
       speOriginCd: selectedParam.speOriginCd,
       speBlockHome: selectedParam.speBlockHome,
-      speHomeDisallows: selectedParam.speHomeDisallows,
+      speHomeDisallows: selectedParam.speHomeDisallows, 
       speSpecialCertify: selectedParam.speSpecialCertify,
       speAutoMarkers: selectedParam.speAutoMarkers,
       rptId:values.generateReport,
@@ -492,7 +492,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                           {selectedParam?.reportList.map((report) => (
                             <MenuItem
                               key={report?.rptId}
-                              value={report?.rptName}
+                              value={report?.rptId}
                             >
                               {report?.rptName}
                             </MenuItem>
