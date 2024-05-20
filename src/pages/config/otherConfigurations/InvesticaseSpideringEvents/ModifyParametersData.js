@@ -145,8 +145,8 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
       speAutoMarkers: selectedParam.speAutoMarkers,
       rptId:values.generateReport,
       nmisubtypeid:values.subType,
-      speFreqCd:selectedParam.speFreqCdAlc,
-      speOtherActionCd:selectedParam.speOtherActionAlc
+      // speFreqCd:selectedParam.speFreqCdAlc,
+      // speOtherActionCd:selectedParam.speOtherActionAlc
     };
 
     try {

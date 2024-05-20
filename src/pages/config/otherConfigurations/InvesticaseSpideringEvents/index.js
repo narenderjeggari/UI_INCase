@@ -87,6 +87,10 @@ export default function InvesticaseSpideringEvents() {
       label: "Short Description",
     },
     {
+      id: "speScore",
+      label: "Score",
+    },
+    {
       id: "startDate",
       label: "Start Date",
     },
@@ -192,7 +196,7 @@ export default function InvesticaseSpideringEvents() {
               payload
             );
 
-      setData(response.spideringAttributesList || []);
+      setData(response.spideringEventList || []);
       setTotalCount(response.pagination.totalItemCount);
       setLoading(false);
       setCurrentFilter(active);

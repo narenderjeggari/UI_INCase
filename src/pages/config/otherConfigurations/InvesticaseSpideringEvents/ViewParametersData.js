@@ -193,6 +193,22 @@ function ViewParametersData({ selectedParam }) {
           {selectedParam.detail}
         </Grid>
       </Grid>
+
+      <Grid container>
+        <Grid className="label-text" item md={1}>
+        Comments:
+        </Grid>
+        <Grid item md={9}>
+          {/* comments */}
+          {selectedParam?.speComments}
+
+          {/* {selectedParam?.spaComments?.split("<br/>")?.map((comment) => (
+                <Typography className="view-params-comments-list-comment">
+                  {comment}
+                </Typography>
+              ))} */}
+        </Grid>
+      </Grid>
     </Stack>
   );
 }
