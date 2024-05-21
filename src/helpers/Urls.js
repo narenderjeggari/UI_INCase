@@ -47,6 +47,8 @@ const otherConfigInvesticaseSpideringEventsDeleteURL = `${baseApiUrl}${process.e
 const otherConfigInvesticaseSpideringEventsReportListURL = `${baseApiUrl}${process.env.REACT_APP_OTHER_CONFIG_INVESTICASE_SPIDERING_REPORT_LIST_URL}`;
 const otherConfigInvesticaseSpideringNmiIdURL = `${baseApiUrl}${process.env.REACT_APP_OTHER_CONFIG_INVESTICASE_SPIDERING_NMIID_URL}`;
 
+const otherConfigInvesticaseIdentifyProofingQuestionsSearchURL = `${baseApiUrl}${process.env.REACT_APP_OTHER_CONFIG_INVESTICASE_IDENTIFY_PROOFING_QUESTIONS_SEARCH_URL}`;
+
 const otherConfigReasonsDropdownURL = `${baseApiUrl}${process.env.REACT_APP_OTHER_CONFIG_REASON_DROPDOWN_URL}`;
 const otherConfigBusinessUnitDropdownURL = `${baseApiUrl}${process.env.REACT_APP_OTHER_CONFIG_BUSINESS_UNIT_DROPDOWN_URL}`;
 const otherConfigInvesticaseSpideringALVIdOtherActionsURL = `${baseApiUrl}${process.env.REACT_APP_OTHER_CONFIG_INVESTICASE_SPIDERING_ALVID_URL}`;
@@ -96,5 +98,6 @@ export {
   otherConfigInvesticaseSpideringEventsDeleteURL,
   otherConfigInvesticaseSpideringEventsReportListURL,
   otherConfigInvesticaseSpideringALVIdOtherActionsURL,
-  otherConfigInvesticaseSpideringNmiIdURL
+  otherConfigInvesticaseSpideringNmiIdURL,
+  otherConfigInvesticaseIdentifyProofingQuestionsSearchURL
 };

@@ -48,6 +48,10 @@ export const CONFIG_ITEMS = {
           id: "Configure Spidering Events",
           label: "Configure Spidering Events",
         },
+        {
+          id: "Configure Identify Proofing Questions",
+          label: "Configure Identify Proofing Questions",
+        },
       ],
     },
   ],

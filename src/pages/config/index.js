@@ -20,6 +20,7 @@ import AutosetWeeklyWorkSearchRequirements from "./otherConfigurations/workSearc
 import AutosetWeeklyWorkSearchWaivers from "./otherConfigurations/workSearchWaivers";
 import Investicase from "./otherConfigurations/Investicase";
 import InvesticaseSpideringEvents from "./otherConfigurations/InvesticaseSpideringEvents";
+import IdentifyProofingQuestions from "./otherConfigurations/IdentifyProofingQuestions";
 import {
   dropdownAccordianHeadersURL,
   individualParamsTitleURL,
@@ -101,6 +102,8 @@ export default function Configurations() {
           return <Investicase />;
         case "Configure Spidering Events":
           return <InvesticaseSpideringEvents />;
+        case "Configure Identify Proofing Questions":
+          return <IdentifyProofingQuestions />;
         default:
           return (
             <DropdownListItemData

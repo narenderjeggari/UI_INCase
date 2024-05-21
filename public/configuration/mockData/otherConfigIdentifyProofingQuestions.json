@@ -1,0 +1,59 @@
+{
+  "spideringIdentifiersList": [
+    {
+      "spiId": 1,
+      "spiNumber":1,
+      "spiQuestion": "Are you a Veteran?",
+      "spiAlwaysRight": "Y",
+      "startDate": "09/20/2017",
+      "childListCount": 1,
+      "editFlag": true,
+      "deleteFlag": false,
+      "reinstateFlag": false
+    },
+    {
+      "spiId": 2,
+      "spiNumber":2,
+      "spiQuestion": "Please provide details of the State-issued id that you have provided us in the past.",
+      "spiAlwaysRight": "N",
+      "startDate": "09/20/2017",
+      "childListCount": 0,
+      "editFlag": true,
+      "deleteFlag": false,
+      "reinstateFlag": false
+    },
+    {
+      "spiId": 3,
+      "spiNumber":3,
+      "spiQuestion": "Which of the following is the highest-level of your Driver's License",
+      "spiAlwaysRight": "N",
+      "startDate": "09/20/2017",
+      "childListCount": 0,
+      "editFlag": true,
+      "deleteFlag": false,
+      "reinstateFlag": false
+    },
+    {
+      "spiId": 4,
+      "spiNumber":4,
+      "spiQuestion": "Please enter the year of your High School graduation.",
+      "spiAlwaysRight": "Y",
+      "startDate": "09/20/2017",
+      "childListCount": 0,
+      "editFlag": true,
+      "deleteFlag": false,
+      "reinstateFlag": false
+    },
+    {
+      "spiId": 5,
+      "spiNumber":5,
+      "spiQuestion": "Please enter the user name you use to log into NH Jobs(our Job Match System).",
+      "spiAlwaysRight": "N",
+      "startDate": "09/20/2017",
+      "childListCount": 0,
+      "editFlag": true,
+      "deleteFlag": false,
+      "reinstateFlag": false
+    }
+  ]
+}
