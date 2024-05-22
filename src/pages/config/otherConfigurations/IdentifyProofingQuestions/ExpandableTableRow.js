@@ -44,47 +44,26 @@ function ExpandableTableRow({
   const [selectedParam, setSelectedParam] = useState();
 
   const columns = [
-    // { id: "name", label: "NAME" },
-    // {
-    //   id: "parentAttributeName",
-    //   label: "PARENT NAME",
-    // },
     {
-      id: "spaAttrWeight",
-      label: "WEIGHT",
+      id: "spiQuestion",
+      label: "Question",
     },
     {
-      id: "spaAutoMark",
-      label: "AUTOMARK IND",
+      id: "spiAlwaysRight",
+      label: "Always Aright",
     },
     {
       id: "startDate",
-      label: "START DATE",
+      label: "Start date",
     },
-    // {
-    //   id: "endDate",
-    //   label: "END DATE",
-    // },
-    // {
-    //   id: "datePattern4Ind",
-    //   label: "DATE PATTERN 4 IND",
-    // },
-    // {
-    //   id: "minThreshold",
-    //   label: "MIN. THRESHOLD",
-    // },
     {
-      id: "idhSubmitScore",
-      label: "IDH SUBMIT SCORE",
+      id: "endDate",
+      label: "End date",
     },
-    // {
-    //   id: "spaRuleDesc",
-    //   label: "RULE DESC",
-    // },
     {
-      id: "actions",
-      label: "Actions",
-    },
+      id:"actions",
+      label:"Actions"
+    }
   ];
 
   const StyledTableRow = styled(TableRow)(({ theme }) => ({
