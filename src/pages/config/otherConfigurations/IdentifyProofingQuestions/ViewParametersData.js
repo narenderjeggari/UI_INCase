@@ -1,109 +1,39 @@
 import React from "react";
-import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import Grid from "@mui/material/Grid";
-// import Accordion from "@mui/material/Accordion";
-// import AccordionSummary from "@mui/material/AccordionSummary";
-// import AccordionDetails from "@mui/material/AccordionDetails";
-// import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 function ViewParametersData({ selectedParam }) {
   return (
     <Stack spacing={0.2}>
       <Grid container>
-        <Grid item md={8}>
+        <Grid item md={5}>
           <Grid container>
-            <Grid className="label-text" item md={2.4}>
-              Name:
+            <Grid className="label-text" item md={3}>
+              Question:
             </Grid>
-            <Grid item md={9.6}>
-              {selectedParam.name}
+            <Grid item md={9}>
+              {selectedParam.spiQuestion}
             </Grid>
           </Grid>
         </Grid>
 
-        <Grid item md={4}>
+        <Grid item md={3.5}>
           <Grid container>
             <Grid className="label-text" item md={5}>
-              Automark:
+              Effective Date:
             </Grid>
-            <Grid item md={6}>
-              {selectedParam.spaAutoMark}
-            </Grid>
-          </Grid>
-        </Grid>
-      </Grid>
-
-      <Grid container>
-        <Grid item md={8}>
-          <Grid container>
-            <Grid className="label-text" item md={2.4}>
-              Attr format type:
-            </Grid>
-            <Grid item md={9.6}>
-              {selectedParam.spaFormatDesc}
-            </Grid>
-          </Grid>
-        </Grid>
-
-        <Grid item md={4}>
-          <Grid container>
-            <Grid className="label-text" item md={5}>
-              Weight:
-            </Grid>
-            <Grid item md={6}>
-              {selectedParam.spaAttrWeight}
-            </Grid>
-          </Grid>
-        </Grid>
-      </Grid>
-
-      <Grid container>
-        <Grid item md={8}>
-          <Grid container>
-            <Grid className="label-text" item md={2.4}>
-              Remarks:
-            </Grid>
-            <Grid item md={9.6}>
-              {selectedParam.spaRemarks}
-            </Grid>
-          </Grid>
-        </Grid>
-
-        <Grid item md={4}>
-          <Grid container>
-            <Grid className="label-text" item md={5}>
-              Effective From:
-            </Grid>
-            <Grid item md={6}>
+            <Grid item md={7}>
               {selectedParam.startDate}
             </Grid>
           </Grid>
         </Grid>
-      </Grid>
 
-      <Grid container>
-        <Grid item md={8}>
+        <Grid item md={3.5}>
           <Grid container>
-            <Grid className="label-text" item md={2.4}>
-              Comments:
-            </Grid>
-            <Grid item md={9.6}>
-              {selectedParam.spaComments?.split("<br/>")?.map((comment) => (
-                <Typography className="view-params-comments-list-comment">
-                  {comment}
-                </Typography>
-              ))}
-            </Grid>
-          </Grid>
-        </Grid>
-
-        <Grid item md={4}>
-          <Grid container>
-            <Grid className="label-text" item md={5}>
+            <Grid className="label-text" item md={4}>
               Until:
             </Grid>
-            <Grid item md={6}>
+            <Grid item md={8}>
               {selectedParam.endDate}
             </Grid>
           </Grid>
@@ -111,19 +41,91 @@ function ViewParametersData({ selectedParam }) {
       </Grid>
 
       <Grid container>
-        <Grid item md={8}></Grid>
+        <Grid item md={5}>
+          <Grid container>
+            <Grid className="label-text" item md={3}>
+              English:
+            </Grid>
+            <Grid item md={9}>
+              {selectedParam.spiEnglish}
+            </Grid>
+          </Grid>
+        </Grid>
 
-        <Grid item md={4}>
+        <Grid item md={3.5}>
           <Grid container>
             <Grid className="label-text" item md={5}>
-              Date pattern 4 Ind:
+              Type:
             </Grid>
-            <Grid item md={6}>
-              {selectedParam.spaDp4ActiveInd}
+            <Grid item md={7}>
+              {selectedParam.spiAlwaysRight}
+            </Grid>
+          </Grid>
+        </Grid>
+
+        <Grid item md={3.5}>
+          <Grid container>
+            <Grid className="label-text" item md={4}>
+              Source:
+            </Grid>
+            <Grid item md={8}>
+              {selectedParam.spiSource}
             </Grid>
           </Grid>
         </Grid>
       </Grid>
+
+      <Grid container>
+        <Grid item md={5}>
+          <Grid container>
+            <Grid className="label-text" item md={3}>
+              Spanish:
+            </Grid>
+            <Grid item md={9}>
+              {selectedParam.spiSpanish}
+            </Grid>
+          </Grid>
+        </Grid>
+
+        {/* <Grid item md={3}>
+          <Grid container>
+            <Grid className="label-text" item md={6}>
+              Auto Increment Markers:
+            </Grid>
+            <Grid item md={6}>
+              {selectedParam.speAutoMarkers}
+            </Grid>
+          </Grid>
+        </Grid>
+
+        <Grid item md={3}>
+          <Grid container>
+            <Grid className="label-text" item md={8}>
+              Score:
+            </Grid>
+            <Grid item md={4}>
+              {selectedParam.speScore}
+            </Grid>
+          </Grid>
+        </Grid> */}
+      </Grid>
+
+
+      {/* <Grid container>
+        <Grid className="label-text" item md={1.5}>
+          Comments:
+        </Grid>
+        <Grid item md={9}>
+          comments
+          {selectedParam?.speComments}
+
+          {selectedParam?.spaComments?.split("<br/>")?.map((comment) => (
+                <Typography className="view-params-comments-list-comment">
+                  {comment}
+                </Typography>
+              ))}
+        </Grid>
+      </Grid> */}
     </Stack>
   );
 }

@@ -50,6 +50,7 @@ const otherConfigInvesticaseSpideringNmiIdURL = `${baseApiUrl}${process.env.REAC
 
 const otherConfigInvesticaseIdentifyProofingQuestionsSearchURL = `${baseApiUrl}${process.env.REACT_APP_OTHER_CONFIG_INVESTICASE_IDENTIFY_PROOFING_QUESTIONS_SEARCH_URL}`;
 const otherConfigInvesticaseIdentifyProofingQuestionsDetailsURL = `${baseApiUrl}${process.env.REACT_APP_OTHER_CONFIG_INVESTICASE_IDENTIFY_PROOFING_QUESTIONS_DETAILS_URL}`;
+const otherConfigInvesticaseIdentifyProofingQuestionsDeleteURL = `${baseApiUrl}${process.env.REACT_APP_OTHER_CONFIG_INVESTICASE_IDENTIFY_PROOFING_QUESTIONS_DELETE_URL}`;
 
 const otherConfigReasonsDropdownURL = `${baseApiUrl}${process.env.REACT_APP_OTHER_CONFIG_REASON_DROPDOWN_URL}`;
 const otherConfigBusinessUnitDropdownURL = `${baseApiUrl}${process.env.REACT_APP_OTHER_CONFIG_BUSINESS_UNIT_DROPDOWN_URL}`;
@@ -102,5 +103,6 @@ export {
   otherConfigInvesticaseSpideringALVIdOtherActionsURL,
   otherConfigInvesticaseSpideringNmiIdURL,
   otherConfigInvesticaseIdentifyProofingQuestionsSearchURL,
-  otherConfigInvesticaseIdentifyProofingQuestionsDetailsURL
+  otherConfigInvesticaseIdentifyProofingQuestionsDetailsURL,
+  otherConfigInvesticaseIdentifyProofingQuestionsDeleteURL
 };

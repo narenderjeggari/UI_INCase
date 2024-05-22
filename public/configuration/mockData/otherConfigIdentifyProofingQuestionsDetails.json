@@ -2,8 +2,12 @@
     "spiId": 1,
     "spiNumber":1,
     "spiQuestion": "Are you a Veteran?",
+    "spiSource":"IC-Reemployment",
     "spiAlwaysRight": "Y",
+    "spiEnglish":"hello how are you",
+    "spiSpanish":"hola, cómo estás",
     "startDate": "09/20/2017",
+    "endDate": "09/20/2017",
     "childListCount": 1,
     "editFlag": true
   }

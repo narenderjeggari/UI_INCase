@@ -22,8 +22,8 @@ import client from "../../../../helpers/Api";
 // import { serverErrorMessages } from "../../../../helpers/Constants";
 import {
   otherConfigInvesticaseIdentifyProofingQuestionsSearchURL,
-  otherConfigInvesticaseDetailsURL,
-  otherConfigInvesticaseDeleteURL,
+  otherConfigInvesticaseIdentifyProofingQuestionsDetailsURL,
+  otherConfigInvesticaseIdentifyProofingQuestionsDeleteURL,
 } from "../../../../helpers/Urls";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -264,8 +264,8 @@ export default function IdentifyProofingQuestions() {
     try {
       const response =
         process.env.REACT_APP_ENV === "mockserver"
-          ? await client.get(`${otherConfigInvesticaseDetailsURL}`)
-          : await client.get(`${otherConfigInvesticaseDetailsURL}${spiId}`);
+          ? await client.get(`${otherConfigInvesticaseIdentifyProofingQuestionsDetailsURL}`)
+          : await client.get(`${otherConfigInvesticaseIdentifyProofingQuestionsDetailsURL}${spiId}`);
 
       setSelectedParam({ ...response, reinstateFlag });
 
@@ -297,9 +297,9 @@ export default function IdentifyProofingQuestions() {
     try {
       const response =
         process.env.REACT_APP_ENV === "mockserver"
-          ? await client.get(`${otherConfigInvesticaseDeleteURL}`)
+          ? await client.get(`${otherConfigInvesticaseIdentifyProofingQuestionsDeleteURL}`)
           : await client.delete(
-            `${otherConfigInvesticaseDeleteURL}${selectedParamIdForDelete}`
+            `${otherConfigInvesticaseIdentifyProofingQuestionsDeleteURL}${selectedParamIdForDelete}`
           );
       setShowDeleteParamConfirModal(false);
       refreshData();
