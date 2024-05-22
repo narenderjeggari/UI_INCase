@@ -23,6 +23,7 @@ import {
   otherConfigInvesticaseSpideringEventsSaveURL,
   // otherConfigInvesticaseSpideringALVIdOtherActionsURL,
   otherConfigInvesticaseSpideringNmiIdURL,
+  otherConfigInvesticaseSpideringEventsReportListURL,
 } from "../../../../helpers/Urls";
 import { getMsgsFromErrorCode } from "../../../../helpers/utils";
 import moment from "moment";
@@ -39,6 +40,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
   const [createIssueTypeId, setCreateIssueTypeId] = useState([]);
 
   const [subTypes, setSubTypes] = useState([]);
+  const [reportList, setReportList] = useState([]);
 
   const initialState = {
     modificationType: "",
@@ -60,25 +62,29 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
     }
   }, [selectedParam?.nmiId]);
 
-  // const getOtherActionsDropdownData = async () => {
-  //   try {
-  //     const response =
-  //       process.env.REACT_APP_ENV === "mockserver"
-  //         ? await client.get(
-  //             otherConfigInvesticaseSpideringALVIdOtherActionsURL
-  //           )
-  //         : await client.get(
-  //             `${otherConfigInvesticaseSpideringALVIdOtherActionsURL}${selectedParam?.speOtherActionAlc}`
-  //           );
-  //     setOtherActions([response]);
-  //   } catch (errorResponse) {
-  //     const newErrMsgs = getMsgsFromErrorCode(
-  //       `POST:${process.env.REACT_APP_OTHER_CONFIG_REASON_DROPDOWN_URL}`,
-  //       errorResponse
-  //     );
-  //     setErrorMessages(newErrMsgs);
-  //   }
-  // };
+  useEffect(() => {
+    getReportListDropdownData();
+  }, []);
+
+  const getReportListDropdownData = async () => {
+    try {
+      const reportListresponse =
+        process.env.REACT_APP_ENV === "mockserver"
+          ? await client.get(
+              `${otherConfigInvesticaseSpideringEventsReportListURL}`
+            )
+          : await client.get(
+              `${otherConfigInvesticaseSpideringEventsReportListURL}`
+            );
+      setReportList(reportListresponse);
+    } catch (errorResponse) {
+      const newErrMsgs = getMsgsFromErrorCode(
+        `POST:${process.env.REACT_APP_OTHER_CONFIG_REASON_DROPDOWN_URL}`,
+        errorResponse
+      );
+      setErrorMessages(newErrMsgs);
+    }
+  };
 
   const getNmiIdDropdownData = async () => {
     try {
@@ -140,7 +146,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
       speNumber: selectedParam.speNumber,
       speOriginCd: selectedParam.speOriginCd,
       speBlockHome: selectedParam.speBlockHome,
-      speHomeDisallows: selectedParam.speHomeDisallows, 
+      speHomeDisallows: selectedParam.speHomeDisallows,
       speSpecialCertify: selectedParam.speSpecialCertify,
       speAutoMarkers: selectedParam.speAutoMarkers,
       rptId:values.generateReport,
@@ -420,13 +426,13 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                           helperText={touched?.name && errors?.name}
                         >
                           {issueTypes?.map((issueType) => (
-                            <MenuItem
-                              key={issueType?.nmiId}
-                              value={issueType?.nmiId}
-                            >
-                              {issueType?.nmiDesc}
-                            </MenuItem>
-                          ))}
+                              <MenuItem
+                                key={issueType?.nmiId}
+                                value={issueType?.nmiId}
+                              >
+                                {issueType?.nmiDesc}
+                              </MenuItem>
+                            ))}
                         </Select>
                       </Grid>
                     </Grid>
@@ -457,13 +463,13 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                           handleChange={handleChange}
                         >
                           {subTypes.map((subType) => (
-                            <MenuItem
-                              key={subType?.nmiId}
-                              value={subType?.nmiId}
-                            >
-                              {subType?.nmiDesc}
-                            </MenuItem>
-                          ))}
+                              <MenuItem
+                                key={subType?.nmiId}
+                                value={subType?.nmiId}
+                              >
+                                {subType?.nmiDesc}
+                              </MenuItem>
+                            ))}
                         </DropdownSelect>
                       </Grid>
                     </Grid>
@@ -489,11 +495,8 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                           setFieldValue={setFieldValue}
                           handleChange={handleChange}
                         >
-                          {selectedParam?.reportList.map((report) => (
-                            <MenuItem
-                              key={report?.rptId}
-                              value={report?.rptId}
-                            >
+                          {reportList.map((report) => (
+                            <MenuItem key={report?.rptId} value={report?.rptId}>
                               {report?.rptName}
                             </MenuItem>
                           ))}
@@ -501,179 +504,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                       </Grid>
                     </Grid>
                   </Grid>
-                  {/* <Grid item md={6}>
-                    <FormControlLabel
-                      control={<Checkbox />}
-                      label={
-                        <Typography className="label-text">
-                          Auto increment markers
-                        </Typography>
-                      }
-                      sx={{ marginLeft: "60px", className: "label-text" }}
-                    />
-                  </Grid> */}
                 </Grid>
-
-                {/* <Grid container>
-                  <Grid item md={6}>
-                    <Grid container>
-                      <Grid
-                        item
-                        md={3.66}
-                        sx={{ display: "flex", alignSelf: "center" }}
-                      >
-                        <Typography className="label-text">
-                          <span className="required">*</span>InvestiCase
-                          Actions:
-                        </Typography>
-                      </Grid>
-                      <Grid item md={6}>
-                        <DropdownSelect
-                          name="investicaseActions"
-                          value={values.investicaseActions}
-                          setFieldValue={setFieldValue}
-                          touched={touched}
-                          errors={errors}
-                          handleChange={handleChange}
-                        >
-                          {names.map((name) => (
-                            <MenuItem key={name} value={name}>
-                              {name}
-                            </MenuItem>
-                          ))}
-                        </DropdownSelect>
-                      </Grid>
-                    </Grid>
-                  </Grid>
-
-                  <Grid item md={6}>
-                    <FormControlLabel
-                      control={<Checkbox />}
-                      label={
-                        <Typography className="label-text">
-                          Block Home page when this event occurs
-                        </Typography>
-                      }
-                      sx={{ marginLeft: "60px", className: "label-text" }}
-                    />
-                  </Grid>
-                </Grid> */}
-
-                {/* <Grid container>
-                  <Grid item md={6}>
-                    <Grid container>
-                      <Grid
-                        item
-                        md={3.66}
-                        sx={{ display: "flex", alignSelf: "center" }}
-                      >
-                        <Typography className="label-text">
-                          Other Actions:
-                        </Typography>
-                      </Grid>
-                      <Grid item md={6}>
-                        <DropdownSelect
-                          name="otherActions"
-                          value={values.otherActions}
-                          setFieldValue={setFieldValue}
-                        >
-                          {otherActions.map((otherAction) => (
-                            <MenuItem
-                              key={otherAction?.alvId}
-                              value={otherAction?.alvId}
-                            >
-                              {otherAction?.alvShortDecTxt}
-                            </MenuItem>
-                          ))}
-                        </DropdownSelect>
-                      </Grid>
-                    </Grid>
-                  </Grid>
-
-                  <Grid item md={6}>
-                    <FormControlLabel
-                      control={<Checkbox />}
-                      label={
-                        <Typography className="label-text">
-                          Apply special rules to disallow certain actions on the
-                          Home page
-                        </Typography>
-                      }
-                      sx={{ marginLeft: "60px", className: "label-text" }}
-                    />
-                  </Grid>
-                </Grid> */}
-
-                {/* <Grid container>
-                  <Grid item md={6}>
-                    <Grid container>
-                      <Grid
-                        item
-                        md={3.66}
-                        sx={{ display: "flex", alignSelf: "center" }}
-                      >
-                        <Typography className="label-text">
-                          Freq. of Data Pattern:
-                        </Typography>
-                      </Grid>
-                      <Grid item md={6}>
-                        <DropdownSelect
-                          name="freqData"
-                          value={values.freqData}
-                          setFieldValue={setFieldValue}
-                        >
-                          {names.map((name) => (
-                            <MenuItem key={name} value={name}>
-                              {name}
-                            </MenuItem>
-                          ))}
-                        </DropdownSelect>
-                      </Grid>
-                    </Grid>
-                  </Grid>
-
-                  <Grid item md={6}>
-                    <FormControlLabel
-                      control={<Checkbox />}
-                      label={
-                        <Typography className="label-text">
-                          Apply special rules on certification when this event
-                          occurs
-                        </Typography>
-                      }
-                      sx={{ marginLeft: "60px", className: "label-text" }}
-                    />
-                  </Grid>
-                </Grid> */}
-
-                {/* <Grid container>
-                  <Grid item md={6}>
-                    <Grid container>
-                      <Grid
-                        item
-                        md={3.66}
-                        sx={{ display: "flex", alignSelf: "center" }}
-                      >
-                        <Typography className="label-text">
-                          Sub-Type:
-                        </Typography>
-                      </Grid>
-                      <Grid item md={6}>
-                        <DropdownSelect
-                          name="subType"
-                          value={values.subType}
-                          setFieldValue={setFieldValue}
-                        >
-                          {names.map((name) => (
-                            <MenuItem key={name} value={name}>
-                              {name}
-                            </MenuItem>
-                          ))}
-                        </DropdownSelect>
-                      </Grid>
-                    </Grid>
-                  </Grid>
-                </Grid> */}
               </Stack>
             </Paper>
           </Stack>

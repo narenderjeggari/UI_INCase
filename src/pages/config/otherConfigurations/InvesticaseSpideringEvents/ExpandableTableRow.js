@@ -25,7 +25,7 @@ import CustomModal from "../../../../components/customModal/CustomModal";
 import ModifyParametersData from "./ModifyParametersData";
 import { isUpdateAccessExist } from "../../../../utils/cookies";
 import moment from "moment";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+// import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 
 function ExpandableTableRow({
   parentDataRefresh,
@@ -68,6 +68,10 @@ function ExpandableTableRow({
     {
       id: "endDate",
       label: "End Date",
+    },
+    {
+      id: "actions",
+      label: "Actions",
     },
   ];
 

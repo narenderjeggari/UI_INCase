@@ -292,7 +292,8 @@ export default function InvesticaseSpideringEvents() {
               `${otherConfigInvesticaseSpideringEventsReportListURL}`
             );
 
-      setSelectedParam({ ...response, reinstateFlag, reportList:reportListresponse||[] });
+      // setSelectedParam({ ...response, reinstateFlag, reportList:reportListresponse||[] });
+      setSelectedParam({ ...response, reinstateFlag});
 
       if (showEditModal) {
         setShowEditParamModal(true);
@@ -454,7 +455,7 @@ export default function InvesticaseSpideringEvents() {
                             >
                               {row.editFlag === true && (
                                 <Tooltip title="Edit" placement="left">
-                                  <IconButton disabled={!isUpdateAccessExist()}>
+                                  <IconButton disabled={false}>
                                     <EditNoteIcon
                                       sx={{ cursor: "pointer" }}
                                       fontSize="medium"
