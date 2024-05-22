@@ -13,7 +13,7 @@ function ViewParametersData({ selectedParam }) {
       <Grid container>
         <Grid item md={6}>
           <Grid container>
-            <Grid className="label-text" item md={2}>
+            <Grid className="label-text" item md={3}>
               Event Number:
             </Grid>
             <Grid item md={9}>
@@ -24,7 +24,7 @@ function ViewParametersData({ selectedParam }) {
 
         <Grid item md={3}>
           <Grid container>
-            <Grid className="label-text" item md={5}>
+            <Grid className="label-text" item md={6}>
               Type:
             </Grid>
             <Grid item md={6}>
@@ -35,10 +35,10 @@ function ViewParametersData({ selectedParam }) {
 
         <Grid item md={3}>
           <Grid container>
-            <Grid className="label-text" item md={6}>
-              Special Certify IND:
+            <Grid className="label-text" item md={8}>
+              Special Rules on Certification:
             </Grid>
-            <Grid item md={6}>
+            <Grid item md={4}>
               {selectedParam.speSpecialCertify}
             </Grid>
           </Grid>
@@ -48,8 +48,8 @@ function ViewParametersData({ selectedParam }) {
       <Grid container>
         <Grid item md={6}>
           <Grid container>
-            <Grid className="label-text" item md={2}>
-              Origin Desc:
+            <Grid className="label-text" item md={3}>
+              Origin:
             </Grid>
             <Grid item md={9}>
               {selectedParam.speOriginCd}
@@ -59,8 +59,8 @@ function ViewParametersData({ selectedParam }) {
 
         <Grid item md={3}>
           <Grid container>
-            <Grid className="label-text" item md={5}>
-              Block Home IND:
+            <Grid className="label-text" item md={6}>
+              Block Home Page:
             </Grid>
             <Grid item md={6}>
               {selectedParam.speBlockHome}
@@ -70,10 +70,10 @@ function ViewParametersData({ selectedParam }) {
 
         <Grid item md={3}>
           <Grid container>
-            <Grid className="label-text" item md={6}>
-              Home DisAllows IND:
+            <Grid className="label-text" item md={8}>
+              DisAllows Home Page Actions:
             </Grid>
-            <Grid item md={6}>
+            <Grid item md={4}>
               {selectedParam.speHomeDisallows}
             </Grid>
           </Grid>
@@ -83,8 +83,8 @@ function ViewParametersData({ selectedParam }) {
       <Grid container>
         <Grid item md={6}>
           <Grid container>
-            <Grid className="label-text" item md={2}>
-              InvAction Desc:
+            <Grid className="label-text" item md={3}>
+              Investicase Action:
             </Grid>
             <Grid item md={9}>
               {selectedParam.speInvActionDesc}
@@ -94,8 +94,8 @@ function ViewParametersData({ selectedParam }) {
 
         <Grid item md={3}>
           <Grid container>
-            <Grid className="label-text" item md={5}>
-              Other Action Code:
+            <Grid className="label-text" item md={6}>
+              Other Actions:
             </Grid>
             <Grid item md={6}>
               {selectedParam.speOtherActionAlc}
@@ -105,10 +105,10 @@ function ViewParametersData({ selectedParam }) {
 
         <Grid item md={3}>
           <Grid container>
-            <Grid className="label-text" item md={6}>
-              Frequency Code:
+            <Grid className="label-text" item md={8}>
+              Frequency:
             </Grid>
-            <Grid item md={6}>
+            <Grid item md={4}>
               {selectedParam.speFreqCd}
             </Grid>
           </Grid>
@@ -118,8 +118,8 @@ function ViewParametersData({ selectedParam }) {
       <Grid container>
         <Grid item md={6}>
           <Grid container>
-            <Grid className="label-text" item md={2}>
-              Short Desc:
+            <Grid className="label-text" item md={3}>
+              Description:
             </Grid>
             <Grid item md={9}>
               {selectedParam.description}
@@ -129,8 +129,8 @@ function ViewParametersData({ selectedParam }) {
 
         <Grid item md={3}>
           <Grid container>
-            <Grid className="label-text" item md={5}>
-              Spe Auto Markers:
+            <Grid className="label-text" item md={6}>
+              Auto Increment Markers:
             </Grid>
             <Grid item md={6}>
               {selectedParam.speAutoMarkers}
@@ -140,10 +140,10 @@ function ViewParametersData({ selectedParam }) {
 
         <Grid item md={3}>
           <Grid container>
-            <Grid className="label-text" item md={6}>
+            <Grid className="label-text" item md={8}>
               Score:
             </Grid>
-            <Grid item md={6}>
+            <Grid item md={4}>
               {selectedParam.speScore}
             </Grid>
           </Grid>
@@ -153,10 +153,10 @@ function ViewParametersData({ selectedParam }) {
       <Grid container>
         <Grid item md={6}>
           <Grid container>
-            <Grid className="label-text" item md={2}>
-              NMI Issue Type:
+            <Grid className="label-text" item md={3}>
+              Issue Type/Sub Type:
             </Grid>
-            <Grid item md={9.8}>
+            <Grid item md={9}>
               {selectedParam.nmiDesc}
             </Grid>
           </Grid>
@@ -164,7 +164,7 @@ function ViewParametersData({ selectedParam }) {
 
         <Grid item md={3}>
           <Grid container>
-            <Grid className="label-text" item md={5}>
+            <Grid className="label-text" item md={6}>
               Effective Date:
             </Grid>
             <Grid item md={6}>
@@ -175,10 +175,10 @@ function ViewParametersData({ selectedParam }) {
 
         <Grid item md={3}>
           <Grid container>
-            <Grid className="label-text" item md={6}>
+            <Grid className="label-text" item md={8}>
               Until:
             </Grid>
-            <Grid item md={6}>
+            <Grid item md={4}>
               {selectedParam.endDate}
             </Grid>
           </Grid>
@@ -186,8 +186,8 @@ function ViewParametersData({ selectedParam }) {
       </Grid>
 
       <Grid container>
-        <Grid className="label-text" item md={1}>
-          Long Desc:
+        <Grid className="label-text" item md={1.5}>
+          Detail:
         </Grid>
         <Grid item md={9}>
           {selectedParam.detail}
@@ -195,7 +195,7 @@ function ViewParametersData({ selectedParam }) {
       </Grid>
 
       <Grid container>
-        <Grid className="label-text" item md={1}>
+        <Grid className="label-text" item md={1.5}>
         Comments:
         </Grid>
         <Grid item md={9}>
