@@ -23,12 +23,19 @@ import { otherConfigInvesticaseSaveURL } from "../../../../helpers/Urls";
 import { getMsgsFromErrorCode } from "../../../../helpers/utils";
 import moment from "moment";
 import client from "../../../../helpers/Api";
+import FormLabel from "@mui/material/FormLabel";
 
 function ModifyParametersData({ selectedParam, closeModalPopup }) {
   const [errorMessages, setErrorMessages] = useState([]);
   const [loading, setLoading] = useState(false);
-  const { name, spaAttrWeight, spaAutoMark, spaFormatDesc, spaRemarks, spaComments } =
-    selectedParam;
+  const {
+    name,
+    spaAttrWeight,
+    spaAutoMark,
+    spaFormatDesc,
+    spaRemarks,
+    spaComments,
+  } = selectedParam;
   const initialState = {
     modificationType: "",
     name: name,
@@ -45,8 +52,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
     let modificationDate;
     if (values.modificationType === "CHANGE") {
       modificationDate = values.modificationDate?.format("MM/DD/YYYY");
-    }
-    else if (values.modificationType === "ENDDATE") {
+    } else if (values.modificationType === "ENDDATE") {
       modificationDate = values.endDate?.format("MM/DD/YYYY");
     } else {
       modificationDate = values.reinstateDate?.format("MM/DD/YYYY");
@@ -164,8 +170,8 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                               }}
                               slotProps={{ textField: { size: "small" } }}
                               minDate={moment().add(1, "days")}
-                            // minDate={moment().startOf('week').startOf('day')}
-                            // maxDate={moment().add("months", 2)}
+                              // minDate={moment().startOf('week').startOf('day')}
+                              // maxDate={moment().add("months", 2)}
                             />
                             {touched.modificationDate &&
                               errors.modificationDate && (
@@ -192,8 +198,8 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                               }
                               slotProps={{ textField: { size: "small" } }}
                               minDate={moment().add(1, "days")}
-                            // minDate={moment().startOf('week').startOf('day')}
-                            // maxDate={moment().add("months", 2)}
+                              // minDate={moment().startOf('week').startOf('day')}
+                              // maxDate={moment().add("months", 2)}
                             />
                             {touched.endDate && errors.endDate && (
                               <FormHelperText style={{ color: "red" }}>
@@ -221,7 +227,6 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                       onChange={(event) => {
                         setFieldValue("modificationDate", null);
                         setFieldValue("reinstateDate", null);
-                        console.log('modificationType:::', event.target.value);
                         setFieldValue("modificationType", event.target.value);
                       }}
                       error={
@@ -242,9 +247,7 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                         <LocalizationProvider dateAdapter={AdapterMoment}>
                           <FormControl sx={{ width: 150 }}>
                             <DatePicker
-                              disabled={
-                                values.modificationType !== "REINSTATE"
-                              }
+                              disabled={values.modificationType !== "REINSTATE"}
                               name="reinstateDate"
                               format="MM/DD/YYYY"
                               value={values.resinstateDate}
@@ -253,8 +256,8 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                               }
                               slotProps={{ textField: { size: "small" } }}
                               minDate={moment().add(1, "days")}
-                            // minDate={moment().startOf('week').startOf('day')}
-                            // maxDate={moment().add("months", 2)}
+                              // minDate={moment().startOf('week').startOf('day')}
+                              // maxDate={moment().add("months", 2)}
                             />
                             {touched.reinstateDate && errors.reinstateDate && (
                               <FormHelperText style={{ color: "red" }}>
@@ -274,18 +277,18 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
               <Stack spacing={1} mt={1.5}>
                 <Grid container alignItems="start">
                   <Grid item md={6}>
-                    {/* <Grid container>
-                      <Grid className="label-text" item md={4.5}>
+                    <Grid container>
+                      <Grid className="label-text" item md={2} sx={{display:'flex', alignSelf:'center'}}>
                         <Typography className="label-text">
-                          <span className="required">*</span>Name:
+                          In English:
                         </Typography>
                       </Grid>
-                      <Grid item md={4}>
+                      <Grid item md={8}>
                         <TextField
                           size="small"
                           fullWidth
                           id="name"
-                          label="Name"
+                          label="In English"
                           variant="outlined"
                           onChange={handleChange}
                           // onKeyPress={handleKeyPress}
@@ -301,68 +304,55 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                           name="name"
                         />
                       </Grid>
-                    </Grid> */}
+                    </Grid>
                   </Grid>
-                  {/* <Grid item md={6}>
+                  <Grid item md={6}>
                     <Grid container>
-                      <Grid className="label-text" item md={4}>
-                        <Typography className="label-text">
-                          <span className="required">*</span>Automark:
-                        </Typography>
+                      <Grid md={6}>
+                        <Grid container>
+                          <Grid className="label-text" item md={2}>
+                            <Typography className="label-text">
+                              Type:
+                            </Typography>
+                          </Grid>
+                          <Grid item md={8}>
+                            <Typography>Y/N Radio button</Typography>
+                          </Grid>
+                        </Grid>
                       </Grid>
-                      <Grid item md={4}>
-                        <TextField
-                          size="small"
-                          fullWidth
-                          id="automarkInd"
-                          label="Automark"
-                          variant="outlined"
-                          onChange={handleChange}
-                          onKeyPress={handleKeyPress}
-                          inputProps={{
-                            inputMode: "numeric",
-                            pattern: "[0-9]*",
-                            maxLength: 2,
-                            className: "numericInput",
-                          }}
-                          value={values.automarkInd ?? ""}
-                          error={
-                            touched.automarkInd &&
-                            Boolean(errors.automarkInd)
-                          }
-                          helperText={
-                            touched.automarkInd && errors.automarkInd
-                          }
-                          name="automarkInd"
-                        />
+
+                      <Grid md={6}>
+                        <Grid container>
+                          <Grid className="label-text" item md={2}>
+                            <Typography className="label-text">
+                              Source:
+                            </Typography>
+                          </Grid>
+                          <Grid item md={8}>
+                            <Typography>IC - Reemployment</Typography>
+                          </Grid>
+                        </Grid>
                       </Grid>
                     </Grid>
-                  </Grid> */}
+                  </Grid>
                 </Grid>
+
                 <Grid container alignItems="start">
                   <Grid item md={6}>
                     <Grid container>
-                      <Grid className="label-text" item md={4.5}>
+                      <Grid className="label-text" item md={2} sx={{display:'flex', alignSelf:'center'}}>
                         <Typography className="label-text">
-                          <span className="required">*</span>
-                          Weight:
+                          In Spanish:
                         </Typography>
                       </Grid>
-                      <Grid item md={4}>
+                      <Grid item md={8}>
                         <TextField
                           size="small"
                           fullWidth
                           id="spaAttrWeight"
-                          label="Weight"
+                          label="In Spanish"
                           variant="outlined"
                           onChange={handleChange}
-                          // onKeyPress={handleKeyPress}
-                          inputProps={{
-                            inputMode: "numeric",
-                            pattern: "[0-9]*",
-                            maxLength: 2,
-                            className: "numericInput",
-                          }}
                           value={values.spaAttrWeight ?? ""}
                           error={
                             touched.spaAttrWeight &&
@@ -376,61 +366,32 @@ function ModifyParametersData({ selectedParam, closeModalPopup }) {
                       </Grid>
                     </Grid>
                   </Grid>
-                  {/* <Grid item md={6}>
+                  <Grid item md={6}>
                     <Grid container>
-                      <Grid className="label-text" item md={4}>
+                      <Grid className="label-text" item md={4} sx={{display:'flex', alignSelf:'center'}}>
                         <Typography className="label-text">
-                          <span className="required">*</span>Attr format type:
+                          Always Expect Right Answer:
                         </Typography>
                       </Grid>
-                      <Grid item md={4}>
-                        <TextField
-                          size="small"
-                          fullWidth
-                          id="attrFormatType"
-                          label="Attr format type"
-                          variant="outlined"
-                          onChange={handleChange}
-                          onKeyPress={handleKeyPress}
-                          inputProps={{
-                            inputMode: "numeric",
-                            pattern: "[0-9]*",
-                            maxLength: 2,
-                            className: "numericInput",
-                          }}
-                          value={values.attrFormatType ?? ""}
-                          error={
-                            touched.attrFormatType && Boolean(errors.attrFormatType)
-                          }
-                          helperText={
-                            touched.attrFormatType && errors.attrFormatType
-                          }
-                          name="attrFormatType"
-                        />
+                      <Grid item md={8}>
+                        <div>
+                          <Radio
+                            // checked={selectedValue === "a"}
+                            onChange={handleChange}
+                            value="a"
+                            name="radio-buttons"
+                            inputProps={{ "aria-label": "A" }}
+                          />
+                          <Radio
+                            // checked={selectedValue === "b"}
+                            onChange={handleChange}
+                            value="b"
+                            name="radio-buttons"
+                            inputProps={{ "aria-label": "B" }}
+                          />
+                        </div>
                       </Grid>
                     </Grid>
-                  </Grid> */}
-                </Grid>
-                <Grid container>
-                  <Grid className="label-text" item md={2.25}>
-                    <Typography className="label-text">
-                      <span className="required">*</span>Comments:
-                    </Typography>
-                  </Grid>
-                  <Grid item md={9.75}>
-                    <TextField
-                      size="small"
-                      fullWidth
-                      id="spaComments"
-                      label="Comments"
-                      variant="outlined"
-                      onChange={handleChange}
-                      error={touched.spaComments && Boolean(errors.spaComments)}
-                      helperText={touched.spaComments && errors.spaComments}
-                      name="spaComments"
-                      multiline
-                      rows={2}
-                    />
                   </Grid>
                 </Grid>
               </Stack>
