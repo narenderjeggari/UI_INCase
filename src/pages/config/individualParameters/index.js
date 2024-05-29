@@ -419,6 +419,13 @@ export default function IndividualParameters() {
                   // className='label-text'
                   sx={{ fontWeight: 700 }}
                 />
+                <FormControlLabel
+                  value="byType"
+                  control={<Radio size="small" />}
+                  label="Types"
+                  // className='label-text'
+                  sx={{ fontWeight: 700 }}
+                />
               </Stack>
             </RadioGroup>
           </FormControl>
@@ -455,6 +462,43 @@ export default function IndividualParameters() {
                     setOpenSelectNameMenu(false);
                   }}
                   label="Select Name"
+                />
+              )}
+            />
+          )}
+          {radioFilter === "byType" && (
+            <Autocomplete
+              disablePortal
+              id="combo-box-demo"
+              value={selectedName}
+              onChange={(event, newValue) => {
+                setSelectedName(newValue);
+              }}
+              inputValue={inputValue}
+              onInputChange={(e) => {
+                if (e !== null) {
+                  setInputValue(e?.target?.value || e?.target?.innerText);
+                  if (e?.target?.innerText) {
+                    setInputValue(e?.target?.innerText);
+                    setOpenSelectNameMenu(false);
+                  }
+                }
+              }}
+              open={inputValue?.length >= 1 && openSelectNameMenu === true}
+              options={namesList}
+              sx={{ width: 500 }}
+              size="small"
+              renderInput={(params) => (
+                <TextField
+                  size="small"
+                  {...params}
+                  onFocus={() => {
+                    setOpenSelectNameMenu(true);
+                  }}
+                  onBlur={() => {
+                    setOpenSelectNameMenu(false);
+                  }}
+                  label="Select Type"
                 />
               )}
             />
