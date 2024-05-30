@@ -486,7 +486,7 @@ export default function IndividualParameters() {
               }}
               open={inputValue?.length >= 1 && openSelectNameMenu === true}
               options={namesList}
-              sx={{ width: 500 }}
+              sx={{ width: 370 }}
               size="small"
               renderInput={(params) => (
                 <TextField
