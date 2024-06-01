@@ -1,0 +1,17 @@
+[
+  {
+    "alvId": 4846,
+    "alvShortDecTxt": "INV",
+    "alvLongDescTxt": "Investicase"
+  },
+  {
+    "alvId": 4847,
+    "alvShortDecTxt": "SPI",
+    "alvLongDescTxt": "Spidering"
+  },
+  {
+    "alvId": 4848,
+    "alvShortDecTxt": "IDH",
+    "alvLongDescTxt": "IDH Interface"
+  }
+]

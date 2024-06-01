@@ -15,6 +15,9 @@ const individualParamsTitleURL = `${baseApiUrl}${process.env.REACT_APP_INDIVIDUA
 const individualParamsNamesListURL = `${baseApiUrl}${process.env.REACT_APP_INDIVIDUAL_PARAM_NAME_LIST_URL}`;
 const individualParamsSubTableURL = `${baseApiUrl}${process.env.REACT_APP_INDIVIDUAL_PARAM_SUB_TABLE_URL}`;
 
+const individualParamsTypesListURL = `${baseApiUrl}${process.env.REACT_APP_INDIVIDUAL_PARAM_TYPES_LIST_URL}`;
+const individualParamsTypesSearchURL = `${baseApiUrl}${process.env.REACT_APP_INDIVIDUAL_PARAM_TYPES_SEARCH_URL}`;
+
 const dropdownAccordianHeadersURL = `${baseApiUrl}${process.env.REACT_APP_DROPDOWN_ACCORDIAN_HEADERS_URL}`;
 const dropdownAccordianItemListURL = `${baseApiUrl}${process.env.REACT_APP_DROPDOWN_ACCORDIAN_ITEM_LIST_URL}`;
 const dropdownAccordianItemDetailsURL = `${baseApiUrl}${process.env.REACT_APP_DROPDOWN_ACCORDIAN_ITEM__DETAILS_URL}`;
@@ -85,6 +88,8 @@ export {
   individualParamsTitleURL,
   individualParamsNamesListURL,
   individualParamsSubTableURL,
+  individualParamsTypesListURL,
+  individualParamsTypesSearchURL,
   otherConfigWorkSearchReqSubTableURL,
   otherConfigWorkSearchWaiversSubTableURL,
   otherConfigWorkSearchReqDeleteURL,

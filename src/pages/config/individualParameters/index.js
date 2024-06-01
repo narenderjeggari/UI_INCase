@@ -28,6 +28,8 @@ import {
   individualParamsDetailsURL,
   individualParamDeleteURL,
   individualParamsNamesListURL,
+  individualParamsTypesListURL,
+  individualParamsTypesSearchURL,
 } from "../../../helpers/Urls";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -68,10 +70,8 @@ export default function IndividualParameters() {
   const [namesList, setNamesList] = useState([]);
   const [selectedName, setSelectedName] = useState("");
   const [inputValue, setInputValue] = useState("");
-
   const [active, setActive] = useState("Y");
   const [currentFilter, setCurrentFilter] = useState("Y");
-
   const [pagination, setPagination] = useState({
     pageNumber: 1,
     pageSize: 10,
@@ -82,6 +82,8 @@ export default function IndividualParameters() {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [openSelectNameMenu, setOpenSelectNameMenu] = useState(false);
   const [parentDataRefresh, setParentDataRefresh] = useState(false);
+  const [typesList, setTypesList] = useState([]);
+  const [selectedType, setSelectedType] = useState("");
 
   const columns = [
     { id: "name", label: "Name" },
@@ -116,7 +118,23 @@ export default function IndividualParameters() {
     };
     fetchIndividualParamsNamesList();
     fetchIndividualParamList(payload);
-  }, []);
+  }, [radioFilter]);
+
+  useEffect(() => {
+    fetchIndividualParamsTypesList();
+  }, [radioFilter]);
+
+  useEffect(() => {
+    if (radioFilter === 'byType' && selectedType?.alvId) {
+      const payload = {
+        parCategoryCd,
+        parSubCategoryCd: selectedType.alvId,
+        pagination: { ...pagination, totalCount },
+        active,
+      };
+      fetchIndividualParamTypesList(payload);
+    }
+  }, [selectedType,radioFilter]);
 
   useEffect(() => {
     let active = "";
@@ -167,8 +185,8 @@ export default function IndividualParameters() {
               moment().diff(value) < 0
                 ? "future-date-text"
                 : row.editFlag === true
-                  ? "past-date-text-editable"
-                  : "past-date-text-non-editable"
+                ? "past-date-text-editable"
+                : "past-date-text-non-editable"
             }
           >
             {value}
@@ -213,6 +231,31 @@ export default function IndividualParameters() {
     }
   };
 
+  const fetchIndividualParamTypesList = async (payload) => {
+    setLoading(true);
+    setErrorMessages([]);
+    try {
+      const response =
+        process.env.REACT_APP_ENV === "mockserver"
+          ? await client.get(`${individualParamsTypesSearchURL}`)
+          : await client.post(`${individualParamsTypesSearchURL}`, payload);
+      response.parameterParList.map((e) => {
+        e.parId = new String(e.parId);
+      });
+      setData(cloneDeep(response.parameterParList));
+      setTotalCount(response.pagination.totalItemCount);
+      setLoading(false);
+      setCurrentFilter(active);
+    } catch (errorResponse) {
+      setLoading(false);
+      const newErrMsgs = getMsgsFromErrorCode(
+        `POST:${process.env.REACT_APP_INDIVIDUAL_PARAM_TYPES_SEARCH_URL}`,
+        errorResponse
+      );
+      setErrorMessages(newErrMsgs);
+    }
+  };
+
   const fetchIndividualParamsNamesList = async () => {
     setLoading(true);
     setErrorMessages([]);
@@ -227,6 +270,26 @@ export default function IndividualParameters() {
       setLoading(false);
       const newErrMsgs = getMsgsFromErrorCode(
         `GET:${process.env.REACT_APP_INDIVIDUAL_PARAM_NAME_LIST_URL}`,
+        errorResponse
+      );
+      setErrorMessages(newErrMsgs);
+    }
+  };
+
+  const fetchIndividualParamsTypesList = async () => {
+    setLoading(true);
+    setErrorMessages([]);
+    try {
+      const response =
+        process.env.REACT_APP_ENV === "mockserver"
+          ? await client.get(`${individualParamsTypesListURL}`)
+          : await client.get(`${individualParamsTypesListURL}${parCategoryCd}`);
+      setTypesList(response.filter((r) => !isEmpty(r)));
+      setLoading(false);
+    } catch (errorResponse) {
+      setLoading(false);
+      const newErrMsgs = getMsgsFromErrorCode(
+        `GET:${process.env.REACT_APP_INDIVIDUAL_PARAM_TYPES_LIST_URL}`,
         errorResponse
       );
       setErrorMessages(newErrMsgs);
@@ -300,6 +363,7 @@ export default function IndividualParameters() {
     setTimeout(() => {
       setParentDataRefresh(false);
     }, 3000);
+    setSelectedType("")
   };
 
   const fetchParamDetails = async (parId, showEditModal) => {
@@ -470,37 +534,45 @@ export default function IndividualParameters() {
             <Autocomplete
               disablePortal
               id="combo-box-demo"
-              value={selectedName}
-              onChange={(event, newValue) => {
-                setSelectedName(newValue);
+              value={selectedType || {alvLongDescTxt:""}}
+              onChange={(_event, newValue) => {
+                setSelectedType(newValue);
               }}
-              inputValue={inputValue}
-              onInputChange={(e) => {
-                if (e !== null) {
-                  setInputValue(e?.target?.value || e?.target?.innerText);
-                  if (e?.target?.innerText) {
-                    setInputValue(e?.target?.innerText);
-                    setOpenSelectNameMenu(false);
-                  }
-                }
-              }}
-              open={inputValue?.length >= 1 && openSelectNameMenu === true}
-              options={namesList}
+              // inputValue={inputValue}
+              // onInputChange={(_e, newInputValue) => {
+                // console.log('inputvalue runned!!!', newInputValue);
+                // if(newInputValue){
+                //   setInputValue(newInputValue);
+                // }
+                // if (e !== null) {
+                //   setInputValue(e?.target?.value || e?.target?.innerText);
+                //   if (e?.target?.innerText) {
+                //     setInputValue(e?.target?.innerText);
+                //     setOpenSelectNameMenu(false);
+                //   }
+                // }
+              // }}
+             
+              // open={inputValue?.length >= 1 && openSelectNameMenu === true}
+              options={typesList}
+              getOptionLabel={(option) => option.alvLongDescTxt}
               sx={{ width: 370 }}
               size="small"
-              renderInput={(params) => (
-                <TextField
-                  size="small"
-                  {...params}
-                  onFocus={() => {
-                    setOpenSelectNameMenu(true);
-                  }}
-                  onBlur={() => {
-                    setOpenSelectNameMenu(false);
-                  }}
-                  label="Select Type"
-                />
-              )}
+              renderInput={(params) => {
+                return (
+                  <TextField
+                    size="small"
+                    {...params}
+                    // onFocus={() => {
+                    //   setOpenSelectNameMenu(true);
+                    // }}
+                    // onBlur={() => {
+                    //   setOpenSelectNameMenu(false);
+                    // }}
+                    label="Select Type"
+                  />
+                );
+              }}
             />
           )}
           <Tooltip

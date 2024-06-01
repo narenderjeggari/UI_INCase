@@ -1,0 +1,15 @@
+{
+  "parameterParList": [
+    {
+      "parId": 211001330,
+      "name": "First few letters of work search records",
+      "parShortName": "WS_FIRST_FEW_LETTERS",
+      "numericValue": "3",
+      "startDate": "09/20/2017",
+      "childListCount": 1,
+      "editFlag": true,
+      "deleteFlag": false,
+      "reinstateFlag": false
+    }
+  ]
+}

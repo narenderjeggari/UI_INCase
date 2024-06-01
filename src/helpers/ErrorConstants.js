@@ -117,6 +117,20 @@ ERROR_CODES_MAPPER[
   `GET:${process.env.REACT_APP_OTHER_CONFIG_BUSINESS_UNIT_DROPDOWN_URL}`
 ] = {};
 
+
+ERROR_CODES_MAPPER[`POST:${process.env.REACT_APP_INDIVIDUAL_PARAM_TYPES_LIST_URL}`] =
+{
+  "parCategoryCd.mandatory": "Parameter Category Cd value is not valid",
+  "active.not-valid-value": "Active value is not valid",
+};
+
+ERROR_CODES_MAPPER[`POST:${process.env.REACT_APP_INDIVIDUAL_PARAM_TYPES_SEARCH_URL}`] =
+  {
+    "parCategoryCd.mandatory": "Parameter Category Cd value is not valid",
+    "parSubCategoryCd.mandatory": "Parameter Sub Category Cd value is not valid",
+    "active.not-valid-value": "Active value is not valid",
+  };
+
 ERROR_CODES_MAPPER[`POST:${process.env.REACT_APP_INDIVIDUAL_PARAM_LIST_URL}`] =
   {
     "parCategoryCd.mandatory": "Parameter Category Cd value is not valid",
