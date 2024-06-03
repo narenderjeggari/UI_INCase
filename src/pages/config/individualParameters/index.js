@@ -125,7 +125,7 @@ export default function IndividualParameters() {
   }, [radioFilter]);
 
   useEffect(() => {
-    if (radioFilter === 'byType' && selectedType?.alvId) {
+    if (radioFilter === "byType" && selectedType?.alvId) {
       const payload = {
         parCategoryCd,
         parSubCategoryCd: selectedType.alvId,
@@ -134,7 +134,7 @@ export default function IndividualParameters() {
       };
       fetchIndividualParamTypesList(payload);
     }
-  }, [selectedType,radioFilter]);
+  }, [selectedType, radioFilter]);
 
   useEffect(() => {
     let active = "";
@@ -363,7 +363,7 @@ export default function IndividualParameters() {
     setTimeout(() => {
       setParentDataRefresh(false);
     }, 3000);
-    setSelectedType("")
+    setSelectedType("");
   };
 
   const fetchParamDetails = async (parId, showEditModal) => {
@@ -483,13 +483,15 @@ export default function IndividualParameters() {
                   // className='label-text'
                   sx={{ fontWeight: 700 }}
                 />
-                <FormControlLabel
-                  value="byType"
-                  control={<Radio size="small" />}
-                  label="Types"
-                  // className='label-text'
-                  sx={{ fontWeight: 700 }}
-                />
+                {parCategoryCd[0] === 4846 && (
+                  <FormControlLabel
+                    value="byType"
+                    control={<Radio size="small" />}
+                    label="Types"
+                    // className='label-text'
+                    sx={{ fontWeight: 700 }}
+                  />
+                )}
               </Stack>
             </RadioGroup>
           </FormControl>
@@ -534,25 +536,25 @@ export default function IndividualParameters() {
             <Autocomplete
               disablePortal
               id="combo-box-demo"
-              value={selectedType || {alvLongDescTxt:""}}
+              value={selectedType || { alvLongDescTxt: "" }}
               onChange={(_event, newValue) => {
                 setSelectedType(newValue);
               }}
               // inputValue={inputValue}
               // onInputChange={(_e, newInputValue) => {
-                // console.log('inputvalue runned!!!', newInputValue);
-                // if(newInputValue){
-                //   setInputValue(newInputValue);
-                // }
-                // if (e !== null) {
-                //   setInputValue(e?.target?.value || e?.target?.innerText);
-                //   if (e?.target?.innerText) {
-                //     setInputValue(e?.target?.innerText);
-                //     setOpenSelectNameMenu(false);
-                //   }
-                // }
+              // console.log('inputvalue runned!!!', newInputValue);
+              // if(newInputValue){
+              //   setInputValue(newInputValue);
+              // }
+              // if (e !== null) {
+              //   setInputValue(e?.target?.value || e?.target?.innerText);
+              //   if (e?.target?.innerText) {
+              //     setInputValue(e?.target?.innerText);
+              //     setOpenSelectNameMenu(false);
+              //   }
+              // }
               // }}
-             
+
               // open={inputValue?.length >= 1 && openSelectNameMenu === true}
               options={typesList}
               getOptionLabel={(option) => option.alvLongDescTxt}
