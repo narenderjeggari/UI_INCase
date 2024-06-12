@@ -71,8 +71,8 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 }));
 
 export default function Configurations() {
-  const alcCode = Number(window.category) || 4846;
-  // const alcCode = Number(window.category) || 4949;
+  // const alcCode = Number(window.category) || 4846;
+  const alcCode = Number(window.category) || 4949;
   const [selectedConfig, setSelectedConfig] = useState([]);
   // const [selectedSubConfig, setSelectedSubConfig] = useState('');
   const [loading, setLoading] = useState(false);
@@ -104,13 +104,14 @@ export default function Configurations() {
           return <InvesticaseSpideringEvents />;
         case "Configure Identify Proofing Questions":
           return <IdentifyProofingQuestions />;
-        default:
-          return (
-            <DropdownListItemData
-              alcId={id}
-              alcDecipherLabel={alcDecipherLabel}
-            />
-          );
+        //Enable Below Code When Required from line number 108 to 114
+        // default:
+        //   return (
+        //     <DropdownListItemData
+        //       alcId={id}
+        //       alcDecipherLabel={alcDecipherLabel}
+        //     />
+        //   );
       }
     } else {
       return <></>;

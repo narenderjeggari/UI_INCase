@@ -40,18 +40,19 @@ export const CONFIG_ITEMS = {
       id: "Other Configurations",
       label: "Other Configurations",
       children: [
-        {
-          id: "Configure Spidering Attributes",
-          label: "Configure Spidering Attributes",
-        },
-        {
-          id: "Configure Spidering Events",
-          label: "Configure Spidering Events",
-        },
-        {
-          id: "Configure Identify Proofing Questions",
-          label: "Configure Identify Proofing Questions",
-        },
+        //Enable Below Code When Required from line number 44 to 55
+        // {
+        //   id: "Configure Spidering Attributes",
+        //   label: "Configure Spidering Attributes",
+        // },
+        // {
+        //   id: "Configure Spidering Events",
+        //   label: "Configure Spidering Events",
+        // },
+        // {
+        //   id: "Configure Identify Proofing Questions",
+        //   label: "Configure Identify Proofing Questions",
+        // },
       ],
     },
   ],
