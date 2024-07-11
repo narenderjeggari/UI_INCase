@@ -122,7 +122,8 @@ const PerformanceMetrics = () => {
             <StatItem label="Inadequate Work Searches:" value={data.inadequateWorkSearches} />
             <StatItem label="Job Referrals made:" value={data.jobReferralsMade} />
             <StatItem label="Training Referrals made:" value={data.trainingReferralsMade} />
-            <Link>Graphical View</Link>
+            <Box textAlign={'right'}><Link>Graphical View</Link></Box>
+            
         </Container>
     );
 };
