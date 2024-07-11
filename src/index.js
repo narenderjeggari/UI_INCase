@@ -9,7 +9,7 @@ import "./assets/fonts/aptos/aptos.ttf";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Router basename={"/configuration"}>
+    <Router>
       <App />
     </Router>
   </React.StrictMode>,
