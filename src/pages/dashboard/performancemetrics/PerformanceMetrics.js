@@ -5,7 +5,7 @@ import { styled } from '@mui/system';
 const Container = styled(Box)(({ theme }) => ({
     width: '100%',
     height: '100%',
-    border: '1px solid #ccc',
+    borderRight: '2px solid #000',
     padding: theme.spacing(2),
     borderRadius: theme.shape.borderRadius,
     backgroundColor: '#f5f5f5',
@@ -49,7 +49,7 @@ const StatItem = ({ label, value, percentage }) => (
     </Grid>
     {percentage && (
       <Grid item xs={3}>
-        <Value>{percentage}%</Value>
+        <Value>%</Value>
       </Grid>
     )}
   </Grid>
@@ -72,7 +72,7 @@ const PerformanceMetrics = () => {
         jobReferralsMade: '#',
         trainingReferralsMade: '#',
     };
-    const [period, setPeriod] = useState(90);
+    const [period, setPeriod] = useState();
     const [selectedFor, setSelectedFor] = useState('mary');
 
     const handlePeriodChange = (event) => {

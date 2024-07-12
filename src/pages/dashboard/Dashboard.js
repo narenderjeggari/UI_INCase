@@ -9,13 +9,13 @@ const Dashboard = () => {
     return (
       <Box sx={{ flexGrow: 1 }} width={1} height={1}>
         <NavBar />
-        <Grid container spacing={2} sx={{ padding: 2 }}>
+        <Grid container sx={{ height: 'calc(100vh - 96px)', border: '2px solid #000'}}>
           <Grid item xs={12} sm={4} xl={3}>
             <PerformanceMetrics />
           </Grid>
           <Grid item xs={12} sm={8} xl={9}>
-            {/* <CaseloadMetrics />
-            <CalendarView /> */}
+            {/* <CaseloadMetrics />*/}
+            {/* <CalendarView />  */}
           </Grid>
         </Grid>
       </Box>
