@@ -40,10 +40,11 @@ function stringAvatar(name) {
 }
 
 export default function Header() {
-  let userDetails = null;
-  if (getCookieItem(CookieNames.USER)) {
-    userDetails = JSON.parse(getCookieItem(CookieNames.USER));
-  }
+  console.log('Header')
+  // let userDetails = null;
+  // if (getCookieItem(CookieNames.USER)) {
+  //   userDetails = JSON.parse(getCookieItem(CookieNames.USER));
+  // }
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleOpenMenu = (event) => {
@@ -73,7 +74,7 @@ export default function Header() {
         width="100%"
         alignItems="center"
       >
-        <Stack direction="row" justifyContent={"space-between"}>
+        <Stack direction="row" justifyContent={"space-between"} alignItems={'center'} height={'inherit'}>
           <Stack
             direction="row"
             marginLeft={2}
@@ -81,21 +82,21 @@ export default function Header() {
             alignItems="center"
             height="100%"
           >
-            <img src={NHUISLogo} height="45px" alt="logo"/>
+            {/* <img src={NHUISLogo} height="45px" alt="logo"/> */}
             <Stack>
-              <Typography color="white">
-                NEW HAMPSHIRE UNEMPLOYMENT INSURANCE SYSTEM
+              <Typography color="white" fontSize={24}>
+              RESEA
               </Typography>
             </Stack>
           </Stack>
-          {userDetails && (
+          {/* {userDetails && ( */}
             <IconButton
               color="inherit"
               onClick={handleOpenMenu}
               style={{ padding: "0" }}
             >
               <Avatar
-                {...stringAvatar(userDetails?.userName)}
+                // {...stringAvatar(userDetails?.userName)}
                 style={{
                   width: "28px",
                   height: "28px",
@@ -104,7 +105,7 @@ export default function Header() {
                 }}
               />
             </IconButton>
-          )}
+          {/* )} */}
         </Stack>
       </Box>
       <Menu
