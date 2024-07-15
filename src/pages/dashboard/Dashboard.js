@@ -16,7 +16,7 @@ const Dashboard = () => {
         <Grid item xs={12} sm={8} xl={9} maxHeight={'100%'} overflow={'auto'}>
           {/* <Box style={{ maxHeight: '100%', overflow: 'auto' }}> */}
             {/* <CaseloadMetrics />*/}
-            <CalendarView />
+            {/* <CalendarView /> */}
           {/* </Box> */}
         </Grid>
       </Grid>
