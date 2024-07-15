@@ -3,7 +3,7 @@ import { Box, Grid } from '@mui/material';
 // import NavBar from "./navbar/NavBar";
 import PerformanceMetrics from "./performancemetrics/PerformanceMetrics";
 // import CaseloadMetrics from "./caseloadmetrics/CaseloadMetrics";
-import CalendarView from "./calendarview/CalendarView";
+// import CalendarView from "./calendarview/CalendarView";
 
 const Dashboard = () => {
   return (
