@@ -9,7 +9,7 @@ import { getUserName } from "../../utils/cookies";
 export default function Footer() {
   const [footerData, setFooterData] = useState({});
   useEffect(() => {
-    getFooterData();
+    // getFooterData();
   }, []);
   const getFooterData = async () => {
     const data = await client.get(footerURL);

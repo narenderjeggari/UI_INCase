@@ -85,26 +85,26 @@ export default function Header() {
             {/* <img src={NHUISLogo} height="45px" alt="logo"/> */}
             <Stack>
               <Typography color="white" fontSize={24}>
-              RESEA
+                RESEA
               </Typography>
             </Stack>
           </Stack>
           {/* {userDetails && ( */}
-            <IconButton
-              color="inherit"
-              onClick={handleOpenMenu}
-              style={{ padding: "0" }}
-            >
-              <Avatar
-                // {...stringAvatar(userDetails?.userName)}
-                style={{
-                  width: "28px",
-                  height: "28px",
-                  fontSize: "0.8rem",
-                  margin: "0 10px",
-                }}
-              />
-            </IconButton>
+          <IconButton
+            color="inherit"
+            onClick={handleOpenMenu}
+            style={{ padding: "0" }}
+          >
+            <Avatar
+              // {...stringAvatar(userDetails?.userName)}
+              style={{
+                width: "28px",
+                height: "28px",
+                fontSize: "0.8rem",
+                margin: "0 10px",
+              }}
+            />
+          </IconButton>
           {/* )} */}
         </Stack>
       </Box>
