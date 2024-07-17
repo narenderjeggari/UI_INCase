@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import {
     Box,
     Table,
@@ -36,7 +36,7 @@ const ContentCell = styled(TableCell)(({ theme }) => ({
 }));
 
 const CaseloadMetrics = React.memo(({ showCalendarView, onSwitchView }) => {
-    console.log(showCalendarView)
+    const [items, setItems] = useState('my-items');
     const handleSwitchView = useCallback(
         (event) => {
             event.preventDefault();
@@ -44,6 +44,10 @@ const CaseloadMetrics = React.memo(({ showCalendarView, onSwitchView }) => {
         },
         [onSwitchView]
     );
+
+    const handleItemsSelection = (event) => {
+        setItems(event.target.value);
+    };
 
     return (
         <Box sx={{ padding: 2 }}>
@@ -76,7 +80,7 @@ const CaseloadMetrics = React.memo(({ showCalendarView, onSwitchView }) => {
             </Stack>
 
             <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mt: 2 }}>
-                <RadioGroup row defaultValue="my-items" aria-label="caseload view">
+                <RadioGroup row aria-label="caseload view" value={items} onChange={handleItemsSelection}>
                     <FormControlLabel value="my-items" control={<Radio />} label="My Items" />
                     <FormControlLabel
                         value="items-assigned"

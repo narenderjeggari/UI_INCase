@@ -23,7 +23,6 @@ import Footer from "../components/Footer";
 import Dashboard from "../pages/dashboard/Dashboard";
 
 const PrivateRoute = () => {
-  console.log('Test')
   // const [loading, setLoading] = useState(false);
   // const [hasAccess, setHasAccess] = useState(null);
   // const [searchParams, setSearchParams] = useSearchParams();
