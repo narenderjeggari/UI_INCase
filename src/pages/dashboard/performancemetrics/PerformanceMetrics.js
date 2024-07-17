@@ -72,7 +72,7 @@ const PerformanceMetrics = () => {
         jobReferralsMade: '#',
         trainingReferralsMade: '#',
     };
-    const [period, setPeriod] = useState();
+    const [period, setPeriod] = useState(30);
     const [selectedFor, setSelectedFor] = useState('mary');
 
     const handlePeriodChange = (event) => {

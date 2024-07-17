@@ -1,21 +1,121 @@
-import React from 'react';
-import { Typography, Button, Paper, Checkbox, FormControlLabel, TextField } from '@mui/material';
+import React, { useCallback } from 'react';
+import {
+    Box,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+    Paper,
+    RadioGroup,
+    FormControlLabel,
+    Radio,
+    MenuItem,
+    Select,
+    Typography,
+    Link,
+    Stack,
+} from '@mui/material';
+import { styled } from '@mui/material/styles';
 
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    backgroundColor: theme.palette.primary.main,
+    color: '#ffffff',
+    borderRight: '2px solid #000000',
+    textAlign: 'center',
+    padding: '8px',
+}));
 
-const CaseloadMetrics = () => (
-    <Paper elevation={3} sx={{ padding: 2, margin: 1 }}>
-        <Typography variant="h6" gutterBottom>
-            Caseload Metrics
-        </Typography>
-        <Typography>1<sup>st</sup> 1-on-1: 30</Typography>
-        <Typography>2<sup>nd</sup> 1-on-1: 20</Typography>
-        <Typography>3<sup>rd</sup> 1-on-1: 16</Typography>
-        <Typography>Follow-ups: 12</Typography>
-        <Typography>HI Priority: 7</Typography>
-        <FormControlLabel control={<Checkbox />} label="My Items" />
-        <TextField label="Items assigned to:" variant="outlined" size="small" sx={{ marginLeft: 1 }} />
-        <Button variant="text">Switch to Caseload mode view</Button>
-    </Paper>
-);
+const ContentCell = styled(TableCell)(({ theme }) => ({
+    color: '#000000',
+    fontWeight: 600,
+    borderRight: '2px solid #000000',
+    textAlign: 'center',
+    padding: '8px',
+}));
+
+const CaseloadMetrics = React.memo(({ showCalendarView, onSwitchView }) => {
+    console.log(showCalendarView)
+    const handleSwitchView = useCallback(
+        (event) => {
+            event.preventDefault();
+            onSwitchView(event);
+        },
+        [onSwitchView]
+    );
+
+    return (
+        <Box sx={{ padding: 2 }}>
+            <Stack direction="row" spacing={2} alignItems="center">
+                <Typography variant="h6" component="div" color="#5fa0cf" fontWeight={600} width={200}>
+                    Caseload Metrics:
+                </Typography>
+                <TableContainer component={Paper}>
+                    <Table sx={{ minWidth: 400, border: '2px solid #000000' }} aria-label="caseload metrics table">
+                        <TableHead>
+                            <TableRow>
+                                <StyledTableCell>First 1-on-1</StyledTableCell>
+                                <StyledTableCell>Second 1-on-1</StyledTableCell>
+                                <StyledTableCell>Third 1-on-1</StyledTableCell>
+                                <StyledTableCell>Follow-ups</StyledTableCell>
+                                <StyledTableCell>HI Priority</StyledTableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            <TableRow>
+                                <ContentCell>30</ContentCell>
+                                <ContentCell>20</ContentCell>
+                                <ContentCell>16</ContentCell>
+                                <ContentCell sx={{ color: 'orange' }}>12</ContentCell>
+                                <ContentCell sx={{ color: 'red' }}>7</ContentCell>
+                            </TableRow>
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            </Stack>
+
+            <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mt: 2 }}>
+                <RadioGroup row defaultValue="my-items" aria-label="caseload view">
+                    <FormControlLabel value="my-items" control={<Radio />} label="My Items" />
+                    <FormControlLabel
+                        value="items-assigned"
+                        control={<Radio />}
+                        label={
+                            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                                Items assigned to
+                                <Select
+                                    variant="outlined"
+                                    sx={{ ml: 1 }}
+                                    defaultValue=""
+                                    displayEmpty
+                                    inputProps={{ 'aria-label': 'Without label' }}
+                                >
+                                    <MenuItem value="">
+                                        <em>None</em>
+                                    </MenuItem>
+                                    {/* Add your options here */}
+                                </Select>
+                            </Box>
+                        }
+                    />
+                </RadioGroup>
+                <Link
+                    href="#"
+                    underline="always"
+                    color="#0072ce"
+                    fontSize="14px"
+                    onClick={handleSwitchView}
+                >
+                    {showCalendarView ? 'Switch Caseload mode view' : 'Switch to Interview Calendar View'}
+                </Link>
+            </Stack>
+            {!showCalendarView && <Stack direction="row" justifyContent="flex-end">
+                <Box component={'span'} sx={{ color: '#5fa0cf', fontSize: '16px' }}>First 1-on-1s</Box>
+            </Stack>}
+
+        </Box>
+    );
+});
 
 export default CaseloadMetrics;

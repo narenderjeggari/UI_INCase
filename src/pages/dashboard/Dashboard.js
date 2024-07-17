@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import { Box, Grid } from '@mui/material';
-// import NavBar from "./navbar/NavBar";
 import PerformanceMetrics from "./performancemetrics/PerformanceMetrics";
-// import CaseloadMetrics from "./caseloadmetrics/CaseloadMetrics";
-// import CalendarView from "./calendarview/CalendarView";
+import CaseloadMetrics from "./caseloadmetrics/CaseloadMetrics";
+import CaseModeView from "./casemodeview/CaseModeView";
+import CalendarView from "./calendarview/CalendarView";
 
 const Dashboard = () => {
+
+  const [isCalendarView, setIsCalendarView] = useState(true);
+
+  const handleSwitchView = useCallback(() => {
+    setIsCalendarView((prev) => !prev);
+  }, []);
+
   return (
     <Box sx={{ marginTop: '45px'}}>
       {/* <NavBar /> */}
@@ -14,10 +21,10 @@ const Dashboard = () => {
           <PerformanceMetrics />
         </Grid>
         <Grid item xs={12} sm={8} xl={9} maxHeight={'100%'} overflow={'auto'}>
-          {/* <Box style={{ maxHeight: '100%', overflow: 'auto' }}> */}
-            {/* <CaseloadMetrics />*/}
-            {/* <CalendarView /> */}
-          {/* </Box> */}
+          <Box style={{ maxHeight: '100%', overflow: 'auto' }}>
+            <CaseloadMetrics showCalendarView={isCalendarView} onSwitchView={handleSwitchView}/>
+            { isCalendarView ? <CalendarView /> : <CaseModeView />}
+          </Box>
         </Grid>
       </Grid>
     </Box>
