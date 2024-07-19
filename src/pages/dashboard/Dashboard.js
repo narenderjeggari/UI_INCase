@@ -3,7 +3,7 @@ import { Box, Grid } from '@mui/material';
 import PerformanceMetrics from "./performancemetrics/PerformanceMetrics";
 import CaseloadMetrics from "./caseloadmetrics/CaseloadMetrics";
 import CaseModeView from "./casemodeview/CaseModeView";
-import CalendarView from "./calendarview/CalendarView";
+import InterviewMode from "./interviewmodeview/InterviewMode";
 
 const Dashboard = () => {
 
@@ -23,7 +23,7 @@ const Dashboard = () => {
         <Grid item xs={12} sm={8} xl={9} maxHeight={'100%'} overflow={'auto'}>
           <Box style={{ maxHeight: '100%', overflow: 'auto' }}>
             <CaseloadMetrics showCalendarView={isCalendarView} onSwitchView={handleSwitchView}/>
-            { isCalendarView ? <CalendarView /> : <CaseModeView />}
+            { isCalendarView ? <InterviewMode /> : <CaseModeView />}
           </Box>
         </Grid>
       </Grid>
