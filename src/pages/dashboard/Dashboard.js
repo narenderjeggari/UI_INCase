@@ -15,7 +15,6 @@ const Dashboard = () => {
 
   return (
     <Box sx={{ marginTop: '45px'}}>
-      {/* <NavBar /> */}
       <Grid container sx={{ height: 'calc(100vh - 77px)', border: '2px solid #000' }}>
         <Grid item xs={12} sm={4} xl={3}>
           <PerformanceMetrics />

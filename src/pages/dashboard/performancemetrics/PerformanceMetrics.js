@@ -15,7 +15,7 @@ const Container = styled(Box)(({ theme }) => ({
 }));
 
 const Header = styled(Typography)(({ theme }) => ({
-    color: '#5fa0cf',
+    color: '#183084',
     fontWeight: 600,
 }));
 

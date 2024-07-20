@@ -21,6 +21,9 @@ import Header from "../components/Header";
 // import { validateJWTURL, refreshTokenURL } from "../helpers/Urls";
 import Footer from "../components/Footer";
 import Dashboard from "../pages/dashboard/Dashboard";
+import Preferences from "../pages/preferences/Preferences";
+import Reminders from "../pages/reminders/Reminders";
+import WorkSchedule from "../pages/workschedule/WorkSchedule";
 
 const PrivateRoute = () => {
   // const [loading, setLoading] = useState(false);
@@ -108,6 +111,9 @@ function AppRoutes() {
         <Route element={<PrivateRoute />}>
           {/* <Route element={<Configurations />} path="/config" /> */}
           <Route element={<Dashboard />} path="/dashboard" />
+          <Route element={<Preferences />} path="/preferences" />
+          <Route element={<Reminders />} path="/reminders" />
+          <Route element={<WorkSchedule />} path="/work-schedule" />
         </Route>
         <Route element={<UnAuthorised />} path="/unAuthorised" />
         <Route element={<Navigate replace to="/dashboard" />} path="/" />

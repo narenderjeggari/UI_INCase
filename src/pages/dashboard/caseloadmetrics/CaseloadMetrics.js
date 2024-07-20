@@ -16,6 +16,7 @@ import {
     Typography,
     Link,
     Stack,
+    ButtonBase
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
@@ -35,6 +36,15 @@ const ContentCell = styled(TableCell)(({ theme }) => ({
     padding: '8px',
 }));
 
+const StyledBox = styled(Box)(({ theme }) => ({
+    width: '100%', 
+    height: '100%', 
+    display: 'flex', 
+    alignItems: 'center', 
+    justifyContent: 'center', 
+    fontWeight: 600
+}));
+
 const CaseloadMetrics = React.memo(({ showCalendarView, onSwitchView }) => {
     const [items, setItems] = useState('my-items');
     const handleSwitchView = useCallback(
@@ -49,10 +59,14 @@ const CaseloadMetrics = React.memo(({ showCalendarView, onSwitchView }) => {
         setItems(event.target.value);
     };
 
+    const handleCellClick = (label) => {
+        alert(`You clicked on ${label}`);
+    };
+
     return (
         <Box sx={{ padding: 2 }}>
             <Stack direction="row" spacing={2} alignItems="center">
-                <Typography variant="h6" component="div" color="#5fa0cf" fontWeight={600} width={200}>
+                <Typography variant="h6" component="div" color="#183084" fontWeight={600} width={200}>
                     Caseload Metrics:
                 </Typography>
                 <TableContainer component={Paper}>
@@ -68,11 +82,15 @@ const CaseloadMetrics = React.memo(({ showCalendarView, onSwitchView }) => {
                         </TableHead>
                         <TableBody>
                             <TableRow>
-                                <ContentCell>30</ContentCell>
-                                <ContentCell>20</ContentCell>
-                                <ContentCell>16</ContentCell>
-                                <ContentCell sx={{ color: 'orange' }}>12</ContentCell>
-                                <ContentCell sx={{ color: 'red' }}>7</ContentCell>
+                                {['30', '20', '16', '12', '7'].map((value, index) => (
+                                    <ContentCell key={index} sx={{ color: value === '12' ? 'orange' : value === '7' ? 'red' : 'inherit' }}>
+                                        <ButtonBase onClick={() => handleCellClick(value)}>
+                                            <StyledBox>
+                                                {value}
+                                            </StyledBox>
+                                        </ButtonBase>
+                                    </ContentCell>
+                                ))}
                             </TableRow>
                         </TableBody>
                     </Table>
